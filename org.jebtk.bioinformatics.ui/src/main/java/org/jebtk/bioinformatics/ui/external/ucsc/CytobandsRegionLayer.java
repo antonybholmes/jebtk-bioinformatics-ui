@@ -20,11 +20,12 @@ import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 
 import org.jebtk.bioinformatics.ext.ucsc.Cytobands;
-import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.bioinformatics.genomic.Chromosome.Human;
+import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.core.ColorUtils;
 import org.jebtk.core.Mathematics;
 import org.jebtk.graphplot.figure.Axes;
+import org.jebtk.graphplot.figure.Figure;
 import org.jebtk.graphplot.figure.SubFigure;
 import org.jebtk.modern.graphics.DrawingContext;
 
@@ -97,9 +98,10 @@ public class CytobandsRegionLayer extends CytobandsLayer {
 	@Override
 	public void plotClipped(Graphics2D g2,
 			DrawingContext context,
-			SubFigure figure,
+			Figure figure,
+			SubFigure subFigure,
 			Axes axes) {
-		super.plotClipped(g2, context, figure, axes);
+		super.plotClipped(g2, context, figure, subFigure, axes);
 		
 		int minX = axes.toPlotX1(axes.getX1Axis().getMin());
 		int maxX = axes.toPlotX1(axes.getX1Axis().getMax()) - 1;

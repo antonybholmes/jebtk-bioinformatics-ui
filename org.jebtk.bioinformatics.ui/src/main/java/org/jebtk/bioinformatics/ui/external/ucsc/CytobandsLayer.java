@@ -31,6 +31,7 @@ import org.jebtk.core.ColorUtils;
 import org.jebtk.core.settings.SettingsService;
 import org.jebtk.graphplot.figure.Axes;
 import org.jebtk.graphplot.figure.AxesClippedLayer;
+import org.jebtk.graphplot.figure.Figure;
 import org.jebtk.graphplot.figure.SubFigure;
 import org.jebtk.modern.graphics.DrawingContext;
 import org.jebtk.modern.graphics.ImageUtils;
@@ -168,12 +169,13 @@ public class CytobandsLayer extends AxesClippedLayer {
 	@Override
 	public void plotClipped(Graphics2D g2,
 			DrawingContext context,
-			SubFigure figure,
+			Figure figure,
+			SubFigure subFigure,
 			Axes axes) {
 		if (context == DrawingContext.SCREEN) {
-			g2.drawImage(cacheImage(context, figure, axes), 0, 0, null);
+			g2.drawImage(cacheImage(context, subFigure, axes), 0, 0, null);
 		} else {
-			plotCytobands(g2, context, figure, axes);
+			plotCytobands(g2, context, subFigure, axes);
 		}
 		
 		//plotCytobands(g2, context, figure, axes);

@@ -41,6 +41,7 @@ import org.jebtk.bioinformatics.motifs.MotifHeights;
 import org.jebtk.core.collections.DefaultTreeMap;
 import org.jebtk.core.collections.TreeMapCreator;
 import org.jebtk.graphplot.figure.Axes;
+import org.jebtk.graphplot.figure.Figure;
 import org.jebtk.graphplot.figure.Plot;
 import org.jebtk.graphplot.figure.PlotClippedLayer;
 import org.jebtk.graphplot.figure.SubFigure;
@@ -48,7 +49,6 @@ import org.jebtk.math.matrix.AnnotationMatrix;
 import org.jebtk.modern.font.FontService;
 import org.jebtk.modern.graphics.DrawingContext;
 import org.jebtk.modern.graphics.ImageUtils;
-import org.jebtk.modern.theme.ThemeService;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -104,7 +104,8 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
 	@Override
 	public void plotClipped(Graphics2D g2,
 			DrawingContext context,
-			SubFigure figure,
+			Figure figure,
+			SubFigure subFigure,
 			Axes axes,
 			Plot plot,
 			AnnotationMatrix m) {

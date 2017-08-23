@@ -143,9 +143,9 @@ public class SeqLogoCanvas extends SubFigure {
 		plot.clear();
 		
 		if (view == MotifView.BITS) {
-			plot.getPlotLayers().putZ(new LettersPlotBitsLayer(motif));
+			plot.putZ(new LettersPlotBitsLayer(motif));
 		} else {
-			plot.getPlotLayers().putZ(new LettersPlotPLayer(motif));
+			plot.putZ(new LettersPlotPLayer(motif));
 		}
 		
 		axes.setMargins(50);
@@ -157,7 +157,5 @@ public class SeqLogoCanvas extends SubFigure {
 		}
 		
 		axes.getTitle().setText(title);
-		
-		fireCanvasRedraw();
 	}
 }

@@ -33,8 +33,8 @@ import java.util.List;
 import org.jebtk.bioinformatics.motifs.Motif;
 import org.jebtk.bioinformatics.motifs.MotifView;
 import org.jebtk.graphplot.figure.Figure;
-import org.jebtk.graphplot.figure.FigureLayoutVBox;
 import org.jebtk.graphplot.figure.SubFigure;
+import org.jebtk.graphplot.plotbox.PlotBoxRowLayout;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -71,7 +71,11 @@ public class SeqLogosCanvas extends Figure {
 	public void setView(MotifView view) {
 		mView = view;
 		
-		repaint();
+		fireChanged();
+	}
+	
+	public SeqLogosCanvas() {
+		super("Seq Logos Figure", new PlotBoxRowLayout());
 	}
 	
 	/**
@@ -87,8 +91,7 @@ public class SeqLogosCanvas extends Figure {
 		// If the genomic model changes, create new plots
 		//mGenomicModel.addChangeListener(new GenomicEvents());
 
-		setLayout(new FigureLayoutVBox());
-
+		
 		init();
 	}
 	
@@ -100,10 +103,7 @@ public class SeqLogosCanvas extends Figure {
 			return;
 		}
 		
-		// remove the existing plots
-		getSubFigureZModel().clearUnreservedLayers();
-
-		List<SubFigure> plots = new ArrayList<SubFigure>();
+		List<SubFigure> plots = new ArrayList<SubFigure>(mMotifs.size());
 
 		// Add the plots to this canvas
 		for (int i = 0 ; i < Math.min(mMotifs.size(), MAX_PLOTS); ++i) {
@@ -115,6 +115,6 @@ public class SeqLogosCanvas extends Figure {
 
 		}
 
-		getSubFigureZModel().putZ(plots);
+		setChildren(plots);
 	}
 }
