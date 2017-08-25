@@ -39,9 +39,9 @@ import org.jebtk.bioinformatics.motifs.Motif;
 import org.jebtk.bioinformatics.motifs.MotifHeights;
 import org.jebtk.core.collections.CollectionUtils;
 
-// TODO: Auto-generated Javadoc
 /**
- * Draws scales motif letters.
+ * Draws motif bases where the height of each letter is proportional to its
+ * probability.
  * 
  * @author Antony Holmes Holmes
  *
@@ -63,12 +63,11 @@ public class LettersPlotPLayer extends LettersPlotLayer {
 
 		// Normalize the matrix
 		for (BaseCounts base : motif) {
-			double sum = base.getA() + base.getC() + base.getG() + base.getT();
-
-			counts.add(new BaseCounts(base.getA() / sum,
-					base.getC() / sum,
-					base.getG() / sum,
-					base.getT() / sum));
+			counts.add(new BaseCounts(base.getA(),
+					base.getC(),
+					base.getG(),
+					base.getT(),
+					true));
 		}
 
 		Motif pMotif = new Motif(motif.getName(), counts);

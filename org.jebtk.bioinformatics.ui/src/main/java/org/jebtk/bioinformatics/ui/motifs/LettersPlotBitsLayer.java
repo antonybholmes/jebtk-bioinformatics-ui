@@ -84,7 +84,8 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
 			counts.add(new BaseCounts(a * information, 
 					c * information, 
 					g * information, 
-					t * information));
+					t * information,
+					false));
 		}
 		
 		Motif bitsMotif = new Motif(motif.getName(), counts);

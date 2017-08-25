@@ -133,7 +133,6 @@ public class SeqLogoCanvas extends SubFigure {
 		axes.setInternalPlotSize((motif.getBaseCount() + 1) * 50, 100);
 		
 		
-		
 		//axes.setMargins(50, 50, 50, 50);
 		
 		// Now lets create a plot
@@ -155,6 +154,8 @@ public class SeqLogoCanvas extends SubFigure {
 		if (motif.getDatabase() != null) {
 			title +=  " - " + motif.getDatabase();
 		}
+		
+		
 		
 		axes.getTitle().setText(title);
 	}

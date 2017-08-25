@@ -29,6 +29,7 @@ package org.jebtk.bioinformatics.ui.motifs;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -94,15 +95,18 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
 	 */
 	public LettersPlotLayer() {
 		super("Sequence");
+		
+		setAAMode(true);
+		setRasterMode(true);
 	}
 
 
 
 	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.lib.bioinformatics.plot.figure.PlotClippedLayer#plotClipped(java.awt.Graphics2D, org.jebtk.ui.ui.graphics.DrawingContext, edu.columbia.rdf.lib.bioinformatics.plot.figure.Figure, edu.columbia.rdf.lib.bioinformatics.plot.figure.Axes, edu.columbia.rdf.lib.bioinformatics.plot.figure.Plot, org.abh.lib.math.matrix.AnnotationMatrix)
+	 * @see edu.columbia.rdf.lib.bioinformatics.plot.figure.PlotClippedLayer#plotLayer(java.awt.Graphics2D, org.jebtk.ui.ui.graphics.DrawingContext, edu.columbia.rdf.lib.bioinformatics.plot.figure.Figure, edu.columbia.rdf.lib.bioinformatics.plot.figure.Axes, edu.columbia.rdf.lib.bioinformatics.plot.figure.Plot, org.abh.lib.math.matrix.AnnotationMatrix)
 	 */
 	@Override
-	public void plotClipped(Graphics2D g2,
+	public void plotLayer(Graphics2D g2,
 			DrawingContext context,
 			Figure figure,
 			SubFigure subFigure,
@@ -189,7 +193,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
 					break;
 				}
 
-				Graphics2D g2Temp = ImageUtils.createAAGraphics(g2);
+				Graphics2D g2Temp = ImageUtils.clone(g2);
 
 				try {
 					g2Temp.translate(x1, y1);

@@ -316,14 +316,7 @@ public class MotifsWeb extends MotifDataSource {
 					double gf = countJson.get("g").getAsDouble();
 					double tf = countJson.get("t").getAsDouble();
 
-					double total = af + cf + gf + tf;
-
-					af /= total;
-					cf /= total;
-					gf /= total;
-					tf /= total;
-
-					counts.add(new BaseCounts(af, cf, gf, tf));
+					counts.add(new BaseCounts(af, cf, gf, tf, true));
 				}
 
 				Motif motif = new Motif(motifJson.get("id").getAsString(),
