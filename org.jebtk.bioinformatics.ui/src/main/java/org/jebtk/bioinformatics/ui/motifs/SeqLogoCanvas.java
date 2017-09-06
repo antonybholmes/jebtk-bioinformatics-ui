@@ -99,7 +99,7 @@ public class SeqLogoCanvas extends SubFigure {
 		double min = 0;
 		double max = motif.getBaseCount() + 1;
 		
-		Axes axes = getCurrentAxes();
+		Axes axes = currentAxes();
 		
 		Axis axis = axes.getX1Axis();
 		
@@ -130,14 +130,14 @@ public class SeqLogoCanvas extends SubFigure {
 		
 		axis.getGrid().setVisible(false);
 		
-		axes.setInternalPlotSize((motif.getBaseCount() + 1) * 50, 100);
+		axes.setInternalSize((motif.getBaseCount() + 1) * 50, 100);
 		
 		
 		//axes.setMargins(50, 50, 50, 50);
 		
 		// Now lets create a plot
 		
-		Plot plot = axes.getCurrentPlot();
+		Plot plot = axes.currentPlot();
 		
 		plot.clear();
 		
