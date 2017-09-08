@@ -142,9 +142,9 @@ public class SeqLogoCanvas extends SubFigure {
 		plot.clear();
 		
 		if (view == MotifView.BITS) {
-			plot.putZ(new LettersPlotBitsLayer(motif));
+			plot.addChild(new LettersPlotBitsLayer(motif));
 		} else {
-			plot.putZ(new LettersPlotPLayer(motif));
+			plot.addChild(new LettersPlotPLayer(motif));
 		}
 		
 		axes.setMargins(50);
