@@ -36,7 +36,7 @@ import org.jebtk.core.io.Io;
 import org.jebtk.core.io.PathUtils;
 import org.jebtk.math.external.microsoft.Excel;
 import org.jebtk.math.matrix.AnnotationMatrix;
-import org.jebtk.math.matrix.AnnotationType;
+import org.jebtk.math.matrix.MatrixType;
 import org.jebtk.math.matrix.CsvMatrixParser;
 import org.jebtk.math.matrix.MixedMatrixParser;
 import org.jebtk.math.matrix.TextMatrixParser;
@@ -73,7 +73,7 @@ public class Bioinformatics {
 				skipMatches,
 				rowAnnotations, 
 				delimiter,
-				AnnotationType.MIXED);
+				MatrixType.MIXED);
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class Bioinformatics {
 			List<String> skipMatches,
 			int rowAnns, 
 			String delimiter,
-			AnnotationType type) throws InvalidFormatException, IOException {
+			MatrixType type) throws InvalidFormatException, IOException {
 		if (file == null) {
 			return null;
 		}
@@ -112,7 +112,7 @@ public class Bioinformatics {
 		} else {
 			AnnotationMatrix matrix;
 			
-			if (type == AnnotationType.TEXT) {
+			if (type == MatrixType.TEXT) {
 				matrix = new TextMatrixParser(hasHeader, 
 						skipMatches, 
 						rowAnns, 
