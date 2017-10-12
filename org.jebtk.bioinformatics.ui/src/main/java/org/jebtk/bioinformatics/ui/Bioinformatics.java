@@ -35,7 +35,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.jebtk.core.io.Io;
 import org.jebtk.core.io.PathUtils;
 import org.jebtk.math.external.microsoft.Excel;
-import org.jebtk.math.matrix.AnnotationMatrix;
+import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.math.matrix.MatrixType;
 import org.jebtk.math.matrix.CsvMatrixParser;
 import org.jebtk.math.matrix.MixedMatrixParser;
@@ -110,7 +110,7 @@ public class Bioinformatics {
 		} else if (ext.equals(Io.FILE_EXT_CSV)) {
 			return new EditableMatrixTableModel(new CsvMatrixParser(hasHeader, rowAnns).parse(file));
 		} else {
-			AnnotationMatrix matrix;
+			DataFrame matrix;
 			
 			if (type == MatrixType.TEXT) {
 				matrix = new TextMatrixParser(hasHeader, 
