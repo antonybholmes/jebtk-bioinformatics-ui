@@ -541,7 +541,10 @@ public class GenomicRegionRibbonSection extends RibbonSection {
 		} else {
 			// assume its a gene
 
-			region = GenesService.getInstance().getGenes(mGenomeModel.get(), "refseq").findMainVariant(text);
+			region = GenesService.getInstance()
+					.getGenes(mGenomeModel.get(), "refseq")
+					.findMainVariant(text)
+					.getRegion();
 		}
 
 		return region;
