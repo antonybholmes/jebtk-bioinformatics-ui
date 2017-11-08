@@ -36,6 +36,9 @@ import org.jebtk.modern.io.GuiFileExtFilter;
  */
 public class FastaGuiFileFilter extends GuiFileExtFilter {
 	
+	public static final GuiFileExtFilter FASTA_FILTER = 
+			new FastaGuiFileFilter();
+	
 	/**
 	 * Instantiates a new fasta gui file filter.
 	 */

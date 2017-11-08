@@ -29,7 +29,6 @@ package org.jebtk.bioinformatics.ui.motifs;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +39,7 @@ import org.jebtk.bioinformatics.motifs.BaseHeight;
 import org.jebtk.bioinformatics.motifs.BaseHeights;
 import org.jebtk.bioinformatics.motifs.MotifHeights;
 import org.jebtk.core.collections.DefaultTreeMap;
+import org.jebtk.core.collections.IterMap;
 import org.jebtk.core.collections.TreeMapCreator;
 import org.jebtk.graphplot.figure.Axes;
 import org.jebtk.graphplot.figure.Figure;
@@ -82,11 +82,11 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
 	protected MotifHeights mMotifHeights;
 	
 	/** The m Y scale map. */
-	protected Map<Character, Map<Integer, Double>> mYScaleMap =
+	protected IterMap<Character, IterMap<Integer, Double>> mYScaleMap =
 			DefaultTreeMap.create(new TreeMapCreator<Integer, Double>());
 	
 	/** The m X scale map. */
-	protected Map<Character, Map<Integer, Double>> mXScaleMap =
+	protected IterMap<Character, IterMap<Integer, Double>> mXScaleMap =
 			DefaultTreeMap.create(new TreeMapCreator<Integer, Double>());
 
 
