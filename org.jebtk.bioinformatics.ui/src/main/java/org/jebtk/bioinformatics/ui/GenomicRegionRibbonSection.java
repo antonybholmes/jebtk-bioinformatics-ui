@@ -543,8 +543,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
 
 			region = GenesService.getInstance()
 					.getGenes(mGenomeModel.get())
-					.findMainVariant(text)
-					.getRegion();
+					.getGene(text);
 		}
 
 		return region;

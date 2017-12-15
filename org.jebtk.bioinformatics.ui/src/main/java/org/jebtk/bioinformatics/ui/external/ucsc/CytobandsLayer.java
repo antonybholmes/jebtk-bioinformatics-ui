@@ -26,7 +26,7 @@ import java.util.List;
 import org.jebtk.bioinformatics.ext.ucsc.Cytoband;
 import org.jebtk.bioinformatics.ext.ucsc.Cytobands;
 import org.jebtk.bioinformatics.genomic.Chromosome;
-import org.jebtk.bioinformatics.genomic.Chromosome.Human;
+import org.jebtk.bioinformatics.genomic.ChromosomeService;
 import org.jebtk.core.ColorUtils;
 import org.jebtk.core.settings.SettingsService;
 import org.jebtk.graphplot.figure.Axes;
@@ -137,7 +137,7 @@ public class CytobandsLayer extends AxesClippedLayer {
 	 * @param cytobands the cytobands
 	 */
 	public CytobandsLayer(Cytobands cytobands) {
-		this(Human.CHR1, cytobands);
+		this(ChromosomeService.getInstance().human("chr1"), cytobands);
 	}
 
 	/**
