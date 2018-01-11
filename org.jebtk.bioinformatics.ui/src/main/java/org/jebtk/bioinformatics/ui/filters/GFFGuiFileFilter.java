@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.filters;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class EstGuiFileFilter.
  */
 public class GFFGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new est gui file filter.
-	 */
-	public GFFGuiFileFilter() {
-		super("gff");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "GFF Annotation (*.gff)";
-	}
+  /**
+   * Instantiates a new est gui file filter.
+   */
+  public GFFGuiFileFilter() {
+    super("gff");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "GFF Annotation (*.gff)";
+  }
 }

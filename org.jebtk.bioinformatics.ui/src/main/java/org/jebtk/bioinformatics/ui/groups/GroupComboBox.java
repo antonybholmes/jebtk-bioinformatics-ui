@@ -37,22 +37,22 @@ import org.jebtk.modern.widget.ModernWidget;
  */
 public class GroupComboBox extends ModernComboBox {
 
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * Instantiates a new group combo box.
-	 *
-	 * @param model the model
-	 */
-	public GroupComboBox(GroupsModel model) {
-		for (Group group : model) {
-			addMenuItem(new GroupMenuItem(group));
-		}
-		
-		UI.setSize(this, ModernWidget.LARGE_SIZE);
-	}
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new group combo box.
+   *
+   * @param model the model
+   */
+  public GroupComboBox(GroupsModel model) {
+    for (Group group : model) {
+      addMenuItem(new GroupMenuItem(group));
+    }
+
+    UI.setSize(this, ModernWidget.LARGE_SIZE);
+  }
 
 }

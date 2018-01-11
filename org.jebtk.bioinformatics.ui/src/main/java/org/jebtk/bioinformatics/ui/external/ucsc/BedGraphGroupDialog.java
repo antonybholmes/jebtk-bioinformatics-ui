@@ -51,109 +51,109 @@ import org.jebtk.modern.window.ModernWindow;
  * @author Antony Holmes Holmes
  */
 public class BedGraphGroupDialog extends ModernDialogTaskWindow {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The member name field.
-	 */
-	private ModernTextField mNameField = new ModernTextField("Name");
 
-	/**
-	 * The member old.
-	 */
-	private String mOld;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * The class KeyEvents.
-	 */
-	private class KeyEvents extends KeyAdapter {
+  /**
+   * The member name field.
+   */
+  private ModernTextField mNameField = new ModernTextField("Name");
 
-		/* (non-Javadoc)
-		 * @see java.awt.event.KeyAdapter#keyReleased(java.awt.event.KeyEvent)
-		 */
-		@Override
-		public void keyReleased(KeyEvent e) {
-			setTitle("BedGraph Group", mNameField.getText());
-		}
-	}
+  /**
+   * The member old.
+   */
+  private String mOld;
 
-	/**
-	 * Instantiates a new bed graph group dialog.
-	 *
-	 * @param parent the parent
-	 * @param model the model
-	 * @param oldGroup the old group
-	 */
-	public BedGraphGroupDialog(ModernWindow parent, 
-			BedGraphGroupsModel model,
-			String oldGroup) {
-		super(parent);
-		
-		mOld = oldGroup;
-		
-		if (mOld != null) {
-			mNameField.setText(mOld);
-		} else {
-			mNameField.setText("Group " + (model.size() + 1));
-		}
-		
-		setTitle("BedGraph Group");
-		
-		setup();
+  /**
+   * The class KeyEvents.
+   */
+  private class KeyEvents extends KeyAdapter {
 
-		createUi();
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.event.KeyAdapter#keyReleased(java.awt.event.KeyEvent)
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {
+      setTitle("BedGraph Group", mNameField.getText());
+    }
+  }
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		mNameField.addKeyListener(new KeyEvents());
-			
-		setSize(new Dimension(500, 240));
-		
-		UI.centerWindowToScreen(this);
-	}
+  /**
+   * Instantiates a new bed graph group dialog.
+   *
+   * @param parent the parent
+   * @param model the model
+   * @param oldGroup the old group
+   */
+  public BedGraphGroupDialog(ModernWindow parent, BedGraphGroupsModel model,
+      String oldGroup) {
+    super(parent);
 
+    mOld = oldGroup;
 
-	/**
-	 * Creates the ui.
-	 */
-	private final void createUi() {
-		//this.getContentPane().add(new JLabel("Change " + getProductDetails().getProductName() + " settings", JLabel.LEFT), BorderLayout.PAGE_START);
+    if (mOld != null) {
+      mNameField.setText(mOld);
+    } else {
+      mNameField.setText("Group " + (model.size() + 1));
+    }
 
-		
-		
-		Box box = Box.createVerticalBox();
+    setTitle("BedGraph Group");
 
-		int[] rows = {ModernWidget.WIDGET_HEIGHT};
-		int[] cols = {120, 300};
-		
-		MatrixPanel matrixPanel = 
-				new MatrixPanel(rows, cols, ModernWidget.PADDING, ModernWidget.PADDING);
-		
-		matrixPanel.add(new ModernAutoSizeLabel("Name"));
-		matrixPanel.add(new ModernTextBorderPanel(mNameField));
-		matrixPanel.setBorder(ModernPanel.LARGE_BORDER);
+    setup();
 
-		box.add(matrixPanel);
-		
+    createUi();
+  }
 
-		//JPanel buttonPanel = new Panel(new FlowLayout(FlowLayout.LEFT));
+  /**
+   * Setup.
+   */
+  private void setup() {
+    mNameField.addKeyListener(new KeyEvents());
 
-		//importButton.setCanvasSize(new Dimension(100, ModernTheme.getInstance().getClass("widget").getInt("height")));
-		//exportButton.setCanvasSize(new Dimension(100, ModernTheme.getInstance().getClass("widget").getInt("height")));
+    setSize(new Dimension(500, 240));
 
-		//buttonPanel.add(importButton);
-		//buttonPanel.add(exportButton);
+    UI.centerWindowToScreen(this);
+  }
 
-		//panel.add(buttonPanel, BorderLayout.PAGE_END);
+  /**
+   * Creates the ui.
+   */
+  private final void createUi() {
+    // this.getContentPane().add(new JLabel("Change " +
+    // getProductDetails().getProductName() + " settings", JLabel.LEFT),
+    // BorderLayout.PAGE_START);
 
+    Box box = Box.createVerticalBox();
 
-		setContent(box);
-	}
+    int[] rows = { ModernWidget.WIDGET_HEIGHT };
+    int[] cols = { 120, 300 };
+
+    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING,
+        ModernWidget.PADDING);
+
+    matrixPanel.add(new ModernAutoSizeLabel("Name"));
+    matrixPanel.add(new ModernTextBorderPanel(mNameField));
+    matrixPanel.setBorder(ModernPanel.LARGE_BORDER);
+
+    box.add(matrixPanel);
+
+    // JPanel buttonPanel = new Panel(new FlowLayout(FlowLayout.LEFT));
+
+    // importButton.setCanvasSize(new Dimension(100,
+    // ModernTheme.getInstance().getClass("widget").getInt("height")));
+    // exportButton.setCanvasSize(new Dimension(100,
+    // ModernTheme.getInstance().getClass("widget").getInt("height")));
+
+    // buttonPanel.add(importButton);
+    // buttonPanel.add(exportButton);
+
+    // panel.add(buttonPanel, BorderLayout.PAGE_END);
+
+    setContent(box);
+  }
 }

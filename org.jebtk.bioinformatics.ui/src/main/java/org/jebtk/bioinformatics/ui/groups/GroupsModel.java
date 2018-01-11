@@ -35,7 +35,7 @@ import org.jebtk.core.model.ListModel;
  */
 public class GroupsModel extends ListModel<Group> {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
 }

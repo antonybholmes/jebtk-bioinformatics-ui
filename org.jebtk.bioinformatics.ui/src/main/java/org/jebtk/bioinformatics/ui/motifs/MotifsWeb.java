@@ -54,283 +54,281 @@ import org.jebtk.core.tree.TreeNode;
  * The class MotifsWeb.
  */
 public class MotifsWeb extends MotifDataSource {
-	
-	/**
-	 * The constant BASE_DIR.
-	 */
-	private static final Path BASE_DIR = new RootPath();
-	
-	/**
-	 * The member url.
-	 */
-	private UrlBuilder mUrl;
-	
-	/**
-	 * The member paths url.
-	 */
-	private UrlBuilder mPathsUrl;
-	
-	/**
-	 * The member motifs url.
-	 */
-	private UrlBuilder mMotifsUrl;
-	
-	/**
-	 * The member parser.
-	 */
-	private JsonParser mParser;
 
+  /**
+   * The constant BASE_DIR.
+   */
+  private static final Path BASE_DIR = new RootPath();
 
-	/**
-	 * Instantiates a new motifs web.
-	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public MotifsWeb() throws IOException {
-		this(SettingsService.getInstance().getSetting("motifs.motifsdb.remote-url").getAsUrl());
-	}
-	
-	/**
-	 * Instantiates a new motifs web.
-	 *
-	 * @param url the url
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public MotifsWeb(URL url) throws IOException {
-		mUrl = new UrlBuilder(url);
-		mPathsUrl = new UrlBuilder(mUrl).resolve("paths");
-		mMotifsUrl = new UrlBuilder(mUrl).resolve("motifs");
-		
-		mParser = new JsonParser();
-	}
+  /**
+   * The member url.
+   */
+  private UrlBuilder mUrl;
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.lib.bioinformatics.motifs.MotifsDB#createTree(org.abh.lib.tree.TreeRootNode, java.lang.String)
-	 */
-	@Override
-	public void createTree(TreeNode<Motif> root,
-			List<String> terms,
-			boolean inList,
-			boolean exactMatch,
-			boolean caseSensitive) throws IOException, ParseException {
-		//TreeRootNode<Motif> root = new TreeRootNode<Motif>();
+  /**
+   * The member paths url.
+   */
+  private UrlBuilder mPathsUrl;
 
-		createTreeDir(BASE_DIR, root, terms);
+  /**
+   * The member motifs url.
+   */
+  private UrlBuilder mMotifsUrl;
 
-		//return root;
-	}
+  /**
+   * The member parser.
+   */
+  private JsonParser mParser;
 
-	/**
-	 * Creates the tree dir.
-	 *
-	 * @param root the root
-	 * @param rootNode the root node
-	 * @param terms the terms
-	 * @return true, if successful
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	private boolean createTreeDir(Path root, 
-			TreeNode<Motif> rootNode,
-			List<String> terms) throws IOException, ParseException {
-		/*
-		for (Path path : getPaths(root)) {
-			TreeNode<Motif> node = new TreeNode<Motif>(path.getName());
+  /**
+   * Instantiates a new motifs web.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public MotifsWeb() throws IOException {
+    this(SettingsService.getInstance().getSetting("motifs.motifsdb.remote-url")
+        .getAsUrl());
+  }
 
-			node.setIsParent(true);
-			rootNode.addChild(node);
-			
-			createTreeDir(path, node, terms);
-			
-			
-		}
-		
-		Deque<SearchStackElement<Motif>> searchStack = 
-				SearchStackElement.parseQuery(search);
+  /**
+   * Instantiates a new motifs web.
+   *
+   * @param url the url
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public MotifsWeb(URL url) throws IOException {
+    mUrl = new UrlBuilder(url);
+    mPathsUrl = new UrlBuilder(mUrl).resolve("paths");
+    mMotifsUrl = new UrlBuilder(mUrl).resolve("motifs");
 
-		List<Motif> motifs = search(getMotifs(root), searchStack);
-		
-		for (Motif motif : motifs) {
-			rootNode.addChild(new TreeNode<Motif>(motif.getName() + " (" + motif.getId() + ")", motif));
-		}
-		
-		return motifs.size() > 0;
-		*/
-		
-		return false;
-	}
-	
-	/**
-	 * Search.
-	 *
-	 * @param motifs the motifs
-	 * @param searchStack the search stack
-	 * @return the list
-	 */
-	public static List<Motif> search(List<Motif> motifs,
-			Deque<SearchStackElement<Motif>> searchStack) {
-		
-		if (searchStack.size() == 0) {
-			return motifs;
-		}
-		
-		//int categoryId = getAllCategoriesId(connection);
+    mParser = new JsonParser();
+  }
 
-		SearchStackElement<Motif> op = null;
-		SearchStackElement<Motif> newOp;
-		List<Motif> op1;
-		List<Motif> op2;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * edu.columbia.rdf.lib.bioinformatics.motifs.MotifsDB#createTree(org.abh.lib.
+   * tree.TreeRootNode, java.lang.String)
+   */
+  @Override
+  public void createTree(TreeNode<Motif> root,
+      List<String> terms,
+      boolean inList,
+      boolean exactMatch,
+      boolean caseSensitive) throws IOException, ParseException {
+    // TreeRootNode<Motif> root = new TreeRootNode<Motif>();
 
-		Deque<List<Motif>> resultStack = 
-				new ArrayDeque<List<Motif>>();
-	
-		List<Motif> sampleIds;
-		
-		while (searchStack.size() > 0) {
-			op = searchStack.pop();
+    createTreeDir(BASE_DIR, root, terms);
 
-			switch (op.mOp) {
-			case MATCH:
-				String s = op.mText.toLowerCase();
+    // return root;
+  }
 
-				sampleIds = new ArrayList<Motif>();
-				
-				for (Motif motif : motifs) {
-					if (motif.getName().toLowerCase().contains(s) ||
-						motif.getId().toLowerCase().contains(s) ||
-						motif.getGene().toLowerCase().contains(s)) {
-						sampleIds.add(motif);
-					}
-				}
-				
-				resultStack.push(sampleIds);
-				
-				break;
-			case AND:
-				op2 = resultStack.pop();
-				op1 = resultStack.pop();
+  /**
+   * Creates the tree dir.
+   *
+   * @param root the root
+   * @param rootNode the root node
+   * @param terms the terms
+   * @return true, if successful
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
+   */
+  private boolean createTreeDir(Path root,
+      TreeNode<Motif> rootNode,
+      List<String> terms) throws IOException, ParseException {
+    /*
+     * for (Path path : getPaths(root)) { TreeNode<Motif> node = new
+     * TreeNode<Motif>(path.getName());
+     * 
+     * node.setIsParent(true); rootNode.addChild(node);
+     * 
+     * createTreeDir(path, node, terms);
+     * 
+     * 
+     * }
+     * 
+     * Deque<SearchStackElement<Motif>> searchStack =
+     * SearchStackElement.parseQuery(search);
+     * 
+     * List<Motif> motifs = search(getMotifs(root), searchStack);
+     * 
+     * for (Motif motif : motifs) { rootNode.addChild(new
+     * TreeNode<Motif>(motif.getName() + " (" + motif.getId() + ")", motif)); }
+     * 
+     * return motifs.size() > 0;
+     */
 
-				sampleIds = CollectionUtils.intersect(op1, 
-						op2);
-				
-				resultStack.push(sampleIds);
+    return false;
+  }
 
-				break;
-			case OR:
-				op2 = resultStack.pop();
-				op1 = resultStack.pop();
-				
-				sampleIds = CollectionUtils.union(op1, 
-						op2);
+  /**
+   * Search.
+   *
+   * @param motifs the motifs
+   * @param searchStack the search stack
+   * @return the list
+   */
+  public static List<Motif> search(List<Motif> motifs,
+      Deque<SearchStackElement<Motif>> searchStack) {
 
-				resultStack.push(sampleIds);
+    if (searchStack.size() == 0) {
+      return motifs;
+    }
 
-				break;
-			case XOR:
-			case NAND:
-				op2 = resultStack.pop();
-				op1 = resultStack.pop();
+    // int categoryId = getAllCategoriesId(connection);
 
-				sampleIds = CollectionUtils.xor(op1, op2);
+    SearchStackElement<Motif> op = null;
+    SearchStackElement<Motif> newOp;
+    List<Motif> op1;
+    List<Motif> op2;
 
-				resultStack.push(sampleIds);
+    Deque<List<Motif>> resultStack = new ArrayDeque<List<Motif>>();
 
-				break;
-	    	default:
-	    		break;
-			}
-		}
-		
-		// The final result is on the top of result stack
-		return resultStack.pop(); //ArrayUtils.sort(sampleIds);
-	}
+    List<Motif> sampleIds;
 
-	/**
-	 * Gets the paths.
-	 *
-	 * @param root the root
-	 * @return the paths
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	public List<Path> getPaths(Path root) throws IOException, ParseException {
-		List<Path> paths = new ArrayList<Path>();
+    while (searchStack.size() > 0) {
+      op = searchStack.pop();
 
-		try {
-			
-			URL url = mPathsUrl.param("p", root.toString()).toUrl();
+      switch (op.mOp) {
+      case MATCH:
+        String s = op.mText.toLowerCase();
 
-			System.err.println(url);
-			
-			Json json = mParser.parse(url);
+        sampleIds = new ArrayList<Motif>();
 
-			for (int i = 0; i < json.size(); ++i) {
-				Json pathJson = json.get(i);
+        for (Motif motif : motifs) {
+          if (motif.getName().toLowerCase().contains(s)
+              || motif.getId().toLowerCase().contains(s)
+              || motif.getGene().toLowerCase().contains(s)) {
+            sampleIds.add(motif);
+          }
+        }
 
-				Path path = new Path(pathJson.get("path").getAsString());
+        resultStack.push(sampleIds);
 
-				paths.add(path);
-			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
+        break;
+      case AND:
+        op2 = resultStack.pop();
+        op1 = resultStack.pop();
 
-		return paths;
-	}
+        sampleIds = CollectionUtils.intersect(op1, op2);
 
-	/**
-	 * Gets the motifs.
-	 *
-	 * @param path the path
-	 * @return the motifs
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	public List<Motif> getMotifs(Path path) throws IOException, ParseException {
-		List<Motif> motifs = new ArrayList<Motif>();
+        resultStack.push(sampleIds);
 
-		try {
-			URL url = new UrlBuilder(mMotifsUrl).param("p", path.toString()).toUrl();
+        break;
+      case OR:
+        op2 = resultStack.pop();
+        op1 = resultStack.pop();
 
-			System.err.println(url);
-			
-			Json json = mParser.parse(url);
+        sampleIds = CollectionUtils.union(op1, op2);
 
-			for (int i = 0; i < json.size(); ++i) {
-				Json motifJson = json.get(i);
+        resultStack.push(sampleIds);
 
-				Json countsJson = motifJson.get("counts");
+        break;
+      case XOR:
+      case NAND:
+        op2 = resultStack.pop();
+        op1 = resultStack.pop();
 
-				//System.err.println(countsJson.toString());
-				
-				int l = countsJson.size();
+        sampleIds = CollectionUtils.xor(op1, op2);
 
-				List<BaseCounts> counts = new ArrayList<BaseCounts>(l);
+        resultStack.push(sampleIds);
 
-				for (int j = 0; j < l; ++j) {
-					Json countJson = countsJson.get(j);
-					// Convert the values of each column to percentages
+        break;
+      default:
+        break;
+      }
+    }
 
-					double af = countJson.get("a").getAsDouble();
-					double cf = countJson.get("c").getAsDouble();
-					double gf = countJson.get("g").getAsDouble();
-					double tf = countJson.get("t").getAsDouble();
+    // The final result is on the top of result stack
+    return resultStack.pop(); // ArrayUtils.sort(sampleIds);
+  }
 
-					counts.add(new BaseCounts(af, cf, gf, tf, true));
-				}
+  /**
+   * Gets the paths.
+   *
+   * @param root the root
+   * @return the paths
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
+   */
+  public List<Path> getPaths(Path root) throws IOException, ParseException {
+    List<Path> paths = new ArrayList<Path>();
 
-				Motif motif = new Motif(motifJson.get("id").getAsString(),
-						motifJson.get("name").getAsString(), 
-						motifJson.get("gene").getAsString(), 
-						motifJson.get("database").getAsString(),
-						counts);
+    try {
 
-				motifs.add(motif);
-			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
+      URL url = mPathsUrl.param("p", root.toString()).toUrl();
 
-		return motifs;
-	}
+      System.err.println(url);
+
+      Json json = mParser.parse(url);
+
+      for (int i = 0; i < json.size(); ++i) {
+        Json pathJson = json.get(i);
+
+        Path path = new Path(pathJson.get("path").getAsString());
+
+        paths.add(path);
+      }
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
+
+    return paths;
+  }
+
+  /**
+   * Gets the motifs.
+   *
+   * @param path the path
+   * @return the motifs
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
+   */
+  public List<Motif> getMotifs(Path path) throws IOException, ParseException {
+    List<Motif> motifs = new ArrayList<Motif>();
+
+    try {
+      URL url = new UrlBuilder(mMotifsUrl).param("p", path.toString()).toUrl();
+
+      System.err.println(url);
+
+      Json json = mParser.parse(url);
+
+      for (int i = 0; i < json.size(); ++i) {
+        Json motifJson = json.get(i);
+
+        Json countsJson = motifJson.get("counts");
+
+        // System.err.println(countsJson.toString());
+
+        int l = countsJson.size();
+
+        List<BaseCounts> counts = new ArrayList<BaseCounts>(l);
+
+        for (int j = 0; j < l; ++j) {
+          Json countJson = countsJson.get(j);
+          // Convert the values of each column to percentages
+
+          double af = countJson.get("a").getAsDouble();
+          double cf = countJson.get("c").getAsDouble();
+          double gf = countJson.get("g").getAsDouble();
+          double tf = countJson.get("t").getAsDouble();
+
+          counts.add(new BaseCounts(af, cf, gf, tf, true));
+        }
+
+        Motif motif = new Motif(motifJson.get("id").getAsString(),
+            motifJson.get("name").getAsString(),
+            motifJson.get("gene").getAsString(),
+            motifJson.get("database").getAsString(), counts);
+
+        motifs.add(motif);
+      }
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
+
+    return motifs;
+  }
 }

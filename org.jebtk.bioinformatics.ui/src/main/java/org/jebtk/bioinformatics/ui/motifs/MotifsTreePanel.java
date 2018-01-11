@@ -27,14 +27,10 @@
  */
 package org.jebtk.bioinformatics.ui.motifs;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import javax.swing.Box;
 
 import org.jebtk.bioinformatics.motifs.Motif;
 import org.jebtk.bioinformatics.motifs.MotifsDataSourceService;
@@ -53,8 +49,6 @@ import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.event.ModernSelectionListener;
 import org.jebtk.modern.graphics.icons.MinusVectorIcon;
 import org.jebtk.modern.graphics.icons.PlusVectorIcon;
-import org.jebtk.modern.panel.HBox;
-import org.jebtk.modern.panel.ModernContentPanel;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 import org.jebtk.modern.search.ModernSearchExtPanel;
@@ -69,349 +63,372 @@ import org.jebtk.modern.window.ModernWindow;
  * The class MotifsTreePanel.
  */
 public class MotifsTreePanel extends ModernComponent {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * The constant NO_MOTIFS.
-	 */
-	private static final List<Motif> NO_MOTIFS = 
-			Collections.unmodifiableList(new ArrayList<Motif>());
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Determines whether to expand or collapse the motif tree based on
-	 * how many child nodes are in the tree.
-	 */
-	private static final int EXPAND_THRESHOLD = 100;
+  /**
+   * The constant NO_MOTIFS.
+   */
+  private static final List<Motif> NO_MOTIFS = Collections
+      .unmodifiableList(new ArrayList<Motif>());
 
-	/**
-	 * The member tree.
-	 */
-	private ModernTree<Motif> mTree = new ModernTree<Motif>();
-	
-	/**
-	 * The member expand button.
-	 */
-	private ModernButton mExpandButton = 
-			new ModernDialogFlatButton(UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
+  /**
+   * Determines whether to expand or collapse the motif tree based on how many
+   * child nodes are in the tree.
+   */
+  private static final int EXPAND_THRESHOLD = 100;
 
-	/**
-	 * The member collapse button.
-	 */
-	private ModernButton mCollapseButton = 
-			new ModernDialogFlatButton(UIService.getInstance().loadIcon(MinusVectorIcon.class, 16));
+  /**
+   * The member tree.
+   */
+  private ModernTree<Motif> mTree = new ModernTree<Motif>();
 
-	/**
-	 * The member refresh button.
-	 */
-	private ModernButton mRefreshButton =
-			new ModernDialogFlatButton(UIService.getInstance().loadIcon("refresh", 16));
-	
-	//private ModernButton mSearchButton =
-	//		new ModernButton(UIResources.getInstance().loadIcon("search", 16));
+  /**
+   * The member expand button.
+   */
+  private ModernButton mExpandButton = new ModernDialogFlatButton(
+      UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
-	/**
-	 * The member search panel.
-	 */
-	private ModernSearchExtPanel mSearchPanel;
-	
-	/**
-	 * The member model.
-	 */
-	private MotifModel mModel;
+  /**
+   * The member collapse button.
+   */
+  private ModernButton mCollapseButton = new ModernDialogFlatButton(
+      UIService.getInstance().loadIcon(MinusVectorIcon.class, 16));
 
-	/** The m window. */
-	private ModernWindow mWindow;
+  /**
+   * The member refresh button.
+   */
+  private ModernButton mRefreshButton = new ModernDialogFlatButton(
+      UIService.getInstance().loadIcon("refresh", 16));
 
-	//private boolean mState = true;
+  // private ModernButton mSearchButton =
+  // new ModernButton(UIResources.getInstance().loadIcon("search", 16));
 
-	/**
-	 * The class TreeEvents.
-	 */
-	private class TreeEvents implements TreeEventListener {
+  /**
+   * The member search panel.
+   */
+  private ModernSearchExtPanel mSearchPanel;
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.tree.TreeEventListener#treeNodeDragged(org.jebtk.ui.ui.tree.ModernTreeEvent)
-		 */
-		@Override
-		public void treeNodeDragged(ModernTreeEvent e) {
-			// TODO Auto-generated method stub
+  /**
+   * The member model.
+   */
+  private MotifModel mModel;
 
-		}
+  /** The m window. */
+  private ModernWindow mWindow;
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.tree.TreeEventListener#treeNodeClicked(org.jebtk.ui.ui.tree.ModernTreeEvent)
-		 */
-		@Override
-		public void treeNodeClicked(ModernTreeEvent e) {
-			if (mModel != null) {
-				mModel.set(getSelectedMotifs());
-			}
-		}
+  // private boolean mState = true;
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.tree.TreeEventListener#treeNodeDoubleClicked(org.jebtk.ui.ui.tree.ModernTreeEvent)
-		 */
-		@Override
-		public void treeNodeDoubleClicked(ModernTreeEvent e) {
-			// TODO Auto-generated method stub
+  /**
+   * The class TreeEvents.
+   */
+  private class TreeEvents implements TreeEventListener {
 
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.tree.TreeEventListener#treeNodeDragged(org.jebtk.ui.ui.
+     * tree.ModernTreeEvent)
+     */
+    @Override
+    public void treeNodeDragged(ModernTreeEvent e) {
+      // TODO Auto-generated method stub
 
-	}
+    }
 
-	/**
-	 * The class RefreshEvents.
-	 */
-	public class RefreshEvents implements ModernClickListener {
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.tree.TreeEventListener#treeNodeClicked(org.jebtk.ui.ui.
+     * tree.ModernTreeEvent)
+     */
+    @Override
+    public void treeNodeClicked(ModernTreeEvent e) {
+      if (mModel != null) {
+        mModel.set(getSelectedMotifs());
+      }
+    }
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.ModernClickEvent)
-		 */
-		@Override
-		public void clicked(ModernClickEvent e) {
-			try {
-				refresh();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.tree.TreeEventListener#treeNodeDoubleClicked(org.jebtk.ui
+     * .ui.tree.ModernTreeEvent)
+     */
+    @Override
+    public void treeNodeDoubleClicked(ModernTreeEvent e) {
+      // TODO Auto-generated method stub
 
-	}
-	
-	/**
-	 * The class CollapseEvents.
-	 */
-	public class CollapseEvents implements ModernClickListener {
+    }
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.ModernClickEvent)
-		 */
-		@Override
-		public void clicked(ModernClickEvent e) {
-			setState(false);
-		}
-	}
-	
-	/**
-	 * The class ExpandEvents.
-	 */
-	public class ExpandEvents implements ModernClickListener {
+  }
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.ModernClickEvent)
-		 */
-		@Override
-		public void clicked(ModernClickEvent e) {
-			setState(true);
-		}
-	}
-	
-	/**
-	 * The Class SelectionEvents.
-	 */
-	private class SelectionEvents implements ModernSelectionListener {
+  /**
+   * The class RefreshEvents.
+   */
+  public class RefreshEvents implements ModernClickListener {
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.event.ModernSelectionListener#selectionChanged(org.jebtk.core.event.ChangeEvent)
-		 */
-		@Override
-		public void selectionChanged(ChangeEvent e) {
-			mModel.set(getSelectedMotifs());
-		}
-		
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * ModernClickEvent)
+     */
+    @Override
+    public void clicked(ModernClickEvent e) {
+      try {
+        refresh();
+      } catch (Exception e1) {
+        e1.printStackTrace();
+      }
+    }
 
-	/**
-	 * Instantiates a new motifs tree panel.
-	 *
-	 * @param window the window
-	 */
-	public MotifsTreePanel(ModernWindow window) {
-		this(window, new MotifModel());
-	}
-	
-	/**
-	 * Instantiates a new motifs tree panel.
-	 *
-	 * @param window the window
-	 * @param model the model
-	 */
-	public MotifsTreePanel(ModernWindow window, MotifModel model) {
-		mWindow = window;
-		mModel = model;
-		
-		mSearchPanel = new ModernSearchExtPanel(window);
-		
-		setup();
+  }
 
-		createUi();
+  /**
+   * The class CollapseEvents.
+   */
+  public class CollapseEvents implements ModernClickListener {
 
-		mRefreshButton.addClickListener(new RefreshEvents());
-		mCollapseButton.addClickListener(new CollapseEvents());
-		mExpandButton.addClickListener(new ExpandEvents());
-		mSearchPanel.addClickListener(new RefreshEvents());
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * ModernClickEvent)
+     */
+    @Override
+    public void clicked(ModernClickEvent e) {
+      setState(false);
+    }
+  }
 
-		try {
-			refresh();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Search.
-	 *
-	 * @param items the items
-	 */
-	public void search(Collection<String> items) {
-		mSearchPanel.search(items);
-	}
+  /**
+   * The class ExpandEvents.
+   */
+  public class ExpandEvents implements ModernClickListener {
 
-	/**
-	 * Creates the ui.
-	 */
-	public void createUi() {
-		ModernComponent c = new ModernComponent(mSearchPanel);
-		c.setBorder(ModernWidget.BOTTOM_BORDER);
-		setHeader(c);
-		
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * ModernClickEvent)
+     */
+    @Override
+    public void clicked(ModernClickEvent e) {
+      setState(true);
+    }
+  }
 
-		ModernScrollPane scrollPane = new ModernScrollPane(mTree)
-				.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
-		//scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
-		//Ui.setSize(scrollPane, new Dimension(250, Short.MAX_VALUE));
+  /**
+   * The Class SelectionEvents.
+   */
+  private class SelectionEvents implements ModernSelectionListener {
 
-		//scrollPane.setMinimumSize(new Dimension(100, Short.MAX_VALUE));
-		//scrollPane.setPreferredSize(new Dimension(250, Short.MAX_VALUE));
-		//scrollPane.setMaximumSize(new Dimension(800, Short.MAX_VALUE));
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.event.ModernSelectionListener#selectionChanged(org.jebtk.
+     * core.event.ChangeEvent)
+     */
+    @Override
+    public void selectionChanged(ChangeEvent e) {
+      mModel.set(getSelectedMotifs());
+    }
 
-		//ModernLineBorderPanel panel = new ModernLineBorderPanel(scrollPane);
-		
-		//panel.setBorder(TOP_BORDER);
-		setBody(scrollPane);
+  }
 
-		/*
-		Box box = HBox.create();
-		box.setBorder(TOP_BORDER);
-		mRefreshButton.setToolTip("Refresh", "Refresh the database.");
-		box.add(mRefreshButton);
-		box.add(createHGap());
-		mExpandButton.setToolTip("Expand", "Expand all folders.");
-		box.add(mExpandButton);
-		box.add(createHGap());
-		mCollapseButton.setToolTip("Collapse", "Collapse all folders.");
-		box.add(mCollapseButton);
-		add(box, BorderLayout.PAGE_END);
-		*/
-	}
+  /**
+   * Instantiates a new motifs tree panel.
+   *
+   * @param window the window
+   */
+  public MotifsTreePanel(ModernWindow window) {
+    this(window, new MotifModel());
+  }
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		mTree.addTreeListener(new TreeEvents());
-		
-		mTree.addSelectionListener(new SelectionEvents());
-	}
+  /**
+   * Instantiates a new motifs tree panel.
+   *
+   * @param window the window
+   * @param model the model
+   */
+  public MotifsTreePanel(ModernWindow window, MotifModel model) {
+    mWindow = window;
+    mModel = model;
 
-	/**
-	 * Generate a tree view of a sample folder and its sub folders.
-	 *
-	 * @throws Exception the exception
-	 */
-	public void refresh() throws Exception {
-		TreeRootNode<Motif> root = new TreeRootNode<Motif>();
-		
-		List<String> terms = Splitter.on(TextUtils.COMMA_DELIMITER)
-				.trim()
-				.ignoreEmptyStrings()
-				.text(mSearchPanel.getText());
-		
-		TreeNode<Motif> node = new TreeNode<Motif>("Motifs");
-		
-		MotifsDataSourceService.getInstance().createTree(node, 
-				terms,
-				mSearchPanel.getInList(),
-				mSearchPanel.getExact(),
-				mSearchPanel.getCaseSensitive());
-		
-		root.addChild(node);
-		
-		mTree.setRoot(root);
-		
-		// The motifs node is always expanded
-		node.updateExpanded(true);
-		// The motifs node's children are expanded on condition there are
-		// fewer than EXPAND_THRESHOLD
-		node.updateChildrenAreExpanded(node.getCumulativeChildCount() <= EXPAND_THRESHOLD, true);
-		node.fireTreeNodeChanged();
-		
-		if (mTree.getRoot().getCumulativeChildCount() == 0) {
-			ModernMessageDialog.createInformationDialog(mWindow, "No motifs were found.");
-		}
-	}
-	
-	//private void setState() {
-	//	setState(mState);
-	//}
-	
-	/**
-	 * Sets the state.
-	 *
-	 * @param state the new state
-	 */
-	private void setState(boolean state) {
-		//mState = state;
-		
-		mTree.getRoot().setChildrenAreExpanded(state);
-	}
+    mSearchPanel = new ModernSearchExtPanel(window);
 
-	/**
-	 * Sets the selected.
-	 *
-	 * @param i the new selected
-	 */
-	public void setSelected(int i) {
-		mTree.selectNode(i);
-	}
+    setup();
 
-	/**
-	 * Gets the selected motifs.
-	 *
-	 * @return the selected motifs
-	 */
-	public List<Motif> getSelectedMotifs() {
-		if (mTree.getSelectedNodes().size() == 0) {
-			return NO_MOTIFS; //new ArrayList<ExperimentSearchResult>();
-		}
+    createUi();
 
-		List<Motif> motifs = new ArrayList<Motif>();
+    mRefreshButton.addClickListener(new RefreshEvents());
+    mCollapseButton.addClickListener(new CollapseEvents());
+    mExpandButton.addClickListener(new ExpandEvents());
+    mSearchPanel.addClickListener(new RefreshEvents());
 
-		for (TreeNode<Motif> node : mTree.getSelectedNodes()) {
-			selectedMotifs(node, motifs);
-		}
+    try {
+      refresh();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
-		return motifs;
-	}
+  /**
+   * Search.
+   *
+   * @param items the items
+   */
+  public void search(Collection<String> items) {
+    mSearchPanel.search(items);
+  }
 
-	/**
-	 * Recursively examine a node and its children to find those with experiments.
-	 *
-	 * @param node the node
-	 * @param motifs the motifs
-	 */
-	private void selectedMotifs(TreeNode<Motif> node, 
-			List<Motif> motifs) {
-		if (node.getValue() != null) {
-			motifs.add(node.getValue());
-		}
+  /**
+   * Creates the ui.
+   */
+  public void createUi() {
+    ModernComponent c = new ModernComponent(mSearchPanel);
+    c.setBorder(ModernWidget.BOTTOM_BORDER);
+    setHeader(c);
 
-		for (TreeNode<Motif> child : node) {
-			selectedMotifs(child, motifs);
-		}
-	}
+    ModernScrollPane scrollPane = new ModernScrollPane(mTree)
+        .setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+    // scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
+    // Ui.setSize(scrollPane, new Dimension(250, Short.MAX_VALUE));
+
+    // scrollPane.setMinimumSize(new Dimension(100, Short.MAX_VALUE));
+    // scrollPane.setPreferredSize(new Dimension(250, Short.MAX_VALUE));
+    // scrollPane.setMaximumSize(new Dimension(800, Short.MAX_VALUE));
+
+    // ModernLineBorderPanel panel = new ModernLineBorderPanel(scrollPane);
+
+    // panel.setBorder(TOP_BORDER);
+    setBody(scrollPane);
+
+    /*
+     * Box box = HBox.create(); box.setBorder(TOP_BORDER);
+     * mRefreshButton.setToolTip("Refresh", "Refresh the database.");
+     * box.add(mRefreshButton); box.add(createHGap());
+     * mExpandButton.setToolTip("Expand", "Expand all folders.");
+     * box.add(mExpandButton); box.add(createHGap());
+     * mCollapseButton.setToolTip("Collapse", "Collapse all folders.");
+     * box.add(mCollapseButton); add(box, BorderLayout.PAGE_END);
+     */
+  }
+
+  /**
+   * Setup.
+   */
+  private void setup() {
+    mTree.addTreeListener(new TreeEvents());
+
+    mTree.addSelectionListener(new SelectionEvents());
+  }
+
+  /**
+   * Generate a tree view of a sample folder and its sub folders.
+   *
+   * @throws Exception the exception
+   */
+  public void refresh() throws Exception {
+    TreeRootNode<Motif> root = new TreeRootNode<Motif>();
+
+    List<String> terms = Splitter.on(TextUtils.COMMA_DELIMITER).trim()
+        .ignoreEmptyStrings().text(mSearchPanel.getText());
+
+    TreeNode<Motif> node = new TreeNode<Motif>("Motifs");
+
+    MotifsDataSourceService.getInstance().createTree(node,
+        terms,
+        mSearchPanel.getInList(),
+        mSearchPanel.getExact(),
+        mSearchPanel.getCaseSensitive());
+
+    root.addChild(node);
+
+    mTree.setRoot(root);
+
+    // The motifs node is always expanded
+    node.updateExpanded(true);
+    // The motifs node's children are expanded on condition there are
+    // fewer than EXPAND_THRESHOLD
+    node.updateChildrenAreExpanded(
+        node.getCumulativeChildCount() <= EXPAND_THRESHOLD,
+        true);
+    node.fireTreeNodeChanged();
+
+    if (mTree.getRoot().getCumulativeChildCount() == 0) {
+      ModernMessageDialog.createInformationDialog(mWindow,
+          "No motifs were found.");
+    }
+  }
+
+  // private void setState() {
+  // setState(mState);
+  // }
+
+  /**
+   * Sets the state.
+   *
+   * @param state the new state
+   */
+  private void setState(boolean state) {
+    // mState = state;
+
+    mTree.getRoot().setChildrenAreExpanded(state);
+  }
+
+  /**
+   * Sets the selected.
+   *
+   * @param i the new selected
+   */
+  public void setSelected(int i) {
+    mTree.selectNode(i);
+  }
+
+  /**
+   * Gets the selected motifs.
+   *
+   * @return the selected motifs
+   */
+  public List<Motif> getSelectedMotifs() {
+    if (mTree.getSelectedNodes().size() == 0) {
+      return NO_MOTIFS; // new ArrayList<ExperimentSearchResult>();
+    }
+
+    List<Motif> motifs = new ArrayList<Motif>();
+
+    for (TreeNode<Motif> node : mTree.getSelectedNodes()) {
+      selectedMotifs(node, motifs);
+    }
+
+    return motifs;
+  }
+
+  /**
+   * Recursively examine a node and its children to find those with experiments.
+   *
+   * @param node the node
+   * @param motifs the motifs
+   */
+  private void selectedMotifs(TreeNode<Motif> node, List<Motif> motifs) {
+    if (node.getValue() != null) {
+      motifs.add(node.getValue());
+    }
+
+    for (TreeNode<Motif> child : node) {
+      selectedMotifs(child, motifs);
+    }
+  }
 }

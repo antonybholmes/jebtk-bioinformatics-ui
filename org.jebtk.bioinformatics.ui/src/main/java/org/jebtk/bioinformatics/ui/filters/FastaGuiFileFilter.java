@@ -29,28 +29,28 @@ package org.jebtk.bioinformatics.ui.filters;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class FastaGuiFileFilter.
  */
 public class FastaGuiFileFilter extends GuiFileExtFilter {
-	
-	public static final GuiFileExtFilter FASTA_FILTER = 
-			new FastaGuiFileFilter();
-	
-	/**
-	 * Instantiates a new fasta gui file filter.
-	 */
-	public FastaGuiFileFilter() {
-		super("fasta", "fa");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	@Override
-	public String getDescription() {
-		return "Fasta (*.fa;*.fasta)";
-	}
+  public static final GuiFileExtFilter FASTA_FILTER = new FastaGuiFileFilter();
+
+  /**
+   * Instantiates a new fasta gui file filter.
+   */
+  public FastaGuiFileFilter() {
+    super("fasta", "fa");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  @Override
+  public String getDescription() {
+    return "Fasta (*.fa;*.fasta)";
+  }
 }

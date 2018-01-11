@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.external.samtools;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class EstGuiFileFilter.
  */
 public class BamGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new est gui file filter.
-	 */
-	public BamGuiFileFilter() {
-		super("bam");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "SAMtools Files (*.bam)";
-	}
+  /**
+   * Instantiates a new est gui file filter.
+   */
+  public BamGuiFileFilter() {
+    super("bam");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "SAMtools Files (*.bam)";
+  }
 }

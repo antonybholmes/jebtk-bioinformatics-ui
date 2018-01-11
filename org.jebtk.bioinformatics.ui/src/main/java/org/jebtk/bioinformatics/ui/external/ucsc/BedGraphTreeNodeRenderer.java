@@ -36,8 +36,6 @@ import org.jebtk.modern.UIService;
 import org.jebtk.modern.tree.ModernTreeNodeRenderer;
 import org.jebtk.modern.tree.Tree;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * Basic renderer for displaying directories and files within the map database.
@@ -45,80 +43,100 @@ import org.jebtk.modern.tree.Tree;
  * @author Antony Holmes Holmes
  */
 public class BedGraphTreeNodeRenderer extends ModernTreeNodeRenderer {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The member bed graph.
-	 */
-	private UCSCTrack mBedGraph;
 
-	/**
-	 * The is parent.
-	 */
-	private boolean isParent;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
+  /**
+   * The member bed graph.
+   */
+  private UCSCTrack mBedGraph;
 
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.tree.ModernTreeNodeRenderer#drawForegroundAA(java.awt.Graphics2D)
-	 */
-	@Override
-	public void drawForegroundAAText(Graphics2D g2) {
-		super.drawForegroundAAText(g2);
-		
-		int x = getCumulativeXDepthOffset() + 16;
-		
-		if (!isParent && mBedGraph != null) {
-			g2.setColor(mBedGraph.getColor());
-			g2.fillRect(x, (mRect.getH() - UIService.ICON_SIZE_16) / 2, UIService.ICON_SIZE_16, UIService.ICON_SIZE_16);
-		
-			x += 16;
-		}
-		
-		x += PADDING;
+  /**
+   * The is parent.
+   */
+  private boolean isParent;
 
-		Point p = getStringCenterPlotCoordinates(g2, getRect(), mNode.getName());
-		
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.tree.ModernTreeNodeRenderer#drawForegroundAA(java.awt.
+   * Graphics2D)
+   */
+  @Override
+  public void drawForegroundAAText(Graphics2D g2) {
+    super.drawForegroundAAText(g2);
 
-		g2.setColor(TEXT_COLOR);
-		
-		StringBuilder buffer = new StringBuilder(mNode.getName());
-		
-		if (isParent || mBedGraph == null) {
-			buffer.append(" (").append(Integer.toString(mNode.getChildCount())).append(")");//group.getSearch());
-		
-			g2.setFont(BOLD_FONT);
-		} else {
-			buffer.append(" (").append(Integer.toString(mBedGraph.getRegions().size())).append(")");
-			
-			g2.setFont(FONT);
-		}
-		
-		g2.drawString(getTruncatedText(g2, buffer.toString(), x, mRect.getW()), x, p.y);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.tree.ModernTreeNodeRenderer#getRenderer(org.jebtk.ui.ui.tree.Tree, org.abh.lib.tree.TreeNode, boolean, boolean, boolean, boolean, int, int)
-	 */
-	@Override
-	public ModernTreeNodeRenderer getRenderer(Tree<?> tree,
-			TreeNode<?> node,
-			boolean nodeIsHighlighted,
-			boolean nodeIsSelected,
-			boolean hasFocus,
-			boolean isDragToNode,
-			int depth,
-			int row) {
-		
-		super.getRenderer(tree, node, nodeIsHighlighted, nodeIsSelected, hasFocus, isDragToNode, depth, row);
-		
-		isParent = node.isParent();
-		
-		mBedGraph = (UCSCTrack)node.getValue();
-		
-		return this;
-	}
+    int x = getCumulativeXDepthOffset() + 16;
+
+    if (!isParent && mBedGraph != null) {
+      g2.setColor(mBedGraph.getColor());
+      g2.fillRect(x,
+          (mRect.getH() - UIService.ICON_SIZE_16) / 2,
+          UIService.ICON_SIZE_16,
+          UIService.ICON_SIZE_16);
+
+      x += 16;
+    }
+
+    x += PADDING;
+
+    Point p = getStringCenterPlotCoordinates(g2, getRect(), mNode.getName());
+
+    g2.setColor(TEXT_COLOR);
+
+    StringBuilder buffer = new StringBuilder(mNode.getName());
+
+    if (isParent || mBedGraph == null) {
+      buffer.append(" (").append(Integer.toString(mNode.getChildCount()))
+          .append(")");// group.getSearch());
+
+      g2.setFont(BOLD_FONT);
+    } else {
+      buffer.append(" (")
+          .append(Integer.toString(mBedGraph.getRegions().size())).append(")");
+
+      g2.setFont(FONT);
+    }
+
+    g2.drawString(getTruncatedText(g2, buffer.toString(), x, mRect.getW()),
+        x,
+        p.y);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.jebtk.ui.ui.tree.ModernTreeNodeRenderer#getRenderer(org.jebtk.ui.ui.
+   * tree.Tree, org.abh.lib.tree.TreeNode, boolean, boolean, boolean, boolean,
+   * int, int)
+   */
+  @Override
+  public ModernTreeNodeRenderer getRenderer(Tree<?> tree,
+      TreeNode<?> node,
+      boolean nodeIsHighlighted,
+      boolean nodeIsSelected,
+      boolean hasFocus,
+      boolean isDragToNode,
+      int depth,
+      int row) {
+
+    super.getRenderer(tree,
+        node,
+        nodeIsHighlighted,
+        nodeIsSelected,
+        hasFocus,
+        isDragToNode,
+        depth,
+        row);
+
+    isParent = node.isParent();
+
+    mBedGraph = (UCSCTrack) node.getValue();
+
+    return this;
+  }
 }

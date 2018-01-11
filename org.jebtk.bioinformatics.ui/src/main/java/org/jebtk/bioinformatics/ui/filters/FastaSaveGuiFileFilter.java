@@ -33,11 +33,13 @@ package org.jebtk.bioinformatics.ui.filters;
  */
 public class FastaSaveGuiFileFilter extends FastaGuiFileFilter {
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	@Override
-	public final String getDescription() {
-		return "Fasta (*.fasta)";
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  @Override
+  public final String getDescription() {
+    return "Fasta (*.fasta)";
+  }
 }

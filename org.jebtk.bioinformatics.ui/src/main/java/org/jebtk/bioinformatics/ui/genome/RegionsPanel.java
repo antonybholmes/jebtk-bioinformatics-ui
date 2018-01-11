@@ -44,58 +44,58 @@ import org.jebtk.modern.widget.ModernWidget;
  *
  */
 public class RegionsPanel extends ModernWidget {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The member regions field.
-	 */
-	private RegionsTextArea mRegionsField = new RegionsTextArea();
 
-	/**
-	 * Instantiates a new regions panel.
-	 */
-	public RegionsPanel() {
-		ModernScrollPane scrollPane = new ModernScrollPane(mRegionsField);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
-		scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
-		//Ui.setSize(scrollPane, new Dimension(150, 400));
-		//box.add(new ModernDialogContentPanel(scrollPane));
-		//box.setMinimumSize(new Dimension(150, 0));
-	
-		add(scrollPane);
-		
-		//setBorder(BORDER);
-	}
-	
-	/**
-	 * Gets the regions.
-	 *
-	 * @return the regions
-	 * @throws ParseException the parse exception
-	 */
-	public List<GenomicRegion> getRegions() throws ParseException {
-		return mRegionsField.getRegions();
-	}
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Sets the regions.
-	 *
-	 * @param regions the new regions
-	 */
-	public void setRegions(List<GenomicRegion> regions) {
-		mRegionsField.setRegions(regions);
-	}
-	
-	/**
-	 * Sets the regions.
-	 *
-	 * @param track the new regions
-	 */
-	public void setRegions(UCSCTrack track) {
-		mRegionsField.setRegions(track);
-	}
+  /**
+   * The member regions field.
+   */
+  private RegionsTextArea mRegionsField = new RegionsTextArea();
+
+  /**
+   * Instantiates a new regions panel.
+   */
+  public RegionsPanel() {
+    ModernScrollPane scrollPane = new ModernScrollPane(mRegionsField);
+    scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+    scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
+    // Ui.setSize(scrollPane, new Dimension(150, 400));
+    // box.add(new ModernDialogContentPanel(scrollPane));
+    // box.setMinimumSize(new Dimension(150, 0));
+
+    add(scrollPane);
+
+    // setBorder(BORDER);
+  }
+
+  /**
+   * Gets the regions.
+   *
+   * @return the regions
+   * @throws ParseException the parse exception
+   */
+  public List<GenomicRegion> getRegions() throws ParseException {
+    return mRegionsField.getRegions();
+  }
+
+  /**
+   * Sets the regions.
+   *
+   * @param regions the new regions
+   */
+  public void setRegions(List<GenomicRegion> regions) {
+    mRegionsField.setRegions(regions);
+  }
+
+  /**
+   * Sets the regions.
+   *
+   * @param track the new regions
+   */
+  public void setRegions(UCSCTrack track) {
+    mRegionsField.setRegions(track);
+  }
 }

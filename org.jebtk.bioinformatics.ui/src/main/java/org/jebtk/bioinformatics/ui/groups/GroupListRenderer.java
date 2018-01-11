@@ -35,8 +35,6 @@ import org.jebtk.core.text.TextUtils;
 import org.jebtk.modern.list.ModernList;
 import org.jebtk.modern.list.ModernListCellRenderer;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * Renders a file as a list item.
@@ -45,81 +43,85 @@ import org.jebtk.modern.list.ModernListCellRenderer;
  *
  */
 public class GroupListRenderer extends ModernListCellRenderer {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The constant ORB_SIZE.
-	 */
-	private static final int ORB_SIZE = 10;
-	
-	/**
-	 * The member text.
-	 */
-	private String mText = "";
-	
-	/**
-	 * The member color.
-	 */
-	private Color mColor = Color.RED;
 
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
-	 */
-	@Override
-	public void drawForegroundAAText(Graphics2D g2) {
-		int x = DOUBLE_PADDING;
-		int y = getHeight()/ 2;
-		
-		g2.setColor(TEXT_COLOR);
-		g2.drawString(mText, x, getTextYPosCenter(g2, getHeight()));
-		
-		
-		
-		
-		g2.setColor(mColor);
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-		x = getWidth() - ORB_SIZE - DOUBLE_PADDING;
-		
-		g2.drawLine(x, y, x + ORB_SIZE, y);
-		
-		y -= 2;
-		
-		g2.drawLine(x, y, x + ORB_SIZE, y);
-		
-		y += 4;
-		
-		g2.drawLine(x, y, x + ORB_SIZE, y);
-		
-		//g2.setColor(ModernWidget.DARK_LINE_COLOR);
-		//g2.drawRect(iconX, iconY, UIResources.ICON_SIZE_16, UIResources.ICON_SIZE_16);
-	}
+  /**
+   * The constant ORB_SIZE.
+   */
+  private static final int ORB_SIZE = 10;
 
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.list.ModernListCellRenderer#getCellRendererComponent(org.jebtk.ui.ui.list.ModernList, java.lang.Object, boolean, boolean, boolean, int)
-	 */
-	@Override
-	public Component getCellRendererComponent(ModernList<?> list,
-			Object value,
-			boolean highlight,
-			boolean isSelected,
-			boolean hasFocus,
-			int row) {
+  /**
+   * The member text.
+   */
+  private String mText = "";
 
-		Group g = (Group)value;
-		
-		mText  = TextUtils.truncate(g.getName(), 30) + " (" + g.size() + ")";
-		mColor = g.getColor();
+  /**
+   * The member color.
+   */
+  private Color mColor = Color.RED;
 
-		return super.getCellRendererComponent(list, 
-				value, 
-				highlight, 
-				isSelected, 
-				hasFocus, 
-				row);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
+   */
+  @Override
+  public void drawForegroundAAText(Graphics2D g2) {
+    int x = DOUBLE_PADDING;
+    int y = getHeight() / 2;
+
+    g2.setColor(TEXT_COLOR);
+    g2.drawString(mText, x, getTextYPosCenter(g2, getHeight()));
+
+    g2.setColor(mColor);
+
+    x = getWidth() - ORB_SIZE - DOUBLE_PADDING;
+
+    g2.drawLine(x, y, x + ORB_SIZE, y);
+
+    y -= 2;
+
+    g2.drawLine(x, y, x + ORB_SIZE, y);
+
+    y += 4;
+
+    g2.drawLine(x, y, x + ORB_SIZE, y);
+
+    // g2.setColor(ModernWidget.DARK_LINE_COLOR);
+    // g2.drawRect(iconX, iconY, UIResources.ICON_SIZE_16,
+    // UIResources.ICON_SIZE_16);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.jebtk.ui.ui.list.ModernListCellRenderer#getCellRendererComponent(org.
+   * jebtk.ui.ui.list.ModernList, java.lang.Object, boolean, boolean, boolean,
+   * int)
+   */
+  @Override
+  public Component getCellRendererComponent(ModernList<?> list,
+      Object value,
+      boolean highlight,
+      boolean isSelected,
+      boolean hasFocus,
+      int row) {
+
+    Group g = (Group) value;
+
+    mText = TextUtils.truncate(g.getName(), 30) + " (" + g.size() + ")";
+    mColor = g.getColor();
+
+    return super.getCellRendererComponent(list,
+        value,
+        highlight,
+        isSelected,
+        hasFocus,
+        row);
+  }
 }

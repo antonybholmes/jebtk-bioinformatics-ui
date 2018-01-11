@@ -35,7 +35,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * Load groups from file.
@@ -44,63 +43,67 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  */
 public class GroupsXmlHandler extends DefaultHandler {
-	
-	/**
-	 * The member group.
-	 */
-	private Group mGroup;
-	
-	/**
-	 * The member regions.
-	 */
-	private ArrayList<String> mRegions;
-	
-	/**
-	 * The member groups.
-	 */
-	private ArrayList<Group> mGroups = new ArrayList<Group>();
 
-	
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
-	 */
-	public void startElement(String uri, 
-			String localName,
-			String qName, 
-            Attributes attributes) throws SAXException {
-		
-		if (qName.equals("region-group")) {
-			mGroup = new Group(attributes.getValue("name"), 
-					ColorUtils.decodeHtmlColor(attributes.getValue("color")));
-			
-			mGroups.add(mGroup);
-		} else if (qName.equals("regions")) {
-			mRegions = new ArrayList<String>();
-		} else if (qName.equals("region")) {
-			mRegions.add(attributes.getValue("id"));
-		} else {
-			// do nothing
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-	 */
-	public void endElement(String uri, 
-			String localName,
-			String qName) throws SAXException {
+  /**
+   * The member group.
+   */
+  private Group mGroup;
 
-		if (qName.equals("regions")) {
-			mGroup.setEntries(mRegions);
-		}
-	}
-	
-	/**
-	 * Gets the groups.
-	 *
-	 * @return the groups
-	 */
-	public List<Group> getGroups() { 
-		return mGroups;
-	}
+  /**
+   * The member regions.
+   */
+  private ArrayList<String> mRegions;
+
+  /**
+   * The member groups.
+   */
+  private ArrayList<Group> mGroups = new ArrayList<Group>();
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
+   * java.lang.String, java.lang.String, org.xml.sax.Attributes)
+   */
+  public void startElement(String uri,
+      String localName,
+      String qName,
+      Attributes attributes) throws SAXException {
+
+    if (qName.equals("region-group")) {
+      mGroup = new Group(attributes.getValue("name"),
+          ColorUtils.decodeHtmlColor(attributes.getValue("color")));
+
+      mGroups.add(mGroup);
+    } else if (qName.equals("regions")) {
+      mRegions = new ArrayList<String>();
+    } else if (qName.equals("region")) {
+      mRegions.add(attributes.getValue("id"));
+    } else {
+      // do nothing
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
+   * java.lang.String, java.lang.String)
+   */
+  public void endElement(String uri, String localName, String qName)
+      throws SAXException {
+
+    if (qName.equals("regions")) {
+      mGroup.setEntries(mRegions);
+    }
+  }
+
+  /**
+   * Gets the groups.
+   *
+   * @return the groups
+   */
+  public List<Group> getGroups() {
+    return mGroups;
+  }
 }

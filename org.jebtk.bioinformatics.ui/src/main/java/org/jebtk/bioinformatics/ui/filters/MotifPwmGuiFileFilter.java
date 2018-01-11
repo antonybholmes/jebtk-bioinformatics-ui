@@ -32,32 +32,36 @@ import java.io.FilenameFilter;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class MotifGuiFileFilter.
  */
-public class MotifPwmGuiFileFilter extends GuiFileExtFilter implements FilenameFilter {
-	
-	/**
-	 * Instantiates a new motif gui file filter.
-	 */
-	public MotifPwmGuiFileFilter() {
-		super("pwm");
-	}
+public class MotifPwmGuiFileFilter extends GuiFileExtFilter
+    implements FilenameFilter {
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "Motif Files (*.pwm)";
-	}
+  /**
+   * Instantiates a new motif gui file filter.
+   */
+  public MotifPwmGuiFileFilter() {
+    super("pwm");
+  }
 
-	/* (non-Javadoc)
-	 * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)
-	 */
-	@Override
-	public boolean accept(File dir, String name) {
-		return name.endsWith("pwm");
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "Motif Files (*.pwm)";
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)
+   */
+  @Override
+  public boolean accept(File dir, String name) {
+    return name.endsWith("pwm");
+  }
 }

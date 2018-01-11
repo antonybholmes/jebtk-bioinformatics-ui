@@ -33,51 +33,51 @@ import java.awt.Point;
 import org.jebtk.modern.UIService;
 import org.jebtk.modern.menu.ModernIconMenuItem;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The class GroupMenuItem.
  */
 public class GroupMenuItem extends ModernIconMenuItem {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The member group.
-	 */
-	private Group mGroup;
 
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new group menu item.
-	 *
-	 * @param group the group
-	 */
-	public GroupMenuItem(Group group) {
-		super(group.getName());
+  /**
+   * The member group.
+   */
+  private Group mGroup;
 
-		mGroup = group;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.menu.ModernIconMenuItem#drawForegroundAA(java.awt.Graphics2D)
-	 */
-	@Override
-	public void drawForegroundAAText(Graphics2D g2) {
-		int x = PADDING;
-		int y = (mRect.getH() - UIService.ICON_SIZE_16) / 2;
-		
-		g2.setColor(mGroup.getColor());
-		
-		g2.fillRect(x, y, UIService.ICON_SIZE_16, UIService.ICON_SIZE_16);
-		
-		Point p = getStringCenterPlotCoordinates(g2, getRect(), mText1);
-			
-		g2.setColor(getForeground());
-		g2.drawString(mText1, UIService.ICON_SIZE_32, p.y);
-	}
+  /**
+   * Instantiates a new group menu item.
+   *
+   * @param group the group
+   */
+  public GroupMenuItem(Group group) {
+    super(group.getName());
+
+    mGroup = group;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.menu.ModernIconMenuItem#drawForegroundAA(java.awt.
+   * Graphics2D)
+   */
+  @Override
+  public void drawForegroundAAText(Graphics2D g2) {
+    int x = PADDING;
+    int y = (mRect.getH() - UIService.ICON_SIZE_16) / 2;
+
+    g2.setColor(mGroup.getColor());
+
+    g2.fillRect(x, y, UIService.ICON_SIZE_16, UIService.ICON_SIZE_16);
+
+    Point p = getStringCenterPlotCoordinates(g2, getRect(), mText1);
+
+    g2.setColor(getForeground());
+    g2.drawString(mText1, UIService.ICON_SIZE_32, p.y);
+  }
 }

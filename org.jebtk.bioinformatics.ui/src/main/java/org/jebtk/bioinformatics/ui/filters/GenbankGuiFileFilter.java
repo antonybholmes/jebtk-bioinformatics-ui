@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.filters;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class GenbankGuiFileFilter.
  */
 public class GenbankGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new genbank gui file filter.
-	 */
-	public GenbankGuiFileFilter() {
-		super("gb");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "GenBank (*.gb)";
-	}
+  /**
+   * Instantiates a new genbank gui file filter.
+   */
+  public GenbankGuiFileFilter() {
+    super("gb");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "GenBank (*.gb)";
+  }
 }

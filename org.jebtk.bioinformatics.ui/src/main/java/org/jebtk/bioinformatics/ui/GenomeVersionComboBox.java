@@ -33,45 +33,43 @@ import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.combobox.ModernComboBox;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class GenomeVersionComboBox.
  */
 public class GenomeVersionComboBox extends ModernComboBox {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/** The Constant SIZE. */
-	private static final Dimension SIZE = new Dimension(150, WIDGET_HEIGHT);
 
-	/**
-	 * Instantiates a new genome version combo box.
-	 *
-	 * @param defaultGenome the default genome
-	 */
-	public GenomeVersionComboBox(String defaultGenome) {
-		//ComboPopupMenu popup = new ComboPopupMenu(10);
-		//popup.setWidth(200);
-		//setPopup(popup);
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-		addMenuItem("HG18");
-		addMenuItem("HG19");
+  /** The Constant SIZE. */
+  private static final Dimension SIZE = new Dimension(150, WIDGET_HEIGHT);
 
+  /**
+   * Instantiates a new genome version combo box.
+   *
+   * @param defaultGenome the default genome
+   */
+  public GenomeVersionComboBox(String defaultGenome) {
+    // ComboPopupMenu popup = new ComboPopupMenu(10);
+    // popup.setWidth(200);
+    // setPopup(popup);
 
-		//addBreakLine();
+    addMenuItem("HG18");
+    addMenuItem("HG19");
 
-		//addModernMenuItem(new ForwardRequestMenuItem("Other...", null));
+    // addBreakLine();
 
-		if (defaultGenome.equals(Genome.HG19)) {
-			setSelectedIndex(1);
-		} else {
-			setSelectedIndex(0);
-		}
+    // addModernMenuItem(new ForwardRequestMenuItem("Other...", null));
 
-		UI.setSize(this, SIZE);
-	}
+    if (defaultGenome.equals(Genome.HG19)) {
+      setSelectedIndex(1);
+    } else {
+      setSelectedIndex(0);
+    }
+
+    UI.setSize(this, SIZE);
+  }
 }

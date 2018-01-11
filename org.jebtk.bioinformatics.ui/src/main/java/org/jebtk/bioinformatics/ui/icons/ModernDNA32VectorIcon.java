@@ -39,90 +39,97 @@ import org.jebtk.modern.theme.ThemeService;
  * The class ModernDNA32VectorIcon.
  */
 public class ModernDNA32VectorIcon extends ModernVectorIcon {
-	
-	/**
-	 * The color2.
-	 */
-	private Color color2;
-	
-	/**
-	 * The color1.
-	 */
-	private Color color1;
-	
-	/**
-	 * The constant SCALE.
-	 */
-	private static final double SCALE = 0.9;
-	
-	/**
-	 * The constant LINE_SCALE.
-	 */
-	private static final double LINE_SCALE = 0.8;
-	
-	/**
-	 * The constant OFFSET.
-	 */
-	private static final double OFFSET = 0.1;
-	
-	/**
-	 * The constant OUTLINE.
-	 */
-	private static final Color OUTLINE =
-			ThemeService.getInstance().colors().getHighlight(6);
-	
-	
-	/**
-	 * Instantiates a new modern dn a32 vector icon.
-	 *
-	 * @param color1 the color1
-	 * @param color2 the color2
-	 */
-	public ModernDNA32VectorIcon(Color color1, Color color2) {
-		this.color1 = color1;
-		this.color2 = color2;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.icons.ModernIcon#drawForeground(java.awt.Graphics2D, java.awt.Rectangle)
-	 */
-	@Override
-	public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
-		double wf = w * SCALE;
-		double w2 = w / 2.0;
-		double lineWidth = w * LINE_SCALE;
-		
-		double o = w * OFFSET;
 
-		double xf = x + (w  - wf) / 2;
-		double yf = y + (h - wf) / 2;
-		
-		g2.setColor(Color.WHITE);
-		g2.fillRect((int)Math.round(xf), 
-				(int)Math.round(yf), 
-				(int)Math.round(wf), 
-				(int)Math.round(wf));
-		
-		g2.setColor(OUTLINE);
-		g2.drawRect((int)Math.round(xf), 
-				(int)Math.round(yf), 
-				(int)Math.round(wf), 
-				(int)Math.round(wf));
-		
-		g2.setStroke(ModernTheme.DOUBLE_LINE_STROKE);
-		
-		xf = xf + (wf  - lineWidth) / 2;
+  /**
+   * The color2.
+   */
+  private Color color2;
 
-		g2.setColor(color1);
-		g2.drawLine((int)Math.round(xf), 
-				(int)Math.round(yf + w2 - o), 
-				(int)Math.round(xf + lineWidth), 
-				(int)Math.round(yf + w2 - o));
-		
-		g2.setColor(color2);
-		g2.drawLine((int)Math.round(xf), 
-				(int)Math.round(yf + w2 + o), 
-				(int)Math.round(xf + lineWidth), 
-				(int)Math.round(yf + w2 + o));
-	}
+  /**
+   * The color1.
+   */
+  private Color color1;
+
+  /**
+   * The constant SCALE.
+   */
+  private static final double SCALE = 0.9;
+
+  /**
+   * The constant LINE_SCALE.
+   */
+  private static final double LINE_SCALE = 0.8;
+
+  /**
+   * The constant OFFSET.
+   */
+  private static final double OFFSET = 0.1;
+
+  /**
+   * The constant OUTLINE.
+   */
+  private static final Color OUTLINE = ThemeService.getInstance().colors()
+      .getHighlight(6);
+
+  /**
+   * Instantiates a new modern dn a32 vector icon.
+   *
+   * @param color1 the color1
+   * @param color2 the color2
+   */
+  public ModernDNA32VectorIcon(Color color1, Color color2) {
+    this.color1 = color1;
+    this.color2 = color2;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.icons.ModernIcon#drawForeground(java.awt.Graphics2D,
+   * java.awt.Rectangle)
+   */
+  @Override
+  public void drawIcon(Graphics2D g2,
+      int x,
+      int y,
+      int w,
+      int h,
+      Object... params) {
+    double wf = w * SCALE;
+    double w2 = w / 2.0;
+    double lineWidth = w * LINE_SCALE;
+
+    double o = w * OFFSET;
+
+    double xf = x + (w - wf) / 2;
+    double yf = y + (h - wf) / 2;
+
+    g2.setColor(Color.WHITE);
+    g2.fillRect((int) Math.round(xf),
+        (int) Math.round(yf),
+        (int) Math.round(wf),
+        (int) Math.round(wf));
+
+    g2.setColor(OUTLINE);
+    g2.drawRect((int) Math.round(xf),
+        (int) Math.round(yf),
+        (int) Math.round(wf),
+        (int) Math.round(wf));
+
+    g2.setStroke(ModernTheme.DOUBLE_LINE_STROKE);
+
+    xf = xf + (wf - lineWidth) / 2;
+
+    g2.setColor(color1);
+    g2.drawLine((int) Math.round(xf),
+        (int) Math.round(yf + w2 - o),
+        (int) Math.round(xf + lineWidth),
+        (int) Math.round(yf + w2 - o));
+
+    g2.setColor(color2);
+    g2.drawLine((int) Math.round(xf),
+        (int) Math.round(yf + w2 + o),
+        (int) Math.round(xf + lineWidth),
+        (int) Math.round(yf + w2 + o));
+  }
 }

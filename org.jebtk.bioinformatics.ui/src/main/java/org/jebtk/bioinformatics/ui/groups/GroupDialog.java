@@ -50,119 +50,120 @@ import org.jebtk.modern.window.ModernWindow;
  * @author Antony Holmes Holmes
  *
  */
-public class GroupDialog extends ModernDialogTaskWindow implements ModernClickListener {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The member check unique.
-	 */
-	private ModernTwoStateWidget mCheckUnique = 
-			new ModernCheckSwitch("Make unique", true);
-	
-	/**
-	 * The member check remove na.
-	 */
-	private ModernTwoStateWidget mCheckRemoveNA = 
-			new ModernCheckSwitch("Remove n/a", true);
-	
-	/** The m check ignore empty. */
-	private ModernTwoStateWidget mCheckIgnoreEmpty = 
-			new ModernCheckSwitch("Ignore empty lines", true);
+public class GroupDialog extends ModernDialogTaskWindow
+    implements ModernClickListener {
 
-	/**
-	 * The member panel.
-	 */
-	private GroupEditPanel mPanel;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
+  /**
+   * The member check unique.
+   */
+  private ModernTwoStateWidget mCheckUnique = new ModernCheckSwitch(
+      "Make unique", true);
 
-	/**
-	 * Instantiates a new group dialog.
-	 *
-	 * @param parent the parent
-	 * @param group the group
-	 */
-	public GroupDialog(ModernWindow parent, Group group) {
-		super(parent);
-		
-		mPanel = new GroupEditPanel(parent, group);
-		
-		setTitle("Group Editor", group.getName());
-		
-		setup();
+  /**
+   * The member check remove na.
+   */
+  private ModernTwoStateWidget mCheckRemoveNA = new ModernCheckSwitch(
+      "Remove n/a", true);
 
-		createUi();
-	}
+  /** The m check ignore empty. */
+  private ModernTwoStateWidget mCheckIgnoreEmpty = new ModernCheckSwitch(
+      "Ignore empty lines", true);
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		setSize(640, 540);
-		
-		UI.centerWindowToScreen(this);
-	}
+  /**
+   * The member panel.
+   */
+  private GroupEditPanel mPanel;
 
+  /**
+   * Instantiates a new group dialog.
+   *
+   * @param parent the parent
+   * @param group the group
+   */
+  public GroupDialog(ModernWindow parent, Group group) {
+    super(parent);
 
-	/**
-	 * Creates the ui.
-	 */
-	private final void createUi() {
-		ModernComponent panel = new ModernComponent();
-		
-		panel.setBody(mPanel);
-		
-		Box box = VBox.create();
-		box.add(UI.createVGap(10));
-		box.add(mCheckUnique);
-		box.add(mCheckRemoveNA);
-		box.add(mCheckIgnoreEmpty);
-		panel.setFooter(box);
-		
-		setCardContent(panel);
-	}
+    mPanel = new GroupEditPanel(parent, group);
 
-	/* (non-Javadoc)
-	 * @see java.awt.Component#getName()
-	 */
-	public String getName() {
-		return mPanel.getName();
-	}
-	
-	/**
-	 * Gets the color.
-	 *
-	 * @return the color
-	 */
-	public Color getColor() {
-		return mPanel.getColor();
-	}
-	
-	/**
-	 * Gets the entries.
-	 *
-	 * @return the entries
-	 */
-	public List<String> getEntries() {
-		List<String> ret;
-		
-		if (mCheckUnique.isSelected()) {
-			ret = CollectionUtils.uniquePreserveOrder(mPanel.getEntries());
-		} else {
-			ret = mPanel.getEntries();
-		}
-		
-		if (mCheckRemoveNA.isSelected()) {
-			ret = TextUtils.removeNA(ret);
-		}
-		
-		if (mCheckIgnoreEmpty.isSelected()) {
-			ret = TextUtils.removeEmptyElements(ret);
-		}
-		
-		return ret;
-	}
+    setTitle("Group Editor", group.getName());
+
+    setup();
+
+    createUi();
+  }
+
+  /**
+   * Setup.
+   */
+  private void setup() {
+    setSize(640, 540);
+
+    UI.centerWindowToScreen(this);
+  }
+
+  /**
+   * Creates the ui.
+   */
+  private final void createUi() {
+    ModernComponent panel = new ModernComponent();
+
+    panel.setBody(mPanel);
+
+    Box box = VBox.create();
+    box.add(UI.createVGap(10));
+    box.add(mCheckUnique);
+    box.add(mCheckRemoveNA);
+    box.add(mCheckIgnoreEmpty);
+    panel.setFooter(box);
+
+    setCardContent(panel);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.awt.Component#getName()
+   */
+  public String getName() {
+    return mPanel.getName();
+  }
+
+  /**
+   * Gets the color.
+   *
+   * @return the color
+   */
+  public Color getColor() {
+    return mPanel.getColor();
+  }
+
+  /**
+   * Gets the entries.
+   *
+   * @return the entries
+   */
+  public List<String> getEntries() {
+    List<String> ret;
+
+    if (mCheckUnique.isSelected()) {
+      ret = CollectionUtils.uniquePreserveOrder(mPanel.getEntries());
+    } else {
+      ret = mPanel.getEntries();
+    }
+
+    if (mCheckRemoveNA.isSelected()) {
+      ret = TextUtils.removeNA(ret);
+    }
+
+    if (mCheckIgnoreEmpty.isSelected()) {
+      ret = TextUtils.removeEmptyElements(ret);
+    }
+
+    return ret;
+  }
 }

@@ -70,364 +70,380 @@ import org.w3c.dom.Element;
 /**
  * The class GroupsPanel.
  */
-public class GroupsPanel extends ModernComponent implements ModernClickListener {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
+public class GroupsPanel extends ModernComponent
+    implements ModernClickListener {
 
-	/**
-	 * The member region group list.
-	 */
-	private GroupList mRegionGroupList = new GroupList();
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * The member list model.
-	 */
-	private GroupListModel mListModel = new GroupListModel();
+  /**
+   * The member region group list.
+   */
+  private GroupList mRegionGroupList = new GroupList();
 
-	/**
-	 * The member new button.
-	 */
-	private ModernButton mNewButton = 
-			new ModernButton(UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
-	
-	/**
-	 * The member delete button.
-	 */
-	private ModernButton mDeleteButton = 
-			new ModernButton(UIService.getInstance().loadIcon(TrashVectorIcon.class, 16));
+  /**
+   * The member list model.
+   */
+  private GroupListModel mListModel = new GroupListModel();
 
-	/**
-	 * The member edit button.
-	 */
-	private ModernButton mEditButton = 
-			new ModernButton(UIService.getInstance().loadIcon("edit_bw", 16));
+  /**
+   * The member new button.
+   */
+  private ModernButton mNewButton = new ModernButton(
+      UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
-	/**
-	 * The member clear button.
-	 */
-	private ModernButton mClearButton = 
-			new ToolbarButton(UIService.getInstance().loadIcon(CrossVectorIcon.class, 16));
+  /**
+   * The member delete button.
+   */
+  private ModernButton mDeleteButton = new ModernButton(
+      UIService.getInstance().loadIcon(TrashVectorIcon.class, 16));
 
-	/**
-	 * The member model.
-	 */
-	private GroupsModel mModel;
+  /**
+   * The member edit button.
+   */
+  private ModernButton mEditButton = new ModernButton(
+      UIService.getInstance().loadIcon("edit_bw", 16));
 
-	/**
-	 * The member parent.
-	 */
-	private ModernRibbonWindow mParent;
-	
-	/** The m color cycle. */
-	private ColorCycle mColorCycle = new ColorCycle();
+  /**
+   * The member clear button.
+   */
+  private ModernButton mClearButton = new ToolbarButton(
+      UIService.getInstance().loadIcon(CrossVectorIcon.class, 16));
 
-	/**
-	 * The class TrackEvents.
-	 */
-	private class TrackEvents implements ModernDataViewListener {
+  /**
+   * The member model.
+   */
+  private GroupsModel mModel;
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.dataview.ModernDataViewListener#dataChanged(org.abh.lib.event.ChangeEvent)
-		 */
-		@Override
-		public void dataChanged(ChangeEvent e) {
-			update();
-		}
+  /**
+   * The member parent.
+   */
+  private ModernRibbonWindow mParent;
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.dataview.ModernDataViewListener#dataUpdated(org.abh.lib.event.ChangeEvent)
-		 */
-		@Override
-		public void dataUpdated(ChangeEvent e) {
-			update();
-		}
-	}
-	
-	/**
-	 * The class DeleteGroupsCallBack.
-	 */
-	private class DeleteGroupsCallBack implements DialogEventListener {
+  /** The m color cycle. */
+  private ColorCycle mColorCycle = new ColorCycle();
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.dialog.DialogEventListener#statusChanged(org.jebtk.ui.ui.dialog.DialogEvent)
-		 */
-		@Override
-		public void statusChanged(DialogEvent e) {
-			if (e.getStatus() == ModernDialogStatus.OK) {
-				ArrayList<Integer> indices = new ArrayList<Integer>();
+  /**
+   * The class TrackEvents.
+   */
+  private class TrackEvents implements ModernDataViewListener {
 
-				for (int i : mRegionGroupList.getSelectionModel()) {
-					indices.add(i);
-				}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.dataview.ModernDataViewListener#dataChanged(org.abh.lib.
+     * event.ChangeEvent)
+     */
+    @Override
+    public void dataChanged(ChangeEvent e) {
+      update();
+    }
 
-				mListModel.removeValuesAt(indices);
-			}
-		}
-		
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.dataview.ModernDataViewListener#dataUpdated(org.abh.lib.
+     * event.ChangeEvent)
+     */
+    @Override
+    public void dataUpdated(ChangeEvent e) {
+      update();
+    }
+  }
 
-	/**
-	 * Instantiates a new groups panel.
-	 *
-	 * @param parent the parent
-	 * @param model the model
-	 */
-	public GroupsPanel(ModernRibbonWindow parent, GroupsModel model) {
-		mParent = parent;
-		mModel = model;
+  /**
+   * The class DeleteGroupsCallBack.
+   */
+  private class DeleteGroupsCallBack implements DialogEventListener {
 
-		setup();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.dialog.DialogEventListener#statusChanged(org.jebtk.ui.ui.
+     * dialog.DialogEvent)
+     */
+    @Override
+    public void statusChanged(DialogEvent e) {
+      if (e.getStatus() == ModernDialogStatus.OK) {
+        ArrayList<Integer> indices = new ArrayList<Integer>();
 
-		createUi();
+        for (int i : mRegionGroupList.getSelectionModel()) {
+          indices.add(i);
+        }
 
-		// Sync ui
-		mRegionGroupList.getModel().fireDataChanged();
-	}
+        mListModel.removeValuesAt(indices);
+      }
+    }
 
-	/**
-	 * Creates the ui.
-	 */
-	public void createUi() {
-		Box box = HBox.create();
+  }
 
-		mNewButton.setToolTip("New Group", "Creat a new group.");
-		box.add(mNewButton);
-		mEditButton.setToolTip("Edit Groups", "Edit group properties.");
-		box.add(mEditButton);
-		mDeleteButton.setToolTip("Delete", "Delete selected groups.");
-		box.add(mDeleteButton);
+  /**
+   * Instantiates a new groups panel.
+   *
+   * @param parent the parent
+   * @param model the model
+   */
+  public GroupsPanel(ModernRibbonWindow parent, GroupsModel model) {
+    mParent = parent;
+    mModel = model;
 
-		
-		setHeader(new HTabToolbar("Groups", box));
-			
-		ModernScrollPane scrollPane = new ModernScrollPane(mRegionGroupList);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
-		//scrollPane.setBorder(BorderService.getInstance().createTopBorder(10));
-		setBody(scrollPane);
-		
-		setBorder(BORDER);
+    setup();
 
-		/*
-		Box box = new ToolbarBottomBox();
+    createUi();
 
-		mCreateButton.setToolTip("New Group", "Creat a new group.");
-		box.add(mCreateButton);
-		box.add(ModernTheme.createHorizontalGap());
-		//mSaveButton.setToolTip("Save Groups", "Save groups for reuse.");
-		//box.add(mSaveButton);
-		//box.add(ModernTheme.createHorizontalGap());
-		mEditButton.setToolTip("Edit Groups", "Edit group properties.");
-		box.add(mEditButton);
-		box.add(ModernTheme.createHorizontalGap());
-		//box.add(Box.createHorizontalGlue());
-		mDeleteButton.setToolTip("Delete", "Delete selected groups.");
-		box.add(mDeleteButton);
-		box.add(ModernTheme.createHorizontalGap());
-		mClearButton.setToolTip("Clear", "Remove all groups.");
-		box.add(mClearButton);
+    // Sync ui
+    mRegionGroupList.getModel().fireDataChanged();
+  }
 
-		add(box, BorderLayout.PAGE_END);
-		*/
-	}
+  /**
+   * Creates the ui.
+   */
+  public void createUi() {
+    Box box = HBox.create();
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		
-		 
-		mRegionGroupList.setModel(mListModel);
+    mNewButton.setToolTip("New Group", "Creat a new group.");
+    box.add(mNewButton);
+    mEditButton.setToolTip("Edit Groups", "Edit group properties.");
+    box.add(mEditButton);
+    mDeleteButton.setToolTip("Delete", "Delete selected groups.");
+    box.add(mDeleteButton);
 
-		mRegionGroupList.addDataViewListener(new TrackEvents());
+    setHeader(new HTabToolbar("Groups", box));
 
-		mNewButton.addClickListener(this);
-		mDeleteButton.addClickListener(this);
-		mClearButton.addClickListener(this);
-		mEditButton.addClickListener(this);
-	}
+    ModernScrollPane scrollPane = new ModernScrollPane(mRegionGroupList);
+    scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+    // scrollPane.setBorder(BorderService.getInstance().createTopBorder(10));
+    setBody(scrollPane);
 
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public void clicked(ModernClickEvent e) {
-		if (e.getSource().equals(mNewButton)) {
-			createGroup();
-		} else if (e.getSource().equals(mEditButton)) {
-			editGroups();
-		} else if (e.getSource().equals(mDeleteButton)) {
-			deleteGroups();
-		} else if (e.getSource().equals(mClearButton)) {
-			clearGroups();
-		} else {
-			// do nothing
-		}
-	}
+    setBorder(BORDER);
 
-	// Allow user to edit tracks
+    /*
+     * Box box = new ToolbarBottomBox();
+     * 
+     * mCreateButton.setToolTip("New Group", "Creat a new group.");
+     * box.add(mCreateButton); box.add(ModernTheme.createHorizontalGap());
+     * //mSaveButton.setToolTip("Save Groups", "Save groups for reuse.");
+     * //box.add(mSaveButton); //box.add(ModernTheme.createHorizontalGap());
+     * mEditButton.setToolTip("Edit Groups", "Edit group properties.");
+     * box.add(mEditButton); box.add(ModernTheme.createHorizontalGap());
+     * //box.add(Box.createHorizontalGlue()); mDeleteButton.setToolTip("Delete",
+     * "Delete selected groups."); box.add(mDeleteButton);
+     * box.add(ModernTheme.createHorizontalGap());
+     * mClearButton.setToolTip("Clear", "Remove all groups.");
+     * box.add(mClearButton);
+     * 
+     * add(box, BorderLayout.PAGE_END);
+     */
+  }
 
-	/**
-	 * Edits the groups.
-	 */
-	private void editGroups() {
-		// tmp disable drag
-		for (int i : mRegionGroupList.getSelectionModel()) {
-			Group regionGroup = mRegionGroupList.getValueAt(i);
-		
-			GroupDialog dialog = new GroupDialog(mParent, regionGroup);
-			
-			dialog.setVisible(true);
-			
-			if (dialog.getStatus() == ModernDialogStatus.OK) {
-				regionGroup.setName(dialog.getName());
-				regionGroup.setColor(dialog.getColor());
-				regionGroup.setEntries(dialog.getEntries());
-			}
-		}
+  /**
+   * Setup.
+   */
+  private void setup() {
 
-		// Notify listeners that the tracks may have changed.
-		mListModel.fireDataChanged();
-	}
+    mRegionGroupList.setModel(mListModel);
 
-	/**
-	 * Notify the app that the tracks have changed.
-	 */
-	private void update() {
-		List<Group> regions = new ArrayList<Group>();
+    mRegionGroupList.addDataViewListener(new TrackEvents());
 
-		for (Group region : mListModel) {
-			regions.add(region);
-		}
+    mNewButton.addClickListener(this);
+    mDeleteButton.addClickListener(this);
+    mClearButton.addClickListener(this);
+    mEditButton.addClickListener(this);
+  }
 
-		mModel.set(regions);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+   * ModernClickEvent)
+   */
+  @Override
+  public void clicked(ModernClickEvent e) {
+    if (e.getSource().equals(mNewButton)) {
+      createGroup();
+    } else if (e.getSource().equals(mEditButton)) {
+      editGroups();
+    } else if (e.getSource().equals(mDeleteButton)) {
+      deleteGroups();
+    } else if (e.getSource().equals(mClearButton)) {
+      clearGroups();
+    } else {
+      // do nothing
+    }
+  }
 
-	/**
-	 * Delete groups.
-	 */
-	private void deleteGroups() {
-		ModernMessageDialog.createDialog(mParent, "Are you sure you want to delete the selected groups?", 
-				MessageDialogType.WARNING_OK_CANCEL,
-				new DeleteGroupsCallBack());
-	}
+  // Allow user to edit tracks
 
-	/**
-	 * Clear groups.
-	 */
-	private void clearGroups() {
-		ModernDialogStatus status = ModernMessageDialog.createDialog(mParent, 
-				"Are you sure you want to delete all groups?", 
-				MessageDialogType.WARNING_OK_CANCEL);
+  /**
+   * Edits the groups.
+   */
+  private void editGroups() {
+    // tmp disable drag
+    for (int i : mRegionGroupList.getSelectionModel()) {
+      Group regionGroup = mRegionGroupList.getValueAt(i);
 
-		if (status == ModernDialogStatus.OK) {
-			mListModel.clear();
-		}
-	}
+      GroupDialog dialog = new GroupDialog(mParent, regionGroup);
 
-	/**
-	 * Creates the group.
-	 */
-	private void createGroup() {
-		// Create a default group for the user to edit
-		Group group = new Group("Group " + (mListModel.getItemCount() + 1), 
-				mColorCycle.next());
-		
-		GroupDialog dialog = new GroupDialog(mParent, group);
+      dialog.setVisible(true);
 
-		dialog.setVisible(true);
+      if (dialog.getStatus() == ModernDialogStatus.OK) {
+        regionGroup.setName(dialog.getName());
+        regionGroup.setColor(dialog.getColor());
+        regionGroup.setEntries(dialog.getEntries());
+      }
+    }
 
-		if (dialog.getStatus() == ModernDialogStatus.OK) {
-			group.setName(dialog.getName());
-			group.setColor(dialog.getColor());
-			group.setEntries(dialog.getEntries());
-			
-			mListModel.addValue(group);
-		}
-	}
+    // Notify listeners that the tracks may have changed.
+    mListModel.fireDataChanged();
+  }
 
-	/**
-	 * Save groups.
-	 *
-	 * @throws TransformerException the transformer exception
-	 * @throws ParserConfigurationException the parser configuration exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public void saveGroups() throws TransformerException, ParserConfigurationException, IOException  {
-		if (mListModel.getItemCount() == 0) {
-			return;
-		}
-		
-		saveGroups(RecentFilesService.getInstance().getPwd());
-	}
+  /**
+   * Notify the app that the tracks have changed.
+   */
+  private void update() {
+    List<Group> regions = new ArrayList<Group>();
 
-	/**
-	 * Save groups.
-	 *
-	 * @param pwd the working directory
-	 * @throws TransformerException the transformer exception
-	 * @throws ParserConfigurationException the parser configuration exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public void saveGroups(Path pwd) throws TransformerException, ParserConfigurationException, IOException  {
-		if (mListModel.getItemCount() == 0) {
-			return;
-		}
-		
-		saveGroupsFile(FileDialog.save(mParent).filter(new GroupsGuiFileFilter()).getFile(pwd));
-	}
+    for (Group region : mListModel) {
+      regions.add(region);
+    }
 
-	/**
-	 * Save groups file.
-	 *
-	 * @param file the file
-	 * @throws TransformerException the transformer exception
-	 * @throws ParserConfigurationException the parser configuration exception
-	 */
-	public void saveGroupsFile(Path file) throws TransformerException, ParserConfigurationException {
-		if (mListModel.getItemCount() == 0) {
-			return;
-		}
-		
-		if (file == null) {
-			return;
-		}
+    mModel.set(regions);
+  }
 
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
- 
-		// root elements
-		Document doc = docBuilder.newDocument();
-		
-		Element element = doc.createElement("region-groups");
-		doc.appendChild(element);
-		
-		for (Group region : mListModel) {
-			region.toXml(doc, element);
-		}
-		
-		XmlDoc.write(doc, file);
-		
-		RecentFilesService.getInstance().add(file);
-	}
+  /**
+   * Delete groups.
+   */
+  private void deleteGroups() {
+    ModernMessageDialog.createDialog(mParent,
+        "Are you sure you want to delete the selected groups?",
+        MessageDialogType.WARNING_OK_CANCEL,
+        new DeleteGroupsCallBack());
+  }
 
-	/**
-	 * Adds the groups.
-	 *
-	 * @param groups the groups
-	 */
-	public void addGroups(List<Group> groups) {
-		mListModel.addValues(groups);
-	}
+  /**
+   * Clear groups.
+   */
+  private void clearGroups() {
+    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent,
+        "Are you sure you want to delete all groups?",
+        MessageDialogType.WARNING_OK_CANCEL);
 
-	/**
-	 * Adds the group.
-	 *
-	 * @param group the group
-	 */
-	public void addGroup(Group group) {
-		mListModel.addValue(group);
-	}
+    if (status == ModernDialogStatus.OK) {
+      mListModel.clear();
+    }
+  }
+
+  /**
+   * Creates the group.
+   */
+  private void createGroup() {
+    // Create a default group for the user to edit
+    Group group = new Group("Group " + (mListModel.getItemCount() + 1),
+        mColorCycle.next());
+
+    GroupDialog dialog = new GroupDialog(mParent, group);
+
+    dialog.setVisible(true);
+
+    if (dialog.getStatus() == ModernDialogStatus.OK) {
+      group.setName(dialog.getName());
+      group.setColor(dialog.getColor());
+      group.setEntries(dialog.getEntries());
+
+      mListModel.addValue(group);
+    }
+  }
+
+  /**
+   * Save groups.
+   *
+   * @throws TransformerException the transformer exception
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public void saveGroups()
+      throws TransformerException, ParserConfigurationException, IOException {
+    if (mListModel.getItemCount() == 0) {
+      return;
+    }
+
+    saveGroups(RecentFilesService.getInstance().getPwd());
+  }
+
+  /**
+   * Save groups.
+   *
+   * @param pwd the working directory
+   * @throws TransformerException the transformer exception
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public void saveGroups(Path pwd)
+      throws TransformerException, ParserConfigurationException, IOException {
+    if (mListModel.getItemCount() == 0) {
+      return;
+    }
+
+    saveGroupsFile(FileDialog.save(mParent).filter(new GroupsGuiFileFilter())
+        .getFile(pwd));
+  }
+
+  /**
+   * Save groups file.
+   *
+   * @param file the file
+   * @throws TransformerException the transformer exception
+   * @throws ParserConfigurationException the parser configuration exception
+   */
+  public void saveGroupsFile(Path file)
+      throws TransformerException, ParserConfigurationException {
+    if (mListModel.getItemCount() == 0) {
+      return;
+    }
+
+    if (file == null) {
+      return;
+    }
+
+    DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+    // root elements
+    Document doc = docBuilder.newDocument();
+
+    Element element = doc.createElement("region-groups");
+    doc.appendChild(element);
+
+    for (Group region : mListModel) {
+      region.toXml(doc, element);
+    }
+
+    XmlDoc.write(doc, file);
+
+    RecentFilesService.getInstance().add(file);
+  }
+
+  /**
+   * Adds the groups.
+   *
+   * @param groups the groups
+   */
+  public void addGroups(List<Group> groups) {
+    mListModel.addValues(groups);
+  }
+
+  /**
+   * Adds the group.
+   *
+   * @param group the group
+   */
+  public void addGroup(Group group) {
+    mListModel.addValue(group);
+  }
 }

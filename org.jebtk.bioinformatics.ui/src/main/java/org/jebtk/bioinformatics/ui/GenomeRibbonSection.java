@@ -37,9 +37,6 @@ import org.jebtk.modern.ribbon.Ribbon;
 import org.jebtk.modern.ribbon.RibbonSection;
 import org.jebtk.modern.ribbon.RibbonStripContainer;
 
-
-
-
 // TODO: Auto-generated Javadoc
 /**
  * Standardized ribbon menu section for genome.
@@ -47,90 +44,96 @@ import org.jebtk.modern.ribbon.RibbonStripContainer;
  * @author Antony Holmes Holmes
  *
  */
-public class GenomeRibbonSection extends RibbonSection implements ModernClickListener {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
+public class GenomeRibbonSection extends RibbonSection
+    implements ModernClickListener {
 
-	/**
-	 * The constant MESSAGE_QUEUE.
-	 */
-	public static final String MESSAGE_QUEUE = "genome";
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	//private AbstractButton hg18Button = new FlatModernCheckButton(Genome.HG18.toString(),
-	//		Resources.getInstance().loadIcon("hg18", Resources.ICON_SIZE_16));
+  /**
+   * The constant MESSAGE_QUEUE.
+   */
+  public static final String MESSAGE_QUEUE = "genome";
 
-	//private AbstractButton hg19Button = new FlatModernCheckButton(Genome.HG19.toString(),
-	//		Resources.getInstance().loadIcon("hg19", Resources.ICON_SIZE_16));
+  // private AbstractButton hg18Button = new
+  // FlatModernCheckButton(Genome.HG18.toString(),
+  // Resources.getInstance().loadIcon("hg18", Resources.ICON_SIZE_16));
 
-	/**
-	 * The member hg18 button.
-	 */
-	private ModernRadioButton mHg18Button = 
-			new ModernRadioButton(GenomeAssembly.HG18);
+  // private AbstractButton hg19Button = new
+  // FlatModernCheckButton(Genome.HG19.toString(),
+  // Resources.getInstance().loadIcon("hg19", Resources.ICON_SIZE_16));
 
-	/**
-	 * The member hg19 button.
-	 */
-	private ModernRadioButton mHg19Button = 
-			new ModernRadioButton(GenomeAssembly.HG19);
+  /**
+   * The member hg18 button.
+   */
+  private ModernRadioButton mHg18Button = new ModernRadioButton(
+      GenomeAssembly.HG18);
 
-	/**
-	 * Instantiates a new genome ribbon section.
-	 *
-	 * @param ribbon the ribbon
-	 * @param defaultGenome the default genome
-	 */
-	public GenomeRibbonSection(Ribbon ribbon,
-			String defaultGenome) {
-		super(ribbon, "Genome");
+  /**
+   * The member hg19 button.
+   */
+  private ModernRadioButton mHg19Button = new ModernRadioButton(
+      GenomeAssembly.HG19);
 
-		ModernButtonGroup group = new ModernButtonGroup();
+  /**
+   * Instantiates a new genome ribbon section.
+   *
+   * @param ribbon the ribbon
+   * @param defaultGenome the default genome
+   */
+  public GenomeRibbonSection(Ribbon ribbon, String defaultGenome) {
+    super(ribbon, "Genome");
 
-		group.add(mHg18Button);
-		group.add(mHg19Button);
+    ModernButtonGroup group = new ModernButtonGroup();
 
-		if (defaultGenome.equals(Genome.HG19)) {
-			mHg19Button.setSelected(true);
-		} else {
-			mHg18Button.setSelected(true);
-		}
+    group.add(mHg18Button);
+    group.add(mHg19Button);
 
-		mHg18Button.setToolTip(Genome.HG18, 
-				"Use the " + Genome.HG18 + " genome as a reference for coordinates.", 
-				mRibbon);
-		mHg19Button.setToolTip(Genome.HG19, 
-				"Use the " + Genome.HG19 + " genome as a reference for coordinates.", 
-				mRibbon);
-		
-		RibbonStripContainer c = new RibbonStripContainer();
-		c.add(mHg18Button);
-		c.add(mHg19Button);
-		add(c);
+    if (defaultGenome.equals(Genome.HG19)) {
+      mHg19Button.setSelected(true);
+    } else {
+      mHg18Button.setSelected(true);
+    }
 
-		mHg18Button.addClickListener(this);
-		mHg19Button.addClickListener(this);
-	}
+    mHg18Button.setToolTip(Genome.HG18,
+        "Use the " + Genome.HG18 + " genome as a reference for coordinates.",
+        mRibbon);
+    mHg19Button.setToolTip(Genome.HG19,
+        "Use the " + Genome.HG19 + " genome as a reference for coordinates.",
+        mRibbon);
 
-	/**
-	 * Gets the genome.
-	 *
-	 * @return the genome
-	 */
-	public final String getGenome() {
-		if (mHg19Button.isSelected()) {
-			return Genome.HG19;
-		} else {
-			return Genome.HG18;
-		}
-	}
+    RibbonStripContainer c = new RibbonStripContainer();
+    c.add(mHg18Button);
+    c.add(mHg19Button);
+    add(c);
 
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.ModernClickEvent)
-	 */
-	public void clicked(ModernClickEvent e) {
-		fireClicked(new ModernClickEvent(this, "genome_changed"));
-	}
+    mHg18Button.addClickListener(this);
+    mHg19Button.addClickListener(this);
+  }
+
+  /**
+   * Gets the genome.
+   *
+   * @return the genome
+   */
+  public final String getGenome() {
+    if (mHg19Button.isSelected()) {
+      return Genome.HG19;
+    } else {
+      return Genome.HG18;
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+   * ModernClickEvent)
+   */
+  public void clicked(ModernClickEvent e) {
+    fireClicked(new ModernClickEvent(this, "genome_changed"));
+  }
 }

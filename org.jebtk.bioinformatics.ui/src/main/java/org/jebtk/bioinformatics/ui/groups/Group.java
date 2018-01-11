@@ -47,172 +47,177 @@ import org.xml.sax.SAXException;
 
 // TODO: Auto-generated Javadoc
 /**
- * Represents a group of regions or gene symbols that a user wants to
- * search for motifs in.
+ * Represents a group of regions or gene symbols that a user wants to search for
+ * motifs in.
  * 
  * @author Antony Holmes Holmes
  *
  */
 public class Group implements Iterable<String>, XmlStream {
-	
-	/**
-	 * The member entries.
-	 */
-	private List<String> mEntries = new ArrayList<String>();
-	
-	/**
-	 * The member name.
-	 */
-	private String mName;
-	
-	/**
-	 * The member color.
-	 */
-	private Color mColor;
-	
-	/**
-	 * Instantiates a new group.
-	 *
-	 * @param name the name
-	 * @param color the color
-	 */
-	public Group(String name, 
-			Color color) {
-		mName = name;
-		mColor = color;
-	}
 
-	/**
-	 * Clone a group.
-	 *
-	 * @param group the group
-	 */
-	public Group(Group group) {
-		copy(group);
-	}
-	
-	/**
-	 * Copy the properties of one group to another.
-	 *
-	 * @param group the group
-	 */
-	public void copy(Group group) {
-		setName(group.mName);
-		setColor(group.mColor);
-		setEntries(group.mEntries);
-	}
+  /**
+   * The member entries.
+   */
+  private List<String> mEntries = new ArrayList<String>();
 
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public String getName() {
-		return mName;
-	}
-	
-	/**
-	 * Sets the name.
-	 *
-	 * @param name the new name
-	 */
-	public void setName(String name) {
-		mName = name;
-	}
+  /**
+   * The member name.
+   */
+  private String mName;
 
-	/**
-	 * Gets the color.
-	 *
-	 * @return the color
-	 */
-	public Color getColor() {
-		return mColor;
-	}
-	
-	/**
-	 * Sets the color.
-	 *
-	 * @param color the new color
-	 */
-	public void setColor(Color color) {
-		mColor = color;
-	}
+  /**
+   * The member color.
+   */
+  private Color mColor;
 
-	/**
-	 * Size.
-	 *
-	 * @return the int
-	 */
-	public int size() {
-		return mEntries.size();
-	}
+  /**
+   * Instantiates a new group.
+   *
+   * @param name the name
+   * @param color the color
+   */
+  public Group(String name, Color color) {
+    mName = name;
+    mColor = color;
+  }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Iterable#iterator()
-	 */
-	@Override
-	public Iterator<String> iterator() {
-		return mEntries.iterator();
-	}
-	
-	/**
-	 * Sets the entries.
-	 *
-	 * @param entries the new entries
-	 */
-	public void setEntries(List<String> entries) {
-		mEntries.clear();
-		mEntries.addAll(entries);
-	}
-	
-	/**
-	 * Adds the.
-	 *
-	 * @param entry the entry
-	 */
-	public void add(String entry) {
-		mEntries.add(entry);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.abh.lib.xml.XmlStream#toXml(org.w3c.dom.Document, org.w3c.dom.Element)
-	 */
-	@Override
-	public void toXml(Document doc, Element parent) throws DOMException {
-		Element element = doc.createElement("region-group");
-		parent.appendChild(element);
-		
-		element.setAttribute("name", getName());
-		element.setAttribute("color", ColorUtils.toHtml(getColor()));
-		
-		Element regionsElement = doc.createElement("regions");
-		element.appendChild(regionsElement);
-		
-		for (String region : this) {
-			Element regionElement = doc.createElement("region");
-			regionsElement.appendChild(regionElement);
-			
-			regionElement.setAttribute("id", region);
-		}
-	}
-	
-	/**
-	 * Load groups.
-	 *
-	 * @param file the file
-	 * @return the list
-	 * @throws SAXException the SAX exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParserConfigurationException the parser configuration exception
-	 */
-	public static List<Group> loadGroups(Path file) throws SAXException, IOException, ParserConfigurationException {
-		SAXParserFactory factory = SAXParserFactory.newInstance();
-		SAXParser saxParser = factory.newSAXParser();
+  /**
+   * Clone a group.
+   *
+   * @param group the group
+   */
+  public Group(Group group) {
+    copy(group);
+  }
 
-		GroupsXmlHandler handler = new GroupsXmlHandler();
+  /**
+   * Copy the properties of one group to another.
+   *
+   * @param group the group
+   */
+  public void copy(Group group) {
+    setName(group.mName);
+    setColor(group.mColor);
+    setEntries(group.mEntries);
+  }
 
-		saxParser.parse(file.toFile(), handler);
-		
-		return handler.getGroups();
-	}
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+    return mName;
+  }
+
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+    mName = name;
+  }
+
+  /**
+   * Gets the color.
+   *
+   * @return the color
+   */
+  public Color getColor() {
+    return mColor;
+  }
+
+  /**
+   * Sets the color.
+   *
+   * @param color the new color
+   */
+  public void setColor(Color color) {
+    mColor = color;
+  }
+
+  /**
+   * Size.
+   *
+   * @return the int
+   */
+  public int size() {
+    return mEntries.size();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Iterable#iterator()
+   */
+  @Override
+  public Iterator<String> iterator() {
+    return mEntries.iterator();
+  }
+
+  /**
+   * Sets the entries.
+   *
+   * @param entries the new entries
+   */
+  public void setEntries(List<String> entries) {
+    mEntries.clear();
+    mEntries.addAll(entries);
+  }
+
+  /**
+   * Adds the.
+   *
+   * @param entry the entry
+   */
+  public void add(String entry) {
+    mEntries.add(entry);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.xml.XmlStream#toXml(org.w3c.dom.Document,
+   * org.w3c.dom.Element)
+   */
+  @Override
+  public void toXml(Document doc, Element parent) throws DOMException {
+    Element element = doc.createElement("region-group");
+    parent.appendChild(element);
+
+    element.setAttribute("name", getName());
+    element.setAttribute("color", ColorUtils.toHtml(getColor()));
+
+    Element regionsElement = doc.createElement("regions");
+    element.appendChild(regionsElement);
+
+    for (String region : this) {
+      Element regionElement = doc.createElement("region");
+      regionsElement.appendChild(regionElement);
+
+      regionElement.setAttribute("id", region);
+    }
+  }
+
+  /**
+   * Load groups.
+   *
+   * @param file the file
+   * @return the list
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   */
+  public static List<Group> loadGroups(Path file)
+      throws SAXException, IOException, ParserConfigurationException {
+    SAXParserFactory factory = SAXParserFactory.newInstance();
+    SAXParser saxParser = factory.newSAXParser();
+
+    GroupsXmlHandler handler = new GroupsXmlHandler();
+
+    saxParser.parse(file.toFile(), handler);
+
+    return handler.getGroups();
+  }
 }

@@ -44,77 +44,76 @@ import org.jebtk.graphplot.plotbox.PlotBoxRowLayout;
  *
  */
 public class SeqLogosCanvas extends Figure {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
-	/** The maximum number of logos that can be displayed at once. */
-	private static final int MAX_PLOTS = 100;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * The member motifs.
-	 */
-	private List<Motif> mMotifs;
+  /** The maximum number of logos that can be displayed at once. */
+  private static final int MAX_PLOTS = 100;
 
-	/**
-	 * The member view.
-	 */
-	private MotifView mView = MotifView.BITS;
-	
-	/**
-	 * Sets the view.
-	 *
-	 * @param view the new view
-	 */
-	public void setView(MotifView view) {
-		mView = view;
-		
-		fireChanged();
-	}
-	
-	public SeqLogosCanvas() {
-		super("Seq Logos Figure", new PlotBoxRowLayout());
-	}
-	
-	/**
-	 * Sets the motifs.
-	 *
-	 * @param motifs the motifs
-	 * @param view the view
-	 */
-	public void setMotifs(List<Motif> motifs, MotifView view) {
-		mMotifs = motifs;
-		mView = view;
-		
-		// If the genomic model changes, create new plots
-		//mGenomicModel.addChangeListener(new GenomicEvents());
+  /**
+   * The member motifs.
+   */
+  private List<Motif> mMotifs;
 
-		
-		init();
-	}
-	
-	/**
-	 * Inits the.
-	 */
-	private void init() {
-		if (mMotifs == null) {
-			return;
-		}
-		
-		List<SubFigure> plots = new ArrayList<SubFigure>(mMotifs.size());
+  /**
+   * The member view.
+   */
+  private MotifView mView = MotifView.BITS;
 
-		// Add the plots to this canvas
-		for (int i = 0 ; i < Math.min(mMotifs.size(), MAX_PLOTS); ++i) {
-			// create a new plot
+  /**
+   * Sets the view.
+   *
+   * @param view the new view
+   */
+  public void setView(MotifView view) {
+    mView = view;
 
-			SeqLogoCanvas plot = new SeqLogoCanvas(mMotifs.get(i), mView);
+    fireChanged();
+  }
 
-			plots.add(plot);
+  public SeqLogosCanvas() {
+    super("Seq Logos Figure", new PlotBoxRowLayout());
+  }
 
-		}
+  /**
+   * Sets the motifs.
+   *
+   * @param motifs the motifs
+   * @param view the view
+   */
+  public void setMotifs(List<Motif> motifs, MotifView view) {
+    mMotifs = motifs;
+    mView = view;
 
-		setChildren(plots);
-	}
+    // If the genomic model changes, create new plots
+    // mGenomicModel.addChangeListener(new GenomicEvents());
+
+    init();
+  }
+
+  /**
+   * Inits the.
+   */
+  private void init() {
+    if (mMotifs == null) {
+      return;
+    }
+
+    List<SubFigure> plots = new ArrayList<SubFigure>(mMotifs.size());
+
+    // Add the plots to this canvas
+    for (int i = 0; i < Math.min(mMotifs.size(), MAX_PLOTS); ++i) {
+      // create a new plot
+
+      SeqLogoCanvas plot = new SeqLogoCanvas(mMotifs.get(i), mView);
+
+      plots.add(plot);
+
+    }
+
+    setChildren(plots);
+  }
 }

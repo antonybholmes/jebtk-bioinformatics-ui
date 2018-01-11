@@ -51,123 +51,120 @@ import org.jebtk.modern.window.ModernWindow;
  * @author Antony Holmes Holmes
  */
 public class BedGraphImportDialog extends ModernDialogTaskWindow {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The member combo groups.
-	 */
-	private ModernComboBox mComboGroups = new ModernComboBox();
-	
-	/**
-	 * The check assign new groups.
-	 */
-	private ModernCheckBox checkAssignNewGroups =
-			new ModernCheckBox("Assign to new groups");
 
-	/**
-	 * The member model.
-	 */
-	private BedGraphGroupsModel mModel;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * The member group.
-	 */
-	private String mGroup = null;
+  /**
+   * The member combo groups.
+   */
+  private ModernComboBox mComboGroups = new ModernComboBox();
 
+  /**
+   * The check assign new groups.
+   */
+  private ModernCheckBox checkAssignNewGroups = new ModernCheckBox(
+      "Assign to new groups");
 
-	/**
-	 * Instantiates a new bed graph import dialog.
-	 *
-	 * @param parent the parent
-	 * @param model the model
-	 */
-	public BedGraphImportDialog(ModernWindow parent, 
-			BedGraphGroupsModel model) {
-		super(parent);
-		
-		mModel = model;
+  /**
+   * The member model.
+   */
+  private BedGraphGroupsModel mModel;
 
-		setup();
+  /**
+   * The member group.
+   */
+  private String mGroup = null;
 
-		createUi();
-	}
+  /**
+   * Instantiates a new bed graph import dialog.
+   *
+   * @param parent the parent
+   * @param model the model
+   */
+  public BedGraphImportDialog(ModernWindow parent, BedGraphGroupsModel model) {
+    super(parent);
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		setTitle("BedGraph Import");
+    mModel = model;
 
-		if (mModel.size() == 0) {
-			mComboGroups.addMenuItem("Default");
-		} else {
-			for (BedGraphGroupModel group : mModel) {
-				mComboGroups.addMenuItem(group.getName());
-			}
-		}
-		
-		mComboGroups.setEditable(true);
+    setup();
 
-		setSize(new Dimension(500, 200));
+    createUi();
+  }
 
-		UI.centerWindowToScreen(this);
-	}
+  /**
+   * Setup.
+   */
+  private void setup() {
+    setTitle("BedGraph Import");
 
+    if (mModel.size() == 0) {
+      mComboGroups.addMenuItem("Default");
+    } else {
+      for (BedGraphGroupModel group : mModel) {
+        mComboGroups.addMenuItem(group.getName());
+      }
+    }
 
-	/**
-	 * Creates the ui.
-	 */
-	private final void createUi() {
-		//this.getContentPane().add(new JLabel("Change " + getProductDetails().getProductName() + " settings", JLabel.LEFT), BorderLayout.PAGE_START);
+    mComboGroups.setEditable(true);
 
-		
-		
-		Box box = Box.createVerticalBox();
+    setSize(new Dimension(500, 200));
 
-		int[] rows = {ModernWidget.WIDGET_HEIGHT};
-		int[] cols = {120, 300};
-		
-		MatrixPanel matrixPanel = 
-				new MatrixPanel(rows, cols, ModernWidget.PADDING, ModernWidget.PADDING);
-		
-		matrixPanel.add(new ModernAutoSizeLabel("Select group"));
-		matrixPanel.add(mComboGroups);
-		matrixPanel.add(new ModernComponent());
-		matrixPanel.add(checkAssignNewGroups);
-		
-		matrixPanel.setBorder(ModernPanel.LARGE_BORDER);
+    UI.centerWindowToScreen(this);
+  }
 
-		box.add(matrixPanel);
-		
-		setContent(box);
-	}
-	
-	/**
-	 * Edits the.
-	 */
-	private void edit() {
-		mGroup = mComboGroups.getText();
-	}
-	
-	/**
-	 * Gets the group.
-	 *
-	 * @return the group
-	 */
-	public String getGroup() {
-		return mGroup;
-	}
-	
-	/**
-	 * Gets the assign to new groups.
-	 *
-	 * @return the assign to new groups
-	 */
-	public boolean getAssignToNewGroups() {
-		return checkAssignNewGroups.isSelected();
-	}
+  /**
+   * Creates the ui.
+   */
+  private final void createUi() {
+    // this.getContentPane().add(new JLabel("Change " +
+    // getProductDetails().getProductName() + " settings", JLabel.LEFT),
+    // BorderLayout.PAGE_START);
+
+    Box box = Box.createVerticalBox();
+
+    int[] rows = { ModernWidget.WIDGET_HEIGHT };
+    int[] cols = { 120, 300 };
+
+    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING,
+        ModernWidget.PADDING);
+
+    matrixPanel.add(new ModernAutoSizeLabel("Select group"));
+    matrixPanel.add(mComboGroups);
+    matrixPanel.add(new ModernComponent());
+    matrixPanel.add(checkAssignNewGroups);
+
+    matrixPanel.setBorder(ModernPanel.LARGE_BORDER);
+
+    box.add(matrixPanel);
+
+    setContent(box);
+  }
+
+  /**
+   * Edits the.
+   */
+  private void edit() {
+    mGroup = mComboGroups.getText();
+  }
+
+  /**
+   * Gets the group.
+   *
+   * @return the group
+   */
+  public String getGroup() {
+    return mGroup;
+  }
+
+  /**
+   * Gets the assign to new groups.
+   *
+   * @return the assign to new groups
+   */
+  public boolean getAssignToNewGroups() {
+    return checkAssignNewGroups.isSelected();
+  }
 }

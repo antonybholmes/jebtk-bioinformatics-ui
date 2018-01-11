@@ -54,160 +54,169 @@ import org.jebtk.modern.window.ModernWindow;
  * @author Antony Holmes Holmes
  */
 public class TrackPanel extends ModernPanel {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The member color button.
-	 */
-	private ColorSwatchButton mColorButton;
 
-	/**
-	 * The member name field.
-	 */
-	private ModernTextField mNameField = new ModernClipboardTextField("Name");
-	
-	/**
-	 * The member description field.
-	 */
-	private ModernTextField mDescriptionField = new ModernClipboardTextField("Description");
-	
-	/**
-	 * The member height field.
-	 */
-	private ModernCompactSpinner mHeightField = new ModernCompactSpinner(1, 128);
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * The member track.
-	 */
-	private UCSCTrack mTrack;
+  /**
+   * The member color button.
+   */
+  private ColorSwatchButton mColorButton;
 
-	/**
-	 * The class ClickEvents.
-	 */
-	private class ClickEvents implements ModernClickListener {
+  /**
+   * The member name field.
+   */
+  private ModernTextField mNameField = new ModernClipboardTextField("Name");
 
-		/* (non-Javadoc)
-		 * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.ModernClickEvent)
-		 */
-		@Override
-		public void clicked(ModernClickEvent e) {
-			edit();
-		}
-		
-	}
-	
-	/**
-	 * The class KeyEvents.
-	 */
-	private class KeyEvents implements KeyListener {
+  /**
+   * The member description field.
+   */
+  private ModernTextField mDescriptionField = new ModernClipboardTextField(
+      "Description");
 
-		/* (non-Javadoc)
-		 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
-		 */
-		@Override
-		public void keyPressed(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+  /**
+   * The member height field.
+   */
+  private ModernCompactSpinner mHeightField = new ModernCompactSpinner(1, 128);
 
-		/* (non-Javadoc)
-		 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
-		 */
-		@Override
-		public void keyReleased(KeyEvent e) {
-			edit();
-		}
+  /**
+   * The member track.
+   */
+  private UCSCTrack mTrack;
 
-		/* (non-Javadoc)
-		 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-		 */
-		@Override
-		public void keyTyped(KeyEvent e) {
-			
-		}
-		
-	}
-	
-	/**
-	 * Instantiates a new track panel.
-	 *
-	 * @param parent the parent
-	 * @param track the track
-	 */
-	public TrackPanel(ModernWindow parent, UCSCTrack track) {
-		mTrack = track;
-		
-		mNameField.setText(track.getName());
-		mDescriptionField.setText(track.getDescription());
-		mHeightField.setValue(track.getHeight());
+  /**
+   * The class ClickEvents.
+   */
+  private class ClickEvents implements ModernClickListener {
 
-		//this.getContentPane().add(new JLabel("Change " + getProductDetails().getProductName() + " settings", JLabel.LEFT), BorderLayout.PAGE_START);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * ModernClickEvent)
+     */
+    @Override
+    public void clicked(ModernClickEvent e) {
+      edit();
+    }
 
-		int[] rows = {ModernWidget.WIDGET_HEIGHT};
-		int[] cols = {120, 400};
-		
-		MatrixPanel matrixPanel = new MatrixPanel(rows, 
-				cols, 
-				ModernWidget.PADDING, 
-				ModernWidget.PADDING);
-		
-		mColorButton = new ColorSwatchButton(parent, 
-				mTrack.getColor());
+  }
 
-		matrixPanel.add(new ModernAutoSizeLabel("Name"));
-		matrixPanel.add(new ModernTextBorderPanel(mNameField));
-		matrixPanel.add(new ModernAutoSizeLabel("Description"));
-		matrixPanel.add(new ModernTextBorderPanel(mDescriptionField));
-		matrixPanel.add(new ModernAutoSizeLabel("Color"));
-		
-		Box box = HBox.create();
-		box.add(mColorButton);
-		
-		matrixPanel.add(box);
-		
-		matrixPanel.add(new ModernAutoSizeLabel("Height (pixels)"));
-		
-		box = HBox.create();
-		
-		//ModernTextPanel panel = new ModernTextPanel(mHeightField);
-		//Ui.setSize(panel, new Dimension(100, 24));
-		
-		box.add(mHeightField);
-		
-		matrixPanel.add(box);
-		
-		matrixPanel.setBorder(ModernWidget.DOUBLE_BORDER);
+  /**
+   * The class KeyEvents.
+   */
+  private class KeyEvents implements KeyListener {
 
-		add(matrixPanel);
-		
-		mColorButton.addClickListener(new ClickEvents());
-		mNameField.addKeyListener(new KeyEvents());
-		mDescriptionField.addKeyListener(new KeyEvents());
-		mHeightField.addKeyListener(new KeyEvents());
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+      // TODO Auto-generated method stub
 
+    }
 
-	
-	/**
-	 * Edits the.
-	 */
-	private void edit() {
-		mTrack.setName(mNameField.getText());
-		mTrack.setDescription(mDescriptionField.getText());
-		mTrack.setColor(mColorButton.getSelectedColor());
-		mTrack.setHeight(mHeightField.getIntValue());
-	}
-	
-	/**
-	 * Gets the track.
-	 *
-	 * @return the track
-	 */
-	public UCSCTrack getTrack() {
-		return mTrack; //new MatrixGroup(nameField.getText(), regexes, colorButton.getSelectedColor());
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {
+      edit();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+     */
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+  }
+
+  /**
+   * Instantiates a new track panel.
+   *
+   * @param parent the parent
+   * @param track the track
+   */
+  public TrackPanel(ModernWindow parent, UCSCTrack track) {
+    mTrack = track;
+
+    mNameField.setText(track.getName());
+    mDescriptionField.setText(track.getDescription());
+    mHeightField.setValue(track.getHeight());
+
+    // this.getContentPane().add(new JLabel("Change " +
+    // getProductDetails().getProductName() + " settings", JLabel.LEFT),
+    // BorderLayout.PAGE_START);
+
+    int[] rows = { ModernWidget.WIDGET_HEIGHT };
+    int[] cols = { 120, 400 };
+
+    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING,
+        ModernWidget.PADDING);
+
+    mColorButton = new ColorSwatchButton(parent, mTrack.getColor());
+
+    matrixPanel.add(new ModernAutoSizeLabel("Name"));
+    matrixPanel.add(new ModernTextBorderPanel(mNameField));
+    matrixPanel.add(new ModernAutoSizeLabel("Description"));
+    matrixPanel.add(new ModernTextBorderPanel(mDescriptionField));
+    matrixPanel.add(new ModernAutoSizeLabel("Color"));
+
+    Box box = HBox.create();
+    box.add(mColorButton);
+
+    matrixPanel.add(box);
+
+    matrixPanel.add(new ModernAutoSizeLabel("Height (pixels)"));
+
+    box = HBox.create();
+
+    // ModernTextPanel panel = new ModernTextPanel(mHeightField);
+    // Ui.setSize(panel, new Dimension(100, 24));
+
+    box.add(mHeightField);
+
+    matrixPanel.add(box);
+
+    matrixPanel.setBorder(ModernWidget.DOUBLE_BORDER);
+
+    add(matrixPanel);
+
+    mColorButton.addClickListener(new ClickEvents());
+    mNameField.addKeyListener(new KeyEvents());
+    mDescriptionField.addKeyListener(new KeyEvents());
+    mHeightField.addKeyListener(new KeyEvents());
+  }
+
+  /**
+   * Edits the.
+   */
+  private void edit() {
+    mTrack.setName(mNameField.getText());
+    mTrack.setDescription(mDescriptionField.getText());
+    mTrack.setColor(mColorButton.getSelectedColor());
+    mTrack.setHeight(mHeightField.getIntValue());
+  }
+
+  /**
+   * Gets the track.
+   *
+   * @return the track
+   */
+  public UCSCTrack getTrack() {
+    return mTrack; // new MatrixGroup(nameField.getText(), regexes,
+                   // colorButton.getSelectedColor());
+  }
 }

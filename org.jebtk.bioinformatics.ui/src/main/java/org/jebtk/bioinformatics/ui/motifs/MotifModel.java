@@ -32,21 +32,17 @@ import org.jebtk.modern.SelectionModel;
 
 // TODO: Auto-generated Javadoc
 /**
- * Centrally keep track of selected experiments in the order they were
- * selected.
+ * Centrally keep track of selected experiments in the order they were selected.
  * 
  * @author Antony Holmes Holmes
  *
  */
 public class MotifModel extends SelectionModel<Motif> {
 
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	
-
-	
-	// do nothing
+  // do nothing
 }

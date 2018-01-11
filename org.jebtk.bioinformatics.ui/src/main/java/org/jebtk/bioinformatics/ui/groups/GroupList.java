@@ -34,20 +34,20 @@ import org.jebtk.modern.list.ModernList;
  * The class GroupList.
  */
 public class GroupList extends ModernList<Group> {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new group list.
-	 */
-	public GroupList() {
-		setCellRenderer(new GroupListRenderer());
-		
-		setDragReorderEnabled(true);
-		
-		setRowHeight(42);
-	}
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new group list.
+   */
+  public GroupList() {
+    setCellRenderer(new GroupListRenderer());
+
+    setDragReorderEnabled(true);
+
+    setRowHeight(42);
+  }
 }

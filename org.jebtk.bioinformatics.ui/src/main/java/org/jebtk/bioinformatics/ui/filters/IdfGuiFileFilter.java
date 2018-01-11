@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.filters;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class IdfGuiFileFilter.
  */
 public class IdfGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new idf gui file filter.
-	 */
-	public IdfGuiFileFilter() {
-		super("idf");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "IDF File Format (*.idf)";
-	}
+  /**
+   * Instantiates a new idf gui file filter.
+   */
+  public IdfGuiFileFilter() {
+    super("idf");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "IDF File Format (*.idf)";
+  }
 }

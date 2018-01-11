@@ -34,11 +34,12 @@ import org.jebtk.core.ColorUtils;
  * The class ModernHg1832VectorIcon.
  */
 public class ModernHg1832VectorIcon extends ModernDNA32VectorIcon {
-	
-	/**
-	 * Instantiates a new modern hg1832 vector icon.
-	 */
-	public ModernHg1832VectorIcon() {
-		super(ColorUtils.decodeHtmlColor("#87de87"), ColorUtils.decodeHtmlColor("#37c837"));
-	}
+
+  /**
+   * Instantiates a new modern hg1832 vector icon.
+   */
+  public ModernHg1832VectorIcon() {
+    super(ColorUtils.decodeHtmlColor("#87de87"),
+        ColorUtils.decodeHtmlColor("#37c837"));
+  }
 }

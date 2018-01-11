@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.filters;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class ResGuiFileFilter.
  */
 public class ResGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new res gui file filter.
-	 */
-	public ResGuiFileFilter() {
-		super("res");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "GenePattern RES (*.res)";
-	}
+  /**
+   * Instantiates a new res gui file filter.
+   */
+  public ResGuiFileFilter() {
+    super("res");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "GenePattern RES (*.res)";
+  }
 }

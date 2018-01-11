@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.external.genepattern;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class GctGuiFileFilter.
  */
 public class GctGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new gct gui file filter.
-	 */
-	public GctGuiFileFilter() {
-		super("gct");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "GenePattern GCT (*.gct)";
-	}
+  /**
+   * Instantiates a new gct gui file filter.
+   */
+  public GctGuiFileFilter() {
+    super("gct");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "GenePattern GCT (*.gct)";
+  }
 }

@@ -35,19 +35,21 @@ import org.jebtk.modern.io.GuiFileExtFilter;
  */
 public class GroupsGuiFileFilter extends GuiFileExtFilter {
 
-	/**
-	 * Instantiates a new groups gui file filter.
-	 */
-	public GroupsGuiFileFilter() {
-		super("mgrpx");
-	}
+  /**
+   * Instantiates a new groups gui file filter.
+   */
+  public GroupsGuiFileFilter() {
+    super("mgrpx");
+  }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	@Override
-	public String getDescription() {
-		return "Motif Groups (*.mgrpx)";
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  @Override
+  public String getDescription() {
+    return "Motif Groups (*.mgrpx)";
+  }
 
 }

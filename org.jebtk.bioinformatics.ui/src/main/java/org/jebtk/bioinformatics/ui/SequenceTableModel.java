@@ -42,71 +42,81 @@ import org.jebtk.modern.table.ModernColumnHeaderTableModel;
  */
 public class SequenceTableModel extends ModernColumnHeaderTableModel {
 
-	/**
-	 * The constant HEADER.
-	 */
-	private static final String[] HEADER = {"Name", "Sequence"};
+  /**
+   * The constant HEADER.
+   */
+  private static final String[] HEADER = { "Name", "Sequence" };
 
-	/**
-	 * The member sequences.
-	 */
-	private List<Sequence> mSequences;
+  /**
+   * The member sequences.
+   */
+  private List<Sequence> mSequences;
 
-	/**
-	 * Instantiates a new sequence table model.
-	 *
-	 * @param sequences the sequences
-	 */
-	public SequenceTableModel(List<Sequence> sequences) {
-		mSequences = sequences;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnAnnotations(int)
-	 */
-	@Override
-	public List<String> getColumnAnnotationText(int column) {
-		return CollectionUtils.asList(HEADER[column]); //Integer.toString(row + 1);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnCount()
-	 */
-	@Override
-	public final int getColumnCount() {
-		return HEADER.length;
-	}
+  /**
+   * Instantiates a new sequence table model.
+   *
+   * @param sequences the sequences
+   */
+  public SequenceTableModel(List<Sequence> sequences) {
+    mSequences = sequences;
+  }
 
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataModel#getRowCount()
-	 */
-	@Override
-	public final int getRowCount() {
-		return mSequences.size();
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataGridModel#getIsCellEditable(int, int)
-	 */
-	@Override
-	public boolean getIsCellEditable(int row, int column) {
-		return false;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataModel#getValueAt(int, int)
-	 */
-	@Override
-	public Object getValueAt(int row, int column) {
-		switch (column) {
-		case 0:
-			return mSequences.get(row).getName();
-		case 1:
-			return mSequences.get(row).toString();
-		default:
-			return "";
-		}
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnAnnotations(int)
+   */
+  @Override
+  public List<String> getColumnAnnotationText(int column) {
+    return CollectionUtils.asList(HEADER[column]); // Integer.toString(row + 1);
+  }
 
-	
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnCount()
+   */
+  @Override
+  public final int getColumnCount() {
+    return HEADER.length;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getRowCount()
+   */
+  @Override
+  public final int getRowCount() {
+    return mSequences.size();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataGridModel#getIsCellEditable(int,
+   * int)
+   */
+  @Override
+  public boolean getIsCellEditable(int row, int column) {
+    return false;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getValueAt(int, int)
+   */
+  @Override
+  public Object getValueAt(int row, int column) {
+    switch (column) {
+    case 0:
+      return mSequences.get(row).getName();
+    case 1:
+      return mSequences.get(row).toString();
+    default:
+      return "";
+    }
+  }
+
 }

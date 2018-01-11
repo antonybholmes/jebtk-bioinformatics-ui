@@ -44,119 +44,115 @@ import org.jebtk.math.Linspace;
  *
  */
 public class SeqLogoCanvas extends SubFigure {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * Instantiates a new seq logo canvas.
-	 */
-	public SeqLogoCanvas() {
-		// Do nothing
-	}
-	
-	/**
-	 * Instantiates a new seq logo canvas.
-	 *
-	 * @param motif the motif
-	 */
-	public SeqLogoCanvas(Motif motif) {
-		this(motif, MotifView.P);
-	}
-	
-	/**
-	 * Instantiates a new seq logo canvas.
-	 *
-	 * @param motif the motif
-	 * @param view the view
-	 */
-	public SeqLogoCanvas(Motif motif, MotifView view) {
-		setMotif(motif, view);
-	}
-	
-	/**
-	 * Sets the motif.
-	 *
-	 * @param motif the new motif
-	 */
-	public void setMotif(Motif motif) {
-		setMotif(motif, MotifView.P);
-	}
-	
-	/**
-	 * Sets the motif.
-	 *
-	 * @param motif the motif
-	 * @param view the view
-	 */
-	public void setMotif(Motif motif, MotifView view) {
-		if (motif == null) {
-			return;
-		}
-		
-		double min = 0;
-		double max = motif.getBaseCount() + 1;
-		
-		Axes axes = currentAxes();
-		
-		Axis axis = axes.getX1Axis();
-		
-		// set the graph limits
-		axis.setLimits(min, max);
-		axis.getTicks().setTicks(Linspace.evenlySpaced(min + 1, max - 1, 1));
-		axis.getGrid().setVisible(false);
-		axis.getTicks().getMinorTicks().getLineStyle().setVisible(false);
-		
-		if (view == MotifView.BITS) {
-			max = 2;
-		} else {
-			max = 1;
-		}
-		
-		// Y axis
-		
-		axis = axes.getY1Axis();
-		
-		axis.setLimits(min, max, 1);
-		
 
-		if (view == MotifView.BITS) {
-			axis.getTitle().setText("Bits");
-		} else {
-			axis.getTitle().setText(TextUtils.EMPTY_STRING);
-		}
-		
-		axis.getGrid().setVisible(false);
-		
-		axes.setInternalSize((motif.getBaseCount() + 1) * 50, 100);
-		
-		
-		//axes.setMargins(50, 50, 50, 50);
-		
-		// Now lets create a plot
-		
-		Plot plot = axes.currentPlot();
-		
-		plot.clear();
-		
-		if (view == MotifView.BITS) {
-			plot.addChild(new LettersPlotBitsLayer(motif));
-		} else {
-			plot.addChild(new LettersPlotPLayer(motif));
-		}
-		
-		axes.setMargins(50);
-		
-		String title = motif.getName() + " (" + motif.getId() + ")";
-		
-		if (motif.getDatabase() != null) {
-			title +=  " - " + motif.getDatabase();
-		}
-		
-		
-		
-		axes.getTitle().setText(title);
-	}
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new seq logo canvas.
+   */
+  public SeqLogoCanvas() {
+    // Do nothing
+  }
+
+  /**
+   * Instantiates a new seq logo canvas.
+   *
+   * @param motif the motif
+   */
+  public SeqLogoCanvas(Motif motif) {
+    this(motif, MotifView.P);
+  }
+
+  /**
+   * Instantiates a new seq logo canvas.
+   *
+   * @param motif the motif
+   * @param view the view
+   */
+  public SeqLogoCanvas(Motif motif, MotifView view) {
+    setMotif(motif, view);
+  }
+
+  /**
+   * Sets the motif.
+   *
+   * @param motif the new motif
+   */
+  public void setMotif(Motif motif) {
+    setMotif(motif, MotifView.P);
+  }
+
+  /**
+   * Sets the motif.
+   *
+   * @param motif the motif
+   * @param view the view
+   */
+  public void setMotif(Motif motif, MotifView view) {
+    if (motif == null) {
+      return;
+    }
+
+    double min = 0;
+    double max = motif.getBaseCount() + 1;
+
+    Axes axes = currentAxes();
+
+    Axis axis = axes.getX1Axis();
+
+    // set the graph limits
+    axis.setLimits(min, max);
+    axis.getTicks().setTicks(Linspace.evenlySpaced(min + 1, max - 1, 1));
+    axis.getGrid().setVisible(false);
+    axis.getTicks().getMinorTicks().getLineStyle().setVisible(false);
+
+    if (view == MotifView.BITS) {
+      max = 2;
+    } else {
+      max = 1;
+    }
+
+    // Y axis
+
+    axis = axes.getY1Axis();
+
+    axis.setLimits(min, max, 1);
+
+    if (view == MotifView.BITS) {
+      axis.getTitle().setText("Bits");
+    } else {
+      axis.getTitle().setText(TextUtils.EMPTY_STRING);
+    }
+
+    axis.getGrid().setVisible(false);
+
+    axes.setInternalSize((motif.getBaseCount() + 1) * 50, 100);
+
+    // axes.setMargins(50, 50, 50, 50);
+
+    // Now lets create a plot
+
+    Plot plot = axes.currentPlot();
+
+    plot.clear();
+
+    if (view == MotifView.BITS) {
+      plot.addChild(new LettersPlotBitsLayer(motif));
+    } else {
+      plot.addChild(new LettersPlotPLayer(motif));
+    }
+
+    axes.setMargins(50);
+
+    String title = motif.getName() + " (" + motif.getId() + ")";
+
+    if (motif.getDatabase() != null) {
+      title += " - " + motif.getDatabase();
+    }
+
+    axes.getTitle().setText(title);
+  }
 }

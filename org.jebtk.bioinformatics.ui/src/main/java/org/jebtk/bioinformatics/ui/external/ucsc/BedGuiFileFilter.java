@@ -32,35 +32,39 @@ import java.io.FilenameFilter;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class BedGuiFileFilter.
  */
-public class BedGuiFileFilter extends GuiFileExtFilter implements FilenameFilter {
-	
-	/** The Constant INSTANCE. */
-	public static final GuiFileExtFilter INSTANCE = new BedGuiFileFilter();
-	
-	/**
-	 * Instantiates a new bed gui file filter.
-	 */
-	public BedGuiFileFilter() {
-		super("bed");
-	}
+public class BedGuiFileFilter extends GuiFileExtFilter
+    implements FilenameFilter {
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "UCSC BED (*.bed)";
-	}
+  /** The Constant INSTANCE. */
+  public static final GuiFileExtFilter INSTANCE = new BedGuiFileFilter();
 
-	/* (non-Javadoc)
-	 * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)
-	 */
-	@Override
-	public boolean accept(File arg0, String name) {
-		return name.endsWith(".bed");
-	}
+  /**
+   * Instantiates a new bed gui file filter.
+   */
+  public BedGuiFileFilter() {
+    super("bed");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "UCSC BED (*.bed)";
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)
+   */
+  @Override
+  public boolean accept(File arg0, String name) {
+    return name.endsWith(".bed");
+  }
 }

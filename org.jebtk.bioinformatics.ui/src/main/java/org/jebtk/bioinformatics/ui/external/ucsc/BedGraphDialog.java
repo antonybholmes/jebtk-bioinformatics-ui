@@ -42,68 +42,68 @@ import org.jebtk.modern.window.ModernWindow;
  *
  * @author Antony Holmes Holmes
  */
-public class BedGraphDialog extends ModernDialogTaskWindow implements ModernClickListener {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
+public class BedGraphDialog extends ModernDialogTaskWindow
+    implements ModernClickListener {
 
-	/**
-	 * The member bed graph panel.
-	 */
-	private TrackPanel mBedGraphPanel;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
+  /**
+   * The member bed graph panel.
+   */
+  private TrackPanel mBedGraphPanel;
 
-	/**
-	 * Instantiates a new bed graph dialog.
-	 *
-	 * @param parent the parent
-	 * @param bed the bed
-	 */
-	public BedGraphDialog(ModernWindow parent, 
-			UCSCTrack bed) {
-		super(parent, ModernDialogTaskType.OK);
-		
-		mBedGraphPanel = new TrackPanel(parent, bed);
-		
-		setTitle("BedGraph Editor", bed.getName());
-		
-		setup();
+  /**
+   * Instantiates a new bed graph dialog.
+   *
+   * @param parent the parent
+   * @param bed the bed
+   */
+  public BedGraphDialog(ModernWindow parent, UCSCTrack bed) {
+    super(parent, ModernDialogTaskType.OK);
 
-		createUi();
-	}
+    mBedGraphPanel = new TrackPanel(parent, bed);
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		
-		
-		mOkButton.addClickListener(this);
-	
-		setSize(new Dimension(500, 240));
-		
-		UI.centerWindowToScreen(this);
-	}
+    setTitle("BedGraph Editor", bed.getName());
 
+    setup();
 
-	/**
-	 * Creates the ui.
-	 */
-	private final void createUi() {
-		//this.getContentPane().add(new JLabel("Change " + getProductDetails().getProductName() + " settings", JLabel.LEFT), BorderLayout.PAGE_START);
+    createUi();
+  }
 
-		setContent(mBedGraphPanel);
-	}
+  /**
+   * Setup.
+   */
+  private void setup() {
 
-	/**
-	 * Gets the bed graph.
-	 *
-	 * @return the bed graph
-	 */
-	public UCSCTrack getBedGraph() {
-		return mBedGraphPanel.getTrack(); //new MatrixGroup(nameField.getText(), regexes, colorButton.getSelectedColor());
-	}
+    mOkButton.addClickListener(this);
+
+    setSize(new Dimension(500, 240));
+
+    UI.centerWindowToScreen(this);
+  }
+
+  /**
+   * Creates the ui.
+   */
+  private final void createUi() {
+    // this.getContentPane().add(new JLabel("Change " +
+    // getProductDetails().getProductName() + " settings", JLabel.LEFT),
+    // BorderLayout.PAGE_START);
+
+    setContent(mBedGraphPanel);
+  }
+
+  /**
+   * Gets the bed graph.
+   *
+   * @return the bed graph
+   */
+  public UCSCTrack getBedGraph() {
+    return mBedGraphPanel.getTrack(); // new MatrixGroup(nameField.getText(),
+                                      // regexes,
+                                      // colorButton.getSelectedColor());
+  }
 }

@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.filters;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class SdrfGuiFileFilter.
  */
 public class SdrfGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new sdrf gui file filter.
-	 */
-	public SdrfGuiFileFilter() {
-		super("sdrf");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "Sample and Data Relationship Format (*.sdrf)";
-	}
+  /**
+   * Instantiates a new sdrf gui file filter.
+   */
+  public SdrfGuiFileFilter() {
+    super("sdrf");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "Sample and Data Relationship Format (*.sdrf)";
+  }
 }

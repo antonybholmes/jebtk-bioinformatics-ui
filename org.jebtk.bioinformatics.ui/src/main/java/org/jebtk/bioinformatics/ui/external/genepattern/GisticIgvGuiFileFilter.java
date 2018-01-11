@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.external.genepattern;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class GisticIgvGuiFileFilter.
  */
 public class GisticIgvGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new gistic igv gui file filter.
-	 */
-	public GisticIgvGuiFileFilter() {
-		super("seg");
-	}
-	
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "GISTIC/IGV (*.seg)";
-	}
+
+  /**
+   * Instantiates a new gistic igv gui file filter.
+   */
+  public GisticIgvGuiFileFilter() {
+    super("seg");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "GISTIC/IGV (*.seg)";
+  }
 }

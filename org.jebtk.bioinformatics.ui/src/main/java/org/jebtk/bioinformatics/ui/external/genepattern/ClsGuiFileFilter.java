@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.external.genepattern;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class ClsGuiFileFilter.
  */
 public class ClsGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new cls gui file filter.
-	 */
-	public ClsGuiFileFilter() {
-		super("cls");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "GSEA CLS (*.cls)";
-	}
+  /**
+   * Instantiates a new cls gui file filter.
+   */
+  public ClsGuiFileFilter() {
+    super("cls");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "GSEA CLS (*.cls)";
+  }
 }

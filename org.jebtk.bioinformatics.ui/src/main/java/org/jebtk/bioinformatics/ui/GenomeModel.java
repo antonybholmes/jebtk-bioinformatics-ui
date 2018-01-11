@@ -32,36 +32,37 @@ import org.jebtk.core.settings.SettingsService;
 
 // TODO: Auto-generated Javadoc
 /**
- * Centrally keep track of selected experiments in the order they were
- * selected.
+ * Centrally keep track of selected experiments in the order they were selected.
  * 
  * @author Antony Holmes Holmes
  *
  */
 public class GenomeModel extends ItemModel<String> {
 
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new genome model.
-	 */
-	public GenomeModel() {
-		set(SettingsService.getInstance().getAsString("genome"));
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.abh.lib.model.ItemModel#set(java.lang.Object)
-	 */
-	@Override
-	public void set(String genome) {
-		//System.err.println("resolution " + resolution);
-		
-		super.set(genome);
-		
-		// Store the setting
-		SettingsService.getInstance().update("genome", genome);
-	}
+  /**
+   * Instantiates a new genome model.
+   */
+  public GenomeModel() {
+    set(SettingsService.getInstance().getAsString("genome"));
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.model.ItemModel#set(java.lang.Object)
+   */
+  @Override
+  public void set(String genome) {
+    // System.err.println("resolution " + resolution);
+
+    super.set(genome);
+
+    // Store the setting
+    SettingsService.getInstance().update("genome", genome);
+  }
 }

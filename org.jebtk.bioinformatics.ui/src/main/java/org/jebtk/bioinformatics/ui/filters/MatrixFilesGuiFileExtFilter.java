@@ -34,20 +34,22 @@ import org.jebtk.modern.io.GuiFileExtFilter;
  * The class MatrixFilesGuiFileExtFilter.
  */
 public class MatrixFilesGuiFileExtFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new matrix files gui file ext filter.
-	 */
-	public MatrixFilesGuiFileExtFilter() {
-		super("csv", "txt", "xls", "xlsx");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	@Override
-	public String getDescription() {
-		return "All Matrix Files (*.csv;*.txt;*.xls;*.xlsx)";
-	}
+  /**
+   * Instantiates a new matrix files gui file ext filter.
+   */
+  public MatrixFilesGuiFileExtFilter() {
+    super("csv", "txt", "xls", "xlsx");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  @Override
+  public String getDescription() {
+    return "All Matrix Files (*.csv;*.txt;*.xls;*.xlsx)";
+  }
 
 }

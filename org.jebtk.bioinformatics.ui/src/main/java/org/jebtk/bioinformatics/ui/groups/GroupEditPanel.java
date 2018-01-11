@@ -74,201 +74,211 @@ import org.jebtk.modern.window.ModernWindow;
  *
  * @author Antony Holmes Holmes
  */
-public class GroupEditPanel extends ModernComponent implements ModernClickListener {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The member color button.
-	 */
-	private ColorSwatchButton mColorButton;
+public class GroupEditPanel extends ModernComponent
+    implements ModernClickListener {
 
-	/**
-	 * The member name field.
-	 */
-	private ModernTextField mNameField = 
-			new ModernClipboardTextField("Name");
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * The member group.
-	 */
-	private Group mGroup;
-	
-	/**
-	 * The member text area.
-	 */
-	private RegionsTextArea mTextArea = new RegionsTextArea();
+  /**
+   * The member color button.
+   */
+  private ColorSwatchButton mColorButton;
 
-	/**
-	 * The member parent.
-	 */
-	private ModernWindow mParent;
-	
-	/**
-	 * The member load button.
-	 */
-	private ModernDialogFlatButton mLoadButton =
-			new ModernDialogFlatButton("Load...", UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
-	
-	/**
-	 * Instantiates a new group edit panel.
-	 *
-	 * @param parent the parent
-	 * @param group the group
-	 */
-	public GroupEditPanel(ModernWindow parent, Group group) {
-		mParent = parent;
-		mGroup = group;
-		
-		mNameField.setText(group.getName());
-		//this.getContentPane().add(new JLabel("Change " + getProductDetails().getProductName() + " settings", JLabel.LEFT), BorderLayout.PAGE_START);
+  /**
+   * The member name field.
+   */
+  private ModernTextField mNameField = new ModernClipboardTextField("Name");
 
-		int[] rows = {ModernWidget.WIDGET_HEIGHT};
-		int[] cols = {80, 300};
-		
-		MatrixPanel matrixPanel = new MatrixPanel(rows, 
-				cols, 
-				ModernWidget.PADDING, 
-				ModernWidget.PADDING);
-		
-		mColorButton = new ColorSwatchButton(parent, 
-				mGroup.getColor());
+  /**
+   * The member group.
+   */
+  private Group mGroup;
 
-		matrixPanel.add(new ModernAutoSizeLabel("Name"));
-		matrixPanel.add(new ModernTextBorderPanel(mNameField));
-		matrixPanel.add(new ModernAutoSizeLabel("Color"));
-		
-		Box box = HBox.create();
-		box.add(mColorButton);
-		
-		matrixPanel.add(box);
-		
-		matrixPanel.setBorder(BorderService.getInstance().createBottomBorder(10));
+  /**
+   * The member text area.
+   */
+  private RegionsTextArea mTextArea = new RegionsTextArea();
 
-		setHeader(matrixPanel);
-		
-		ModernScrollPane scrollPane = new ModernScrollPane(mTextArea)
-				.setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
-		
-		setBody(scrollPane);
-		
-		box = HBox.create();
-		
-		box.setBorder(TOP_BORDER);
-		
-		box.add(mLoadButton);
-		
-		setFooter(box);
-		
-		mLoadButton.addClickListener(this);
-		
-		List<String> regions = new ArrayList<String>();
-		
-		for (String region : mGroup) {
-			regions.add(region);
-		}
-		
-		mTextArea.setText(regions);
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.awt.Component#getName()
-	 */
-	public String getName() {
-		return mNameField.getText();
-	}
-	
-	/**
-	 * Gets the color.
-	 *
-	 * @return the color
-	 */
-	public Color getColor() {
-		return mColorButton.getSelectedColor();
-	}
-	
-	/**
-	 * Gets the entries.
-	 *
-	 * @return the entries
-	 */
-	public List<String> getEntries() {
-		return mTextArea.getLines();
-	}
-	
-	/**
-	 * Open files.
-	 *
-	 * @throws Exception the exception
-	 */
-	public void openFiles() throws Exception {
-		openFiles(RecentFilesService.getInstance().getPwd());
-	}
+  /**
+   * The member parent.
+   */
+  private ModernWindow mParent;
 
-	/**
-	 * Open files.
-	 *
-	 * @param pwd the pwd
-	 * @throws Exception the exception
-	 */
-	public void openFiles(Path pwd) throws Exception {
-		openFiles(FileDialog.open(mParent).filter(
-				new AllXlsxGuiFileFilter(),
-				new XlsxGuiFileFilter(),
-				new TxtGuiFileFilter(),
-				new BedGuiFileFilter(),
-				new BedGraphGuiFileFilter()).getFiles(pwd));
-	}
+  /**
+   * The member load button.
+   */
+  private ModernDialogFlatButton mLoadButton = new ModernDialogFlatButton(
+      "Load...",
+      UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
 
-	/**
-	 * Open files.
-	 *
-	 * @param files the files
-	 * @throws Exception the exception
-	 */
-	public void openFiles(List<Path> files) throws Exception {
-		if (files == null) {
-			return;
-		}
+  /**
+   * Instantiates a new group edit panel.
+   *
+   * @param parent the parent
+   * @param group the group
+   */
+  public GroupEditPanel(ModernWindow parent, Group group) {
+    mParent = parent;
+    mGroup = group;
 
-		for (Path file : files) {
+    mNameField.setText(group.getName());
+    // this.getContentPane().add(new JLabel("Change " +
+    // getProductDetails().getProductName() + " settings", JLabel.LEFT),
+    // BorderLayout.PAGE_START);
 
-			if (BioPathUtils.ext().bedgraph().test(file)) { //getFileExt(file).equals("bedgraph")) {
-				List<UCSCTrack> bedGraphs = BedGraph.parse(file);
+    int[] rows = { ModernWidget.WIDGET_HEIGHT };
+    int[] cols = { 80, 300 };
 
-				List<GenomicRegion> regions = new ArrayList<GenomicRegion>();
-				
-				for (UCSCTrack bedGraph : bedGraphs) {
-					for (UCSCTrackRegion region :  bedGraph.getRegions()) {
-						regions.add(region);
-					}
-				}
-			
-				mTextArea.setRegions(regions);
-			} else if (BioPathUtils.ext().bed().test(file)) { //PathUtils.getFileExt(file).equals("bed")) {
-				mTextArea.setRegions(Bed.parseTracks(file).get(0));
-			} else {
-				//mTextArea.setRegions(GenomicRegion.parse(Excel.getTextFromFile(file, true)));
-				
-				mTextArea.setText(Excel.getTextFromFile(file, true));
-			}
+    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING,
+        ModernWidget.PADDING);
 
-			RecentFilesService.getInstance().add(file);
-		}
-	}
+    mColorButton = new ColorSwatchButton(parent, mGroup.getColor());
 
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public void clicked(ModernClickEvent e) {
-		try {
-			openFiles();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	}
+    matrixPanel.add(new ModernAutoSizeLabel("Name"));
+    matrixPanel.add(new ModernTextBorderPanel(mNameField));
+    matrixPanel.add(new ModernAutoSizeLabel("Color"));
+
+    Box box = HBox.create();
+    box.add(mColorButton);
+
+    matrixPanel.add(box);
+
+    matrixPanel.setBorder(BorderService.getInstance().createBottomBorder(10));
+
+    setHeader(matrixPanel);
+
+    ModernScrollPane scrollPane = new ModernScrollPane(mTextArea)
+        .setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
+
+    setBody(scrollPane);
+
+    box = HBox.create();
+
+    box.setBorder(TOP_BORDER);
+
+    box.add(mLoadButton);
+
+    setFooter(box);
+
+    mLoadButton.addClickListener(this);
+
+    List<String> regions = new ArrayList<String>();
+
+    for (String region : mGroup) {
+      regions.add(region);
+    }
+
+    mTextArea.setText(regions);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.awt.Component#getName()
+   */
+  public String getName() {
+    return mNameField.getText();
+  }
+
+  /**
+   * Gets the color.
+   *
+   * @return the color
+   */
+  public Color getColor() {
+    return mColorButton.getSelectedColor();
+  }
+
+  /**
+   * Gets the entries.
+   *
+   * @return the entries
+   */
+  public List<String> getEntries() {
+    return mTextArea.getLines();
+  }
+
+  /**
+   * Open files.
+   *
+   * @throws Exception the exception
+   */
+  public void openFiles() throws Exception {
+    openFiles(RecentFilesService.getInstance().getPwd());
+  }
+
+  /**
+   * Open files.
+   *
+   * @param pwd the pwd
+   * @throws Exception the exception
+   */
+  public void openFiles(Path pwd) throws Exception {
+    openFiles(FileDialog.open(mParent)
+        .filter(new AllXlsxGuiFileFilter(),
+            new XlsxGuiFileFilter(),
+            new TxtGuiFileFilter(),
+            new BedGuiFileFilter(),
+            new BedGraphGuiFileFilter())
+        .getFiles(pwd));
+  }
+
+  /**
+   * Open files.
+   *
+   * @param files the files
+   * @throws Exception the exception
+   */
+  public void openFiles(List<Path> files) throws Exception {
+    if (files == null) {
+      return;
+    }
+
+    for (Path file : files) {
+
+      if (BioPathUtils.ext().bedgraph().test(file)) { // getFileExt(file).equals("bedgraph"))
+                                                      // {
+        List<UCSCTrack> bedGraphs = BedGraph.parse(file);
+
+        List<GenomicRegion> regions = new ArrayList<GenomicRegion>();
+
+        for (UCSCTrack bedGraph : bedGraphs) {
+          for (UCSCTrackRegion region : bedGraph.getRegions()) {
+            regions.add(region);
+          }
+        }
+
+        mTextArea.setRegions(regions);
+      } else if (BioPathUtils.ext().bed().test(file)) { // PathUtils.getFileExt(file).equals("bed"))
+                                                        // {
+        mTextArea.setRegions(Bed.parseTracks(file).get(0));
+      } else {
+        // mTextArea.setRegions(GenomicRegion.parse(Excel.getTextFromFile(file,
+        // true)));
+
+        mTextArea.setText(Excel.getTextFromFile(file, true));
+      }
+
+      RecentFilesService.getInstance().add(file);
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+   * ModernClickEvent)
+   */
+  @Override
+  public void clicked(ModernClickEvent e) {
+    try {
+      openFiles();
+    } catch (Exception e1) {
+      e1.printStackTrace();
+    }
+  }
 }

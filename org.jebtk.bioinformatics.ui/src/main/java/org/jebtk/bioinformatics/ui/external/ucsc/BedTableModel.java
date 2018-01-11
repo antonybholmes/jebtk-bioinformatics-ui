@@ -44,71 +44,77 @@ import org.jebtk.modern.table.ModernColumnHeaderTableModel;
  */
 public class BedTableModel extends ModernColumnHeaderTableModel {
 
-	/**
-	 * The constant HEADER.
-	 */
-	private static final String[] HEADER = {"Chr", "Start", "End", "Name"};
-	
-	
+  /**
+   * The constant HEADER.
+   */
+  private static final String[] HEADER = { "Chr", "Start", "End", "Name" };
 
-	/**
-	 * The member bed.
-	 */
-	private UCSCTrack mBed;
+  /**
+   * The member bed.
+   */
+  private UCSCTrack mBed;
 
-	/**
-	 * The member features.
-	 */
-	private List<UCSCTrackRegion> mFeatures;
+  /**
+   * The member features.
+   */
+  private List<UCSCTrackRegion> mFeatures;
 
-	/**
-	 * Instantiates a new bed table model.
-	 *
-	 * @param bed the bed
-	 */
-	public BedTableModel(UCSCTrack bed) {
-		mBed = bed;
-		mFeatures = bed.getRegions();
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnAnnotations(int)
-	 */
-	@Override
-	public List<String> getColumnAnnotationText(int column) {
-		return CollectionUtils.asList(HEADER[column]); //Integer.toString(row + 1);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnCount()
-	 */
-	@Override
-	public final int getColumnCount() {
-		return HEADER.length;
-	}
+  /**
+   * Instantiates a new bed table model.
+   *
+   * @param bed the bed
+   */
+  public BedTableModel(UCSCTrack bed) {
+    mBed = bed;
+    mFeatures = bed.getRegions();
+  }
 
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataModel#getRowCount()
-	 */
-	@Override
-	public final int getRowCount() {
-		return mBed.getRegions().size();
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.jebtk.ui.ui.dataview.ModernDataModel#getValueAt(int, int)
-	 */
-	@Override
-	public Object getValueAt(int row, int column) {
-		switch (column) {
-		case 0:
-			return mFeatures.get(row).getChr().toString();
-		case 1:
-			return mFeatures.get(row).getStart();
-		case 2:
-			return mFeatures.get(row).getEnd();
-		default:
-			return ((BedRegion)mFeatures.get(row)).getName();
-		}
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnAnnotations(int)
+   */
+  @Override
+  public List<String> getColumnAnnotationText(int column) {
+    return CollectionUtils.asList(HEADER[column]); // Integer.toString(row + 1);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnCount()
+   */
+  @Override
+  public final int getColumnCount() {
+    return HEADER.length;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getRowCount()
+   */
+  @Override
+  public final int getRowCount() {
+    return mBed.getRegions().size();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getValueAt(int, int)
+   */
+  @Override
+  public Object getValueAt(int row, int column) {
+    switch (column) {
+    case 0:
+      return mFeatures.get(row).getChr().toString();
+    case 1:
+      return mFeatures.get(row).getStart();
+    case 2:
+      return mFeatures.get(row).getEnd();
+    default:
+      return ((BedRegion) mFeatures.get(row)).getName();
+    }
+  }
 }

@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.filters;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class ExpGuiFileFilter.
  */
 public class ExpGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new exp gui file filter.
-	 */
-	public ExpGuiFileFilter() {
-		super("exp");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "GeWorkbench EXP (*.exp)";
-	}
+  /**
+   * Instantiates a new exp gui file filter.
+   */
+  public ExpGuiFileFilter() {
+    super("exp");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "GeWorkbench EXP (*.exp)";
+  }
 }

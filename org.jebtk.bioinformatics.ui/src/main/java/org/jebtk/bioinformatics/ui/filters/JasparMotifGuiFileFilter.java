@@ -29,24 +29,25 @@ package org.jebtk.bioinformatics.ui.filters;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The class JasparMotifGuiFileFilter.
  */
 public class JasparMotifGuiFileFilter extends GuiFileExtFilter {
-	
-	/**
-	 * Instantiates a new jaspar motif gui file filter.
-	 */
-	public JasparMotifGuiFileFilter() {
-		super("jaspar");
-	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "JASPAR Matrix (*.jaspar)";
-	}
+  /**
+   * Instantiates a new jaspar motif gui file filter.
+   */
+  public JasparMotifGuiFileFilter() {
+    super("jaspar");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "JASPAR Matrix (*.jaspar)";
+  }
 }

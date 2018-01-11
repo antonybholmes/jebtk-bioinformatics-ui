@@ -48,90 +48,81 @@ import org.jebtk.core.collections.CollectionUtils;
  *
  */
 public class LettersPlotBitsLayer extends LettersPlotLayer {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new letters plot bits layer.
-	 *
-	 * @param motif the motif
-	 */
-	public LettersPlotBitsLayer(Motif motif) {
-		List<BaseCounts> counts = new ArrayList<BaseCounts>();
-		
-		for (BaseCounts base : motif) {
-			double sum = base.getA() + base.getC() + base.getG() + base.getT();
-			
-			
-			double a = base.getA() / sum;
-			
-			double c = base.getC() / sum;
-			
-			double g = base.getG() / sum;
-			
-			double t = base.getT() / sum;
-			
-			double information = 2 - (-a * Mathematics.log2(a) + 
-					-c * Mathematics.log2(c) + 
-					-g * Mathematics.log2(g) + 
-					-t * Mathematics.log2(t));
-			
-			
-			counts.add(new BaseCounts(a * information, 
-					c * information, 
-					g * information, 
-					t * information,
-					false));
-		}
-		
-		Motif bitsMotif = new Motif(motif.getName(), counts);
-		
-		// Now we have each base as a pvalue, calculate information
-		
-		/*
-		List<Double> h = new ArrayList<Double>();
-		
-		for (BaseCounts base : pMotif) {
-			double bits = base.getA() * Mathematics.log2(base.getA()) + 
-					base.getC() * Mathematics.log2(base.getC()) + 
-					base.getG() * Mathematics.log2(base.getG()) + 
-					base.getT() * Mathematics.log2(base.getT());
-			
-			h.add(-bits);
-		}
-		*/
+  /**
+   * Instantiates a new letters plot bits layer.
+   *
+   * @param motif the motif
+   */
+  public LettersPlotBitsLayer(Motif motif) {
+    List<BaseCounts> counts = new ArrayList<BaseCounts>();
 
-		mMotifHeights = new MotifHeights(bitsMotif.getName());
-		
-		for (int i = 0; i < bitsMotif.getBaseCount(); ++ i) {
-			BaseCounts base = bitsMotif.getCounts(i);
-			
-			BaseHeights baseHeights = new BaseHeights();
-			
-			Map<Double, List<Character>> sortMap = 
-					new HashMap<Double, List<Character>>();
-			
-			addChar('A', base, sortMap);
-			addChar('C', base, sortMap);
-			addChar('G', base, sortMap);
-			addChar('T', base, sortMap);
-			
-			
-			// Sort by height, then by letters with the same height
-			// Letters are reverse sorted to ensure that they are
-			// display alphabetically vertically down on the plot
-			for (double height : CollectionUtils.sort(sortMap.keySet())) {
-				for (char c : CollectionUtils.reverse(CollectionUtils.sort(sortMap.get(height)))) {
-					baseHeights.add(new BaseHeight(c, height));
-				}
-			}
-			
-			mMotifHeights.add(baseHeights);
-		}
-		
-	}
+    for (BaseCounts base : motif) {
+      double sum = base.getA() + base.getC() + base.getG() + base.getT();
+
+      double a = base.getA() / sum;
+
+      double c = base.getC() / sum;
+
+      double g = base.getG() / sum;
+
+      double t = base.getT() / sum;
+
+      double information = 2
+          - (-a * Mathematics.log2(a) + -c * Mathematics.log2(c)
+              + -g * Mathematics.log2(g) + -t * Mathematics.log2(t));
+
+      counts.add(new BaseCounts(a * information, c * information,
+          g * information, t * information, false));
+    }
+
+    Motif bitsMotif = new Motif(motif.getName(), counts);
+
+    // Now we have each base as a pvalue, calculate information
+
+    /*
+     * List<Double> h = new ArrayList<Double>();
+     * 
+     * for (BaseCounts base : pMotif) { double bits = base.getA() *
+     * Mathematics.log2(base.getA()) + base.getC() *
+     * Mathematics.log2(base.getC()) + base.getG() *
+     * Mathematics.log2(base.getG()) + base.getT() *
+     * Mathematics.log2(base.getT());
+     * 
+     * h.add(-bits); }
+     */
+
+    mMotifHeights = new MotifHeights(bitsMotif.getName());
+
+    for (int i = 0; i < bitsMotif.getBaseCount(); ++i) {
+      BaseCounts base = bitsMotif.getCounts(i);
+
+      BaseHeights baseHeights = new BaseHeights();
+
+      Map<Double, List<Character>> sortMap = new HashMap<Double, List<Character>>();
+
+      addChar('A', base, sortMap);
+      addChar('C', base, sortMap);
+      addChar('G', base, sortMap);
+      addChar('T', base, sortMap);
+
+      // Sort by height, then by letters with the same height
+      // Letters are reverse sorted to ensure that they are
+      // display alphabetically vertically down on the plot
+      for (double height : CollectionUtils.sort(sortMap.keySet())) {
+        for (char c : CollectionUtils
+            .reverse(CollectionUtils.sort(sortMap.get(height)))) {
+          baseHeights.add(new BaseHeight(c, height));
+        }
+      }
+
+      mMotifHeights.add(baseHeights);
+    }
+
+  }
 }

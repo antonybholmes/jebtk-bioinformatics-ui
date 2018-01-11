@@ -44,55 +44,55 @@ import org.jebtk.modern.text.ModernClipboardTextArea;
  *
  */
 public class RegionsTextArea extends ModernClipboardTextArea {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Gets the regions.
-	 *
-	 * @return the regions
-	 * @throws ParseException the parse exception
-	 */
-	public List<GenomicRegion> getRegions() throws ParseException {
-		List<String> lines = getLines();
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-		List<GenomicRegion> ret = new ArrayList<GenomicRegion>();
+  /**
+   * Gets the regions.
+   *
+   * @return the regions
+   * @throws ParseException the parse exception
+   */
+  public List<GenomicRegion> getRegions() throws ParseException {
+    List<String> lines = getLines();
 
-		for (String line : lines) {
-			GenomicRegion region = GenomicRegion.parse(line);
+    List<GenomicRegion> ret = new ArrayList<GenomicRegion>();
 
-			if (region != null) {
-				ret.add(region);
-			}
-		}
+    for (String line : lines) {
+      GenomicRegion region = GenomicRegion.parse(line);
 
-		return ret;
-	}
+      if (region != null) {
+        ret.add(region);
+      }
+    }
 
-	/**
-	 * Sets the regions.
-	 *
-	 * @param regions the new regions
-	 */
-	public void setRegions(List<GenomicRegion> regions) {
-		setText(regions);
-	}
+    return ret;
+  }
 
-	/**
-	 * Sets the regions.
-	 *
-	 * @param track the new regions
-	 */
-	public void setRegions(UCSCTrack track) {
-		List<GenomicRegion> regions = new ArrayList<GenomicRegion>();
+  /**
+   * Sets the regions.
+   *
+   * @param regions the new regions
+   */
+  public void setRegions(List<GenomicRegion> regions) {
+    setText(regions);
+  }
 
-		for (UCSCTrackRegion region : track.getRegions()) {
-			regions.add(region);
-		}
+  /**
+   * Sets the regions.
+   *
+   * @param track the new regions
+   */
+  public void setRegions(UCSCTrack track) {
+    List<GenomicRegion> regions = new ArrayList<GenomicRegion>();
 
-		setRegions(regions);
-	}
+    for (UCSCTrackRegion region : track.getRegions()) {
+      regions.add(region);
+    }
+
+    setRegions(regions);
+  }
 }

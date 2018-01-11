@@ -35,9 +35,9 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.jebtk.core.io.Io;
 import org.jebtk.core.io.PathUtils;
 import org.jebtk.math.external.microsoft.Excel;
+import org.jebtk.math.matrix.CsvMatrixParser;
 import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.math.matrix.MatrixType;
-import org.jebtk.math.matrix.CsvMatrixParser;
 import org.jebtk.math.matrix.MixedMatrixParser;
 import org.jebtk.math.matrix.TextMatrixParser;
 import org.jebtk.math.ui.external.microsoft.XlsTableModel;
@@ -50,83 +50,78 @@ import org.jebtk.modern.dataview.ModernDataModel;
  * The class Bioinformatics.
  */
 public class Bioinformatics {
-	
-	/**
-	 * Gets the model.
-	 *
-	 * @param file the file
-	 * @param hasHeader the has header
-	 * @param skipMatches the skip matches
-	 * @param rowAnnotations the row annotations
-	 * @param delimiter the delimiter
-	 * @return the model
-	 * @throws InvalidFormatException the invalid format exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public static ModernDataModel getModel(Path file, 
-			boolean hasHeader,
-			List<String> skipMatches,
-			int rowAnnotations, 
-			String delimiter) throws InvalidFormatException, IOException {
-		return getModel(file, 
-				hasHeader,
-				skipMatches,
-				rowAnnotations, 
-				delimiter,
-				MatrixType.MIXED);
-	}
-	
-	/**
-	 * Gets the model.
-	 *
-	 * @param file 			Whether the file has a header.
-	 * @param hasHeader 	The has header
-	 * @param skipMatches 	The skip matches
-	 * @param rowAnns 		The row annotations
-	 * @param delimiter 	the delimiter
-	 * @param type			The annotation type to indicate to the parser how 
-	 * 						to handle numbers (i.e. whether to attempt to parse 
-	 * 						text as a primitive number or not).
-	 * @return 				the model
-	 * @throws InvalidFormatException the invalid format exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public static ModernDataModel getModel(Path file, 
-			boolean hasHeader,
-			List<String> skipMatches,
-			int rowAnns, 
-			String delimiter,
-			MatrixType type) throws InvalidFormatException, IOException {
-		if (file == null) {
-			return null;
-		}
-		
-		String ext = PathUtils.getFileExt(file);
-		
-		if (ext.equals(Excel.XLS_EXTENSION)) {
-			return new XlsTableModel(file, hasHeader, rowAnns, true);
-		} else if (ext.equals(Excel.XLSX_EXTENSION)) {
-			return new XlsxTableModel(file, hasHeader, rowAnns, true);
-		} else if (ext.equals(Io.FILE_EXT_CSV)) {
-			return new EditableMatrixTableModel(new CsvMatrixParser(hasHeader, rowAnns).parse(file));
-		} else {
-			DataFrame matrix;
-			
-			if (type == MatrixType.TEXT) {
-				matrix = new TextMatrixParser(hasHeader, 
-						skipMatches, 
-						rowAnns, 
-						delimiter)
-						.parse(file);
-			} else {
-				matrix = new MixedMatrixParser(hasHeader, 
-						skipMatches, 
-						rowAnns, 
-						delimiter)
-						.parse(file);
-			}
-			
-			return new EditableMatrixTableModel(matrix);
-		}
-	}
+
+  /**
+   * Gets the model.
+   *
+   * @param file the file
+   * @param hasHeader the has header
+   * @param skipMatches the skip matches
+   * @param rowAnnotations the row annotations
+   * @param delimiter the delimiter
+   * @return the model
+   * @throws InvalidFormatException the invalid format exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public static ModernDataModel getModel(Path file,
+      boolean hasHeader,
+      List<String> skipMatches,
+      int rowAnnotations,
+      String delimiter) throws InvalidFormatException, IOException {
+    return getModel(file,
+        hasHeader,
+        skipMatches,
+        rowAnnotations,
+        delimiter,
+        MatrixType.MIXED);
+  }
+
+  /**
+   * Gets the model.
+   *
+   * @param file Whether the file has a header.
+   * @param hasHeader The has header
+   * @param skipMatches The skip matches
+   * @param rowAnns The row annotations
+   * @param delimiter the delimiter
+   * @param type The annotation type to indicate to the parser how to handle
+   *          numbers (i.e. whether to attempt to parse text as a primitive
+   *          number or not).
+   * @return the model
+   * @throws InvalidFormatException the invalid format exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public static ModernDataModel getModel(Path file,
+      boolean hasHeader,
+      List<String> skipMatches,
+      int rowAnns,
+      String delimiter,
+      MatrixType type) throws InvalidFormatException, IOException {
+    if (file == null) {
+      return null;
+    }
+
+    String ext = PathUtils.getFileExt(file);
+
+    if (ext.equals(Excel.XLS_EXTENSION)) {
+      return new XlsTableModel(file, hasHeader, rowAnns, true);
+    } else if (ext.equals(Excel.XLSX_EXTENSION)) {
+      return new XlsxTableModel(file, hasHeader, rowAnns, true);
+    } else if (ext.equals(Io.FILE_EXT_CSV)) {
+      return new EditableMatrixTableModel(
+          new CsvMatrixParser(hasHeader, rowAnns).parse(file));
+    } else {
+      DataFrame matrix;
+
+      if (type == MatrixType.TEXT) {
+        matrix = new TextMatrixParser(hasHeader, skipMatches, rowAnns,
+            delimiter).parse(file);
+      } else {
+        matrix = new MixedMatrixParser(hasHeader, skipMatches, rowAnns,
+            delimiter).parse(file);
+      }
+
+      return new EditableMatrixTableModel(matrix);
+    }
+  }
 }
