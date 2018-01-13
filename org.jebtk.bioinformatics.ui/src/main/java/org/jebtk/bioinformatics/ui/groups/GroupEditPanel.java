@@ -125,7 +125,7 @@ public class GroupEditPanel extends ModernComponent
     mGroup = group;
 
     mNameField.setText(group.getName());
-    // this.getContentPane().add(new JLabel("Change " +
+    // this.getWindowContentPanel().add(new JLabel("Change " +
     // getProductDetails().getProductName() + " settings", JLabel.LEFT),
     // BorderLayout.PAGE_START);
 

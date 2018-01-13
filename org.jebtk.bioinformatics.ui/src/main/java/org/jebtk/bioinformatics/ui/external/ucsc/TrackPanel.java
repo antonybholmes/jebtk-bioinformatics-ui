@@ -156,7 +156,7 @@ public class TrackPanel extends ModernPanel {
     mDescriptionField.setText(track.getDescription());
     mHeightField.setValue(track.getHeight());
 
-    // this.getContentPane().add(new JLabel("Change " +
+    // this.getWindowContentPanel().add(new JLabel("Change " +
     // getProductDetails().getProductName() + " settings", JLabel.LEFT),
     // BorderLayout.PAGE_START);
 
