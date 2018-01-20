@@ -98,11 +98,9 @@ public class GenomeRibbonSection extends RibbonSection
     }
 
     mHg18Button.setToolTip(Genome.HG18,
-        "Use the " + Genome.HG18 + " genome as a reference for coordinates.",
-        mRibbon);
+        "Use the " + Genome.HG18 + " genome as a reference for coordinates.");
     mHg19Button.setToolTip(Genome.HG19,
-        "Use the " + Genome.HG19 + " genome as a reference for coordinates.",
-        mRibbon);
+        "Use the " + Genome.HG19 + " genome as a reference for coordinates.");
 
     RibbonStripContainer c = new RibbonStripContainer();
     c.add(mHg18Button);
