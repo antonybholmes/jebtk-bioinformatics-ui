@@ -64,7 +64,7 @@ public class LettersPlotPLayer extends LettersPlotLayer {
     // Normalize the matrix
     for (BaseCounts base : motif) {
       counts.add(new BaseCounts(base.getA(), base.getC(), base.getG(),
-          base.getT(), true));
+          base.getT(), base.getN(), true));
     }
 
     Motif pMotif = new Motif(motif.getName(), counts);
@@ -96,6 +96,7 @@ public class LettersPlotPLayer extends LettersPlotLayer {
       addChar('C', baseCounts, sortMap);
       addChar('G', baseCounts, sortMap);
       addChar('T', baseCounts, sortMap);
+      addChar('N', baseCounts, sortMap);
 
       // Sort by height, then by letters with the same height
       // Letters are reverse sorted to ensure that they are

@@ -94,7 +94,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
   public LettersPlotLayer() {
     super("Sequence");
 
-    // setAAMode(true);
+    setAAMode(true);
     setRasterMode(true);
   }
 

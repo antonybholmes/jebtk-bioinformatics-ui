@@ -62,23 +62,25 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
   public LettersPlotBitsLayer(Motif motif) {
     List<BaseCounts> counts = new ArrayList<BaseCounts>();
 
-    for (BaseCounts base : motif) {
-      double sum = base.getA() + base.getC() + base.getG() + base.getT();
+    for (BaseCounts bc : motif) {
+      double sum = bc.getSum();
 
-      double a = base.getA() / sum;
+      double a = bc.getA() / sum;
 
-      double c = base.getC() / sum;
+      double c = bc.getC() / sum;
 
-      double g = base.getG() / sum;
+      double g = bc.getG() / sum;
 
-      double t = base.getT() / sum;
+      double t = bc.getT() / sum;
 
-      double information = 2
-          - (-a * Mathematics.log2(a) + -c * Mathematics.log2(c)
-              + -g * Mathematics.log2(g) + -t * Mathematics.log2(t));
+      double n = bc.getN() / sum;
+
+      double information = 2 - (-a * Mathematics.log2(a)
+          + -c * Mathematics.log2(c) + -g * Mathematics.log2(g)
+          + -t * Mathematics.log2(t) + -n * Mathematics.log2(n));
 
       counts.add(new BaseCounts(a * information, c * information,
-          g * information, t * information, false));
+          g * information, t * information, n * information, false));
     }
 
     Motif bitsMotif = new Motif(motif.getName(), counts);
@@ -110,6 +112,7 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
       addChar('C', base, sortMap);
       addChar('G', base, sortMap);
       addChar('T', base, sortMap);
+      addChar('N', base, sortMap);
 
       // Sort by height, then by letters with the same height
       // Letters are reverse sorted to ensure that they are

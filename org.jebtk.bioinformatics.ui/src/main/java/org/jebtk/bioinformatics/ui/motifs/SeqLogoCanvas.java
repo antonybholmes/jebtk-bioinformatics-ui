@@ -127,8 +127,6 @@ public class SeqLogoCanvas extends SubFigure {
       axis.getTitle().setText(TextUtils.EMPTY_STRING);
     }
 
-    axis.getGrid().setVisible(false);
-
     axes.setInternalSize((motif.getBaseCount() + 1) * 50, 100);
 
     // axes.setMargins(50, 50, 50, 50);
@@ -147,7 +145,11 @@ public class SeqLogoCanvas extends SubFigure {
 
     axes.setMargins(50);
 
-    String title = motif.getName() + " (" + motif.getId() + ")";
+    String title = motif.getName();
+    
+    if (!motif.getId().equals(title)) {
+      title += " (" + motif.getId() + ")";
+    }
 
     if (motif.getDatabase() != null) {
       title += " - " + motif.getDatabase();

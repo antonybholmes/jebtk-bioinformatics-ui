@@ -36,14 +36,14 @@ import org.jebtk.modern.io.GuiFileExtFilter;
 /**
  * The class MotifGuiFileFilter.
  */
-public class MotifPwmGuiFileFilter extends GuiFileExtFilter
+public class MotifPwm2GuiFileFilter extends GuiFileExtFilter
     implements FilenameFilter {
 
   /**
    * Instantiates a new motif gui file filter.
    */
-  public MotifPwmGuiFileFilter() {
-    super("pwm2");
+  public MotifPwm2GuiFileFilter() {
+    super("pwm");
   }
 
   /*
@@ -52,7 +52,7 @@ public class MotifPwmGuiFileFilter extends GuiFileExtFilter
    * @see javax.swing.filechooser.FileFilter#getDescription()
    */
   public final String getDescription() {
-    return "Motif Files (*.pwm2)";
+    return "Motif Files (*.pwm)";
   }
 
   /*
@@ -62,6 +62,6 @@ public class MotifPwmGuiFileFilter extends GuiFileExtFilter
    */
   @Override
   public boolean accept(File dir, String name) {
-    return name.endsWith("pwm2");
+    return name.endsWith("pwm");
   }
 }
