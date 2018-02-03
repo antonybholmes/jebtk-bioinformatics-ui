@@ -41,9 +41,8 @@ import java.util.Set;
 import javax.swing.Timer;
 
 import org.jebtk.bioinformatics.genomic.Chromosome;
-import org.jebtk.bioinformatics.genomic.ChromosomeService;
-import org.jebtk.bioinformatics.genomic.ChromosomeSizesService;
 import org.jebtk.bioinformatics.genomic.GenesService;
+import org.jebtk.bioinformatics.genomic.GenomeService;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.bioinformatics.genomic.GenomicRegionModel;
 import org.jebtk.core.event.ChangeEvent;
@@ -97,6 +96,8 @@ public class GenomicRegionRibbonSection extends RibbonSection {
   private static final Dimension LOCATION_SIZE = new Dimension(200,
       ModernWidget.WIDGET_HEIGHT);
 
+  
+  
   /**
    * The member location field.
    */
@@ -532,7 +533,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * @throws ParseException the parse exception
    */
   private void change() throws ParseException {
-    GenomicRegion region = parse();
+    GenomicRegion region = parse(mGenomeModel.get());
 
     if (region != null) {
       // Add the location before updating the model, since the model
@@ -556,26 +557,24 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * @return the genomic region
    * @throws ParseException the parse exception
    */
-  protected GenomicRegion parse() throws ParseException {
+  protected GenomicRegion parse(String genome) {
     String text = mLocationField.getText().toLowerCase();
 
     GenomicRegion region = null;
 
-    if (text.matches("^chr(\\d+|[xymXYM])$")) {
+    if (GenomicRegion.CHR_ONLY_PATTERN.matcher(text).matches()) {
       // use the whole chromosome
 
-      Chromosome chromosome = ChromosomeService.getInstance().parse(text);
+      Chromosome chromosome = GenomeService.getInstance().chr(genome, text);
 
-      int size = ChromosomeSizesService.getInstance()
-          .getSizes(mGenomeModel.get()).getSize(chromosome);
+      int size = chromosome.getSize();
 
       region = new GenomicRegion(chromosome, 1, size);
 
     } else if (text.startsWith("chr")) { // remove commas
-      region = GenomicRegion.parse(mLocationField.getText());
-
-      int size = ChromosomeSizesService.getInstance()
-          .getSizes(mGenomeModel.get()).getSize(region.getChr());
+      region = GenomicRegion.parse(genome, mLocationField.getText());
+ 
+      int size = region.getChr().getSize();
 
       region = new GenomicRegion(region.getChr(),
           Math.max(1, region.getStart()), Math.min(region.getEnd(), size));
@@ -583,7 +582,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     } else {
       // assume its a gene
 
-      region = GenesService.getInstance().getGenes(mGenomeModel.get())
+      region = GenesService.getInstance().getGenes(genome)
           .getGene(text);
     }
 
@@ -615,14 +614,13 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * @throws ParseException the parse exception
    */
   private void zoom(double scale) throws ParseException {
-    GenomicRegion region = parse();
+    GenomicRegion region = parse(mGenomeModel.get());
 
     if (region == null) {
       return;
     }
 
-    int size = ChromosomeSizesService.getInstance().getSizes(mGenomeModel.get())
-        .getSize(region.getChr());
+    int size = region.getChr().getSize();
 
     int midPoint = (region.getStart() + region.getEnd()) / 2;
 
@@ -662,7 +660,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * @throws ParseException the parse exception
    */
   private void move(double p) throws ParseException {
-    GenomicRegion region = parse();
+    GenomicRegion region = parse(mGenomeModel.get());
 
     if (region == null) {
       return;
@@ -671,8 +669,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     int shift = (int) (region.getLength() * p);
 
     GenomicRegion newRegion = GenomicRegion.shift(region,
-        shift,
-        ChromosomeSizesService.getInstance().getSizes(mGenomeModel.get()));
+        shift);
 
     mModel.set(newRegion);
   }

@@ -56,13 +56,13 @@ public class RegionsTextArea extends ModernClipboardTextArea {
    * @return the regions
    * @throws ParseException the parse exception
    */
-  public List<GenomicRegion> getRegions() throws ParseException {
+  public List<GenomicRegion> getRegions(String genome) {
     List<String> lines = getLines();
 
     List<GenomicRegion> ret = new ArrayList<GenomicRegion>();
 
     for (String line : lines) {
-      GenomicRegion region = GenomicRegion.parse(line);
+      GenomicRegion region = GenomicRegion.parse(genome, line);
 
       if (region != null) {
         ret.add(region);

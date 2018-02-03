@@ -25,8 +25,9 @@ import java.util.List;
 
 import org.jebtk.bioinformatics.ext.ucsc.Cytoband;
 import org.jebtk.bioinformatics.ext.ucsc.Cytobands;
+import org.jebtk.bioinformatics.ext.ucsc.CytobandsService;
 import org.jebtk.bioinformatics.genomic.Chromosome;
-import org.jebtk.bioinformatics.genomic.ChromosomeService;
+import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.core.ColorUtils;
 import org.jebtk.core.settings.SettingsService;
 import org.jebtk.graphplot.figure.Axes;
@@ -117,23 +118,13 @@ public class CytobandsLayer extends AxesClippedLayer {
   /** The m cytobands. */
   private Cytobands mCytobands;
 
-  /** The m chr. */
-  private Chromosome mChr;
-
   /** The m prev chr. */
   private Chromosome mPrevChr;
 
   /** The m image. */
   private BufferedImage mImage;
 
-  /**
-   * Instantiates a new cytobands layer.
-   *
-   * @param cytobands the cytobands
-   */
-  public CytobandsLayer(Cytobands cytobands) {
-    this(ChromosomeService.getInstance().human("chr1"), cytobands);
-  }
+  protected GenomicRegion mDisplayRegion;
 
   /**
    * Instantiates a new cytobands layer.
@@ -141,21 +132,19 @@ public class CytobandsLayer extends AxesClippedLayer {
    * @param chr the chr
    * @param cytobands the cytobands
    */
-  public CytobandsLayer(Chromosome chr, Cytobands cytobands) {
+  public CytobandsLayer(Cytobands cytobands) {
     super("Cytobands");
 
     mCytobands = cytobands;
-
-    setChr(chr);
   }
-
+  
   /**
-   * Sets the chr.
+   * Sets the region.
    *
-   * @param chr the new chr
+   * @param displayRegion the new region
    */
-  public void setChr(Chromosome chr) {
-    mChr = chr;
+  public void setRegion(GenomicRegion displayRegion) {
+    mDisplayRegion = displayRegion;
   }
 
   /*
@@ -191,7 +180,9 @@ public class CytobandsLayer extends AxesClippedLayer {
   private BufferedImage cacheImage(DrawingContext context,
       SubFigure figure,
       Axes axes) {
-    if (mPrevChr == null || !mChr.equals(mPrevChr)) {
+    Chromosome chr = mDisplayRegion.getChr();
+    
+    if (mPrevChr == null || !chr.equals(mPrevChr)) {
       int minX = axes.toPlotX1(axes.getX1Axis().getMin());
       int maxX = axes.toPlotX1(axes.getX1Axis().getMax());
       int y1 = axes.toPlotY1(axes.getY1Axis().getMin());
@@ -216,7 +207,7 @@ public class CytobandsLayer extends AxesClippedLayer {
         g.dispose();
       }
 
-      mPrevChr = mChr;
+      mPrevChr = chr;
     }
 
     return mImage;
@@ -235,7 +226,10 @@ public class CytobandsLayer extends AxesClippedLayer {
       SubFigure figure,
       Axes axes) {
 
-    List<Cytoband> bands = mCytobands.getCytobands(mChr);
+    Chromosome chr = mDisplayRegion.getChr();
+    String genome = chr.getGenome();
+    
+    List<Cytoband> bands = CytobandsService.getInstance().getCytobands(genome).getCytobands(chr); //mCytobands.getCytobands(mDisplayRegion.getChr());
 
     // Clipping
     int centi1 = Integer.MAX_VALUE;

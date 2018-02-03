@@ -77,8 +77,8 @@ public class RegionsPanel extends ModernWidget {
    * @return the regions
    * @throws ParseException the parse exception
    */
-  public List<GenomicRegion> getRegions() throws ParseException {
-    return mRegionsField.getRegions();
+  public List<GenomicRegion> getRegions(String genome) {
+    return mRegionsField.getRegions(genome);
   }
 
   /**

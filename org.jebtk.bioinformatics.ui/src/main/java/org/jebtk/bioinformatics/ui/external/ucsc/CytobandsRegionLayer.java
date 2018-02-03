@@ -20,7 +20,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 
 import org.jebtk.bioinformatics.ext.ucsc.Cytobands;
-import org.jebtk.bioinformatics.genomic.ChromosomeService;
+import org.jebtk.bioinformatics.genomic.Chromosome;
+import org.jebtk.bioinformatics.genomic.GenomeService;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.core.ColorUtils;
 import org.jebtk.core.Mathematics;
@@ -43,7 +44,7 @@ public class CytobandsRegionLayer extends CytobandsLayer {
 
   /** The Constant DEFAULT_REGION. */
   private static final GenomicRegion DEFAULT_REGION = new GenomicRegion(
-      ChromosomeService.getInstance().human("chr1"), 1, 1000);
+      GenomeService.getInstance().hg19("chr1"), 1, 1000);
 
   /** The Constant REGION_COLOR. */
   private static final Color REGION_COLOR = Color.RED;
@@ -54,9 +55,6 @@ public class CytobandsRegionLayer extends CytobandsLayer {
 
   /** The Constant TRIANGLE_SIZE. */
   private static final int TRIANGLE_SIZE = 5;
-
-  /** The m display region. */
-  private GenomicRegion mDisplayRegion;
 
   /** The m triangle. */
   private GeneralPath mTriangle;
@@ -78,16 +76,7 @@ public class CytobandsRegionLayer extends CytobandsLayer {
     setRegion(DEFAULT_REGION);
   }
 
-  /**
-   * Sets the region.
-   *
-   * @param displayRegion the new region
-   */
-  public void setRegion(GenomicRegion displayRegion) {
-    mDisplayRegion = displayRegion;
 
-    setChr(displayRegion.getChr());
-  }
 
   /*
    * (non-Javadoc)
