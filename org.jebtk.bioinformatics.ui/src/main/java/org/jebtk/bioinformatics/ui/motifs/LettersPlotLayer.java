@@ -155,7 +155,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
 
         String s = String.valueOf(c);
 
-        // System.err.println("char " + c + " " + i);
+        System.err.println("char " + c + " " + i);
 
         if (!mYScaleMap.get(c).containsKey(i)) {
           int letterHeight = ImageUtils.getFontHeight(g2, s);
