@@ -28,7 +28,6 @@
 package org.jebtk.bioinformatics.ui;
 
 import org.jebtk.bioinformatics.genomic.Genome;
-import org.jebtk.bioinformatics.genomic.GenomeAssembly;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernRadioButton;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -68,14 +67,12 @@ public class GenomeRibbonSection extends RibbonSection
   /**
    * The member hg18 button.
    */
-  private ModernRadioButton mHg18Button = new ModernRadioButton(
-      GenomeAssembly.HG18);
+  private ModernRadioButton mHg18Button = new ModernRadioButton(Genome.HG18);
 
   /**
    * The member hg19 button.
    */
-  private ModernRadioButton mHg19Button = new ModernRadioButton(
-      GenomeAssembly.HG19);
+  private ModernRadioButton mHg19Button = new ModernRadioButton(Genome.HG19);
 
   /**
    * Instantiates a new genome ribbon section.

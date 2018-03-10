@@ -565,7 +565,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     if (GenomicRegion.CHR_ONLY_PATTERN.matcher(text).matches()) {
       // use the whole chromosome
 
-      Chromosome chromosome = GenomeService.getInstance().chr(genome, text);
+      Chromosome chromosome = GenomeService.instance().chr(genome, text);
 
       int size = chromosome.getSize();
 
