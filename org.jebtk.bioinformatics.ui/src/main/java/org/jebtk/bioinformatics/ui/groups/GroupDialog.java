@@ -121,7 +121,7 @@ public class GroupDialog extends ModernDialogTaskWindow
     box.add(mCheckIgnoreEmpty);
     panel.setFooter(box);
 
-    setCardContent(panel);
+    setCard(panel);
   }
 
   /*
