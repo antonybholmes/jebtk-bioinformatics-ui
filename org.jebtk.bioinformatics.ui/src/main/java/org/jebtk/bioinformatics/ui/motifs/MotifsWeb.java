@@ -257,7 +257,7 @@ public class MotifsWeb extends MotifDataSource {
 
     try {
 
-      URL url = mPathsUrl.param("p", root.toString()).toUrl();
+      URL url = mPathsUrl.param("p", root.toString()).toURL();
 
       System.err.println(url);
 
@@ -289,7 +289,7 @@ public class MotifsWeb extends MotifDataSource {
     List<Motif> motifs = new ArrayList<Motif>();
 
     try {
-      URL url = new UrlBuilder(mMotifsUrl).param("p", path.toString()).toUrl();
+      URL url = new UrlBuilder(mMotifsUrl).param("p", path.toString()).toURL();
 
       System.err.println(url);
 
