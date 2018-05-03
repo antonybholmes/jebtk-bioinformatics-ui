@@ -45,7 +45,6 @@ import org.jebtk.math.ui.external.microsoft.XlsxTableModel;
 import org.jebtk.math.ui.matrix.EditableMatrixTableModel;
 import org.jebtk.modern.dataview.ModernDataModel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class Bioinformatics.
  */

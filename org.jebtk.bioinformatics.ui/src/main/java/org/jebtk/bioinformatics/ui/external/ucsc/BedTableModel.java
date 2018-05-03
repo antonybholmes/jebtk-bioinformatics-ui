@@ -35,7 +35,6 @@ import org.jebtk.bioinformatics.ext.ucsc.UCSCTrackRegion;
 import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.modern.table.ModernColumnHeaderTableModel;
 
-// TODO: Auto-generated Javadoc
 /**
  * Provides a view onto an excel workbook.
  * 

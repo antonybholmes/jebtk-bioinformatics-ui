@@ -29,7 +29,6 @@ package org.jebtk.bioinformatics.ui.groups;
 
 import org.jebtk.modern.list.ModernList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class GroupList.
  */

@@ -36,7 +36,6 @@ import org.jebtk.bioinformatics.ext.ucsc.UCSCTrackRegion;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.modern.text.ModernClipboardTextArea;
 
-// TODO: Auto-generated Javadoc
 /**
  * Stores an ad-hoc list of regions.
  * 

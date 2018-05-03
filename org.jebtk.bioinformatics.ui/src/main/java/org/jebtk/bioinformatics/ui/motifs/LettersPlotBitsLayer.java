@@ -40,7 +40,6 @@ import org.jebtk.bioinformatics.motifs.MotifHeights;
 import org.jebtk.core.Mathematics;
 import org.jebtk.core.collections.CollectionUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * Draws scales motif letters in bits.
  * 

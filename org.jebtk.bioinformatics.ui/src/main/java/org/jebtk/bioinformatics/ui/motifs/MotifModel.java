@@ -30,7 +30,6 @@ package org.jebtk.bioinformatics.ui.motifs;
 import org.jebtk.bioinformatics.motifs.Motif;
 import org.jebtk.modern.SelectionModel;
 
-// TODO: Auto-generated Javadoc
 /**
  * Centrally keep track of selected experiments in the order they were selected.
  * 

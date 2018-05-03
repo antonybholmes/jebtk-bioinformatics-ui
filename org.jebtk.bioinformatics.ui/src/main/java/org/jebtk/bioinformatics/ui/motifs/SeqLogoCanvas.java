@@ -36,7 +36,6 @@ import org.jebtk.graphplot.figure.Plot;
 import org.jebtk.graphplot.figure.SubFigure;
 import org.jebtk.math.Linspace;
 
-// TODO: Auto-generated Javadoc
 /**
  * Draw peaks.
  * 

@@ -29,7 +29,6 @@ package org.jebtk.bioinformatics.ui.icons;
 
 import org.jebtk.core.ColorUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class ModernHg1832VectorIcon.
  */

@@ -36,7 +36,6 @@ import org.jebtk.graphplot.figure.Figure;
 import org.jebtk.graphplot.figure.SubFigure;
 import org.jebtk.graphplot.plotbox.PlotBoxRowLayout;
 
-// TODO: Auto-generated Javadoc
 /**
  * Layout out peak plots in a column.
  * 

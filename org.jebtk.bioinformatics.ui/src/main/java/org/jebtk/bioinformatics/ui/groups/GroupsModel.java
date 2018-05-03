@@ -29,7 +29,6 @@ package org.jebtk.bioinformatics.ui.groups;
 
 import org.jebtk.core.model.ListModel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class GroupsModel.
  */

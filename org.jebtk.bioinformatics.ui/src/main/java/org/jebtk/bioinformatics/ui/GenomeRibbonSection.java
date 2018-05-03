@@ -36,7 +36,6 @@ import org.jebtk.modern.ribbon.Ribbon;
 import org.jebtk.modern.ribbon.RibbonSection;
 import org.jebtk.modern.ribbon.RibbonStripContainer;
 
-// TODO: Auto-generated Javadoc
 /**
  * Standardized ribbon menu section for genome.
  *

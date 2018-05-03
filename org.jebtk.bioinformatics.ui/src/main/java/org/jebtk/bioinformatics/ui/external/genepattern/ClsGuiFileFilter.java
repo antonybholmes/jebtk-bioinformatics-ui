@@ -29,7 +29,6 @@ package org.jebtk.bioinformatics.ui.external.genepattern;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class ClsGuiFileFilter.
  */

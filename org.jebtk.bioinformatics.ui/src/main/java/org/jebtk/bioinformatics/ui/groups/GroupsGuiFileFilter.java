@@ -29,7 +29,6 @@ package org.jebtk.bioinformatics.ui.groups;
 
 import org.jebtk.modern.io.GuiFileExtFilter;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class GroupsGuiFileFilter.
  */

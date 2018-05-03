@@ -51,7 +51,6 @@ import org.jebtk.modern.font.FontService;
 import org.jebtk.modern.graphics.DrawingContext;
 import org.jebtk.modern.graphics.ImageUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * Draws scales motif letters.
  * 

@@ -45,7 +45,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-// TODO: Auto-generated Javadoc
 /**
  * Represents a group of regions or gene symbols that a user wants to search for
  * motifs in.

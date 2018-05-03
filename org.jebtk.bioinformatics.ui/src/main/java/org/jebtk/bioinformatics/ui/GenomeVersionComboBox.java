@@ -33,7 +33,6 @@ import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.combobox.ModernComboBox;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class GenomeVersionComboBox.
  */
