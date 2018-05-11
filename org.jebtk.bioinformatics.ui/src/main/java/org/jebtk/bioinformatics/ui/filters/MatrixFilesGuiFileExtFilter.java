@@ -27,28 +27,17 @@
  */
 package org.jebtk.bioinformatics.ui.filters;
 
-import org.jebtk.modern.io.GuiFileExtFilter;
+import org.jebtk.modern.io.SimpleGuiFileFilter;
 
 /**
  * The class MatrixFilesGuiFileExtFilter.
  */
-public class MatrixFilesGuiFileExtFilter extends GuiFileExtFilter {
+public class MatrixFilesGuiFileExtFilter extends SimpleGuiFileFilter {
 
   /**
    * Instantiates a new matrix files gui file ext filter.
    */
   public MatrixFilesGuiFileExtFilter() {
-    super("csv", "txt", "xls", "xlsx");
+    super("All Matrix Files", "csv", "txt", "xls", "xlsx");
   }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see javax.swing.filechooser.FileFilter#getDescription()
-   */
-  @Override
-  public String getDescription() {
-    return "All Matrix Files (*.csv;*.txt;*.xls;*.xlsx)";
-  }
-
 }

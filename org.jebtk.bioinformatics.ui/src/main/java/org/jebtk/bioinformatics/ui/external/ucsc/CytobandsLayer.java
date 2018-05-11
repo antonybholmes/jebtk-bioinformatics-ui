@@ -114,8 +114,6 @@ public class CytobandsLayer extends AxesClippedLayer {
   /** The Constant COLOR_33. */
   private static final Color COLOR_33 = ColorUtils.getGrayScale(0.33);
 
-  /** The m cytobands. */
-  private Cytobands mCytobands;
 
   /** The m prev chr. */
   private Chromosome mPrevChr;
@@ -134,7 +132,7 @@ public class CytobandsLayer extends AxesClippedLayer {
   public CytobandsLayer(Cytobands cytobands) {
     super("Cytobands");
 
-    mCytobands = cytobands;
+    //mCytobands = cytobands;
   }
   
   /**

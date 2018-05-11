@@ -27,16 +27,14 @@
  */
 package org.jebtk.bioinformatics.ui.external.ucsc;
 
-import java.io.File;
-import java.io.FilenameFilter;
-
 import org.jebtk.modern.io.GuiFileExtFilter;
+import org.jebtk.modern.io.SimpleGuiFileFilter;
 
 /**
  * The class BedGuiFileFilter.
  */
-public class BedGuiFileFilter extends GuiFileExtFilter
-    implements FilenameFilter {
+public class BedGuiFileFilter extends SimpleGuiFileFilter
+ {
 
   /** The Constant INSTANCE. */
   public static final GuiFileExtFilter INSTANCE = new BedGuiFileFilter();
@@ -45,25 +43,6 @@ public class BedGuiFileFilter extends GuiFileExtFilter
    * Instantiates a new bed gui file filter.
    */
   public BedGuiFileFilter() {
-    super("bed");
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see javax.swing.filechooser.FileFilter#getDescription()
-   */
-  public final String getDescription() {
-    return "UCSC BED (*.bed)";
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)
-   */
-  @Override
-  public boolean accept(File arg0, String name) {
-    return name.endsWith(".bed");
+    super("UCSC BED", "bed");
   }
 }
