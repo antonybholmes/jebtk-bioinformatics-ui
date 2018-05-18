@@ -86,7 +86,7 @@ public class CytobandsLayer extends AxesClippedLayer {
 
   /** The Constant BORDER_COLOR. */
   private static final Color BORDER_COLOR = ThemeService.getInstance().colors()
-      .getHighlight(10);
+      .getGray(10);
 
   /** The Constant CENTROMERE_COLOR. */
   private static final Color CENTROMERE_COLOR = SettingsService.getInstance()
