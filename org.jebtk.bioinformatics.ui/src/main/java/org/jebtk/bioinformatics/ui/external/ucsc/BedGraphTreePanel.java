@@ -43,7 +43,7 @@ import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.core.tree.TreeNode;
 import org.jebtk.core.tree.TreeRootNode;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.contentpane.HTabToolbar;
 import org.jebtk.modern.dialog.ModernDialogStatus;
@@ -89,7 +89,7 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
    * The member remove button.
    */
   private ModernButton mRemoveButton = new ToolbarButton(
-      UIService.getInstance().loadIcon("trash_bw", 16));
+      AssetService.getInstance().loadIcon("trash_bw", 16));
 
   // private ModernButton mClearButton =
   // new ModernButton(UIResources.getInstance().loadIcon("clear", 16));

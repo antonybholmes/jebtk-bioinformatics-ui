@@ -86,7 +86,7 @@ public class MotifsWeb extends MotifDataSource {
    */
   public MotifsWeb() throws IOException {
     this(SettingsService.getInstance().getSetting("motifs.motifsdb.remote-url")
-        .getAsUrl());
+        .getUrl());
   }
 
   /**
@@ -265,7 +265,7 @@ public class MotifsWeb extends MotifDataSource {
       for (int i = 0; i < json.size(); ++i) {
         Json pathJson = json.get(i);
 
-        Path path = new Path(pathJson.get("path").getAsString());
+        Path path = new Path(pathJson.get("path").getString());
 
         paths.add(path);
       }
@@ -309,18 +309,18 @@ public class MotifsWeb extends MotifDataSource {
           Json countJson = countsJson.get(j);
           // Convert the values of each column to percentages
 
-          double af = countJson.get("a").getAsDouble();
-          double cf = countJson.get("c").getAsDouble();
-          double gf = countJson.get("g").getAsDouble();
-          double tf = countJson.get("t").getAsDouble();
+          double af = countJson.get("a").getDouble();
+          double cf = countJson.get("c").getDouble();
+          double gf = countJson.get("g").getDouble();
+          double tf = countJson.get("t").getDouble();
 
           counts.add(new BaseCounts(af, cf, gf, tf, true));
         }
 
-        Motif motif = new Motif(motifJson.get("id").getAsString(),
-            motifJson.get("name").getAsString(),
-            motifJson.get("gene").getAsString(),
-            motifJson.get("database").getAsString(), counts);
+        Motif motif = new Motif(motifJson.get("id").getString(),
+            motifJson.get("name").getString(),
+            motifJson.get("gene").getString(),
+            motifJson.get("database").getString(), counts);
 
         motifs.add(motif);
       }

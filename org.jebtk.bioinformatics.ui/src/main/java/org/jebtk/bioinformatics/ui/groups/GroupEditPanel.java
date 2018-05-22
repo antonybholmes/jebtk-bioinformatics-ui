@@ -48,7 +48,7 @@ import org.jebtk.math.ui.external.microsoft.AllXlsxGuiFileFilter;
 import org.jebtk.math.ui.external.microsoft.XlsxGuiFileFilter;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.dialog.ModernDialogFlatButton;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
@@ -111,7 +111,7 @@ public class GroupEditPanel extends ModernComponent
    */
   private ModernDialogFlatButton mLoadButton = new ModernDialogFlatButton(
       "Load...",
-      UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
 
   /**
    * Instantiates a new group edit panel.

@@ -32,7 +32,7 @@ import java.awt.Point;
 
 import org.jebtk.bioinformatics.ext.ucsc.UCSCTrack;
 import org.jebtk.core.tree.TreeNode;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.tree.ModernTreeNodeRenderer;
 import org.jebtk.modern.tree.Tree;
 
@@ -74,9 +74,9 @@ public class BedGraphTreeNodeRenderer extends ModernTreeNodeRenderer {
     if (!isParent && mBedGraph != null) {
       g2.setColor(mBedGraph.getColor());
       g2.fillRect(x,
-          (mRect.getH() - UIService.ICON_SIZE_16) / 2,
-          UIService.ICON_SIZE_16,
-          UIService.ICON_SIZE_16);
+          (mRect.getH() - AssetService.ICON_SIZE_16) / 2,
+          AssetService.ICON_SIZE_16,
+          AssetService.ICON_SIZE_16);
 
       x += 16;
     }

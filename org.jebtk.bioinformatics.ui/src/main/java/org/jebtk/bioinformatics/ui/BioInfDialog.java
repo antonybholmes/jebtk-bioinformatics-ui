@@ -310,7 +310,7 @@ public class BioInfDialog {
      *
      * @return the save file selection
      */
-    public SaveFileSelection image() {
+    public SaveFileSelection getImage() {
       return mSave.filter(new SvgGuiFileFilter(),
           new PngGuiFileFilter(),
           new PdfGuiFileFilter(),

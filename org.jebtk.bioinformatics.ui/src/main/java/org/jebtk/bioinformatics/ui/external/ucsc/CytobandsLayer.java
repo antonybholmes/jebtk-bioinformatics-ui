@@ -85,12 +85,12 @@ public class CytobandsLayer extends AxesClippedLayer {
   //
 
   /** The Constant BORDER_COLOR. */
-  private static final Color BORDER_COLOR = ThemeService.getInstance().colors()
+  private static final Color BORDER_COLOR = ThemeService.getInstance().getColors()
       .getGray(10);
 
   /** The Constant CENTROMERE_COLOR. */
   private static final Color CENTROMERE_COLOR = SettingsService.getInstance()
-      .getAsColor("cytobands.centromere.color"); // #d35f5f");
+      .getColor("cytobands.centromere.color"); // #d35f5f");
 
   /** The Constant COLOR_100. */
   private static final Color COLOR_100 = Color.BLACK;
@@ -440,7 +440,7 @@ public class CytobandsLayer extends AxesClippedLayer {
       if (isCentromere) {
         color = CENTROMERE_COLOR;
       } else if (cytoband.getStain().equals(STAIN_100)) {
-        color = COLOR_100; // ThemeService.getInstance().colors().getHighlight(6);
+        color = COLOR_100; // ThemeService.getInstance().getColors().getHighlight(6);
       } else if (cytoband.getStain().equals(STAIN_GVAR)) {
         color = COLOR_100;
       } else if (cytoband.getStain().equals(STAIN_STALK)) {

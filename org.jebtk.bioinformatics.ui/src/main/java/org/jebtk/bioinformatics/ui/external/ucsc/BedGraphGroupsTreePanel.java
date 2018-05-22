@@ -44,7 +44,7 @@ import org.jebtk.core.event.ChangeListener;
 import org.jebtk.core.io.FileUtils;
 import org.jebtk.core.tree.TreeNode;
 import org.jebtk.core.tree.TreeRootNode;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernOutlineButton;
 import org.jebtk.modern.dialog.MessageDialogType;
@@ -82,19 +82,19 @@ public class BedGraphGroupsTreePanel extends ModernWidget
    * The load button.
    */
   private ModernButton loadButton = new ModernOutlineButton(
-      UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
 
   /**
    * The remove button.
    */
   private ModernButton removeButton = new ModernOutlineButton(
-      UIService.getInstance().loadIcon("trash_bw", 16));
+      AssetService.getInstance().loadIcon("trash_bw", 16));
 
   /**
    * The clear button.
    */
   private ModernButton clearButton = new ModernOutlineButton(
-      UIService.getInstance().loadIcon("clear", 16)); // Ui.MENU_CLEAR);
+      AssetService.getInstance().loadIcon("clear", 16)); // Ui.MENU_CLEAR);
 
   /**
    * The new group button.

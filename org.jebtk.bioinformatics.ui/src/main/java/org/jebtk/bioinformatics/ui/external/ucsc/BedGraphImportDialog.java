@@ -163,7 +163,7 @@ public class BedGraphImportDialog extends ModernDialogTaskWindow {
    *
    * @return the assign to new groups
    */
-  public boolean getAssignToNewGroups() {
+  public boolean getsignToNewGroups() {
     return checkAssignNewGroups.isSelected();
   }
 }

@@ -47,7 +47,7 @@ public class GenomeModel extends ItemModel<String> {
    * Instantiates a new genome model.
    */
   public GenomeModel() {
-    set(SettingsService.getInstance().getAsString("genome"));
+    set(SettingsService.getInstance().getString("genome"));
   }
 
   /*

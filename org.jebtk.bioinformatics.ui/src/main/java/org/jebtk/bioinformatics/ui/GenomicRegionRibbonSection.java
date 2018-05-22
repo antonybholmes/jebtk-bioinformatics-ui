@@ -48,7 +48,7 @@ import org.jebtk.bioinformatics.genomic.GenomicRegionModel;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.combobox.ModernComboBox;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -115,25 +115,25 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * The member zoom in button.
    */
   private ModernButton mZoomInButton = new RibbonButton(
-      UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /**
    * The member zoom out button.
    */
   private ModernButton mZoomOutButton = new RibbonButton(
-      UIService.getInstance().loadIcon(MinusVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(MinusVectorIcon.class, 16));
 
   /**
    * The member move left button.
    */
   private ModernButton mMoveLeftButton = new RibbonButton(
-      UIService.getInstance().loadIcon("left_arrow", 16));
+      AssetService.getInstance().loadIcon("left_arrow", 16));
 
   /**
    * The member move right button.
    */
   private ModernButton mMoveRightButton = new RibbonButton(
-      UIService.getInstance().loadIcon("right_arrow", 16));
+      AssetService.getInstance().loadIcon("right_arrow", 16));
 
   /**
    * The member genome model.
@@ -564,7 +564,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     if (GenomicRegion.CHR_ONLY_PATTERN.matcher(text).matches()) {
       // use the whole chromosome
 
-      Chromosome chromosome = GenomeService.instance().chr(genome, text);
+      Chromosome chromosome = GenomeService.getInstance().chr(genome, text);
 
       int size = chromosome.getSize();
 

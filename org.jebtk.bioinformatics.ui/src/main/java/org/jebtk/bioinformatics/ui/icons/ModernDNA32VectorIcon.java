@@ -67,7 +67,7 @@ public class ModernDNA32VectorIcon extends ModernVectorIcon {
   /**
    * The constant OUTLINE.
    */
-  private static final Color OUTLINE = ThemeService.getInstance().colors()
+  private static final Color OUTLINE = ThemeService.getInstance().getColors()
       .getGray(6);
 
   /**

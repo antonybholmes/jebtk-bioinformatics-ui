@@ -42,7 +42,7 @@ import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.xml.XmlDoc;
 import org.jebtk.graphplot.ColorCycle;
 import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.contentpane.HTabToolbar;
 import org.jebtk.modern.dataview.ModernDataViewListener;
@@ -92,25 +92,25 @@ public class GroupsPanel extends ModernComponent
    * The member new button.
    */
   private ModernButton mNewButton = new ModernButton(
-      UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /**
    * The member delete button.
    */
   private ModernButton mDeleteButton = new ModernButton(
-      UIService.getInstance().loadIcon(TrashVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(TrashVectorIcon.class, 16));
 
   /**
    * The member edit button.
    */
   private ModernButton mEditButton = new ModernButton(
-      UIService.getInstance().loadIcon("edit_bw", 16));
+      AssetService.getInstance().loadIcon("edit_bw", 16));
 
   /**
    * The member clear button.
    */
   private ModernButton mClearButton = new ToolbarButton(
-      UIService.getInstance().loadIcon(CrossVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(CrossVectorIcon.class, 16));
 
   /**
    * The member model.

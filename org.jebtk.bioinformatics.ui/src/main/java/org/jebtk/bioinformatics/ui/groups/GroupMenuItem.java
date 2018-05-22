@@ -30,7 +30,7 @@ package org.jebtk.bioinformatics.ui.groups;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.menu.ModernIconMenuItem;
 
 // TODO: Auto-generated Javadoc
@@ -69,15 +69,15 @@ public class GroupMenuItem extends ModernIconMenuItem {
   @Override
   public void drawForegroundAAText(Graphics2D g2) {
     int x = PADDING;
-    int y = (mRect.getH() - UIService.ICON_SIZE_16) / 2;
+    int y = (mRect.getH() - AssetService.ICON_SIZE_16) / 2;
 
     g2.setColor(mGroup.getColor());
 
-    g2.fillRect(x, y, UIService.ICON_SIZE_16, UIService.ICON_SIZE_16);
+    g2.fillRect(x, y, AssetService.ICON_SIZE_16, AssetService.ICON_SIZE_16);
 
     Point p = getStringCenterPlotCoordinates(g2, getRect(), mText1);
 
     g2.setColor(getForeground());
-    g2.drawString(mText1, UIService.ICON_SIZE_32, p.y);
+    g2.drawString(mText1, AssetService.ICON_SIZE_32, p.y);
   }
 }

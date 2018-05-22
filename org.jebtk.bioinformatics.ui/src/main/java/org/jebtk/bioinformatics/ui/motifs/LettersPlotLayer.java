@@ -66,7 +66,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
 
   /** The Constant LETTER_FONT. */
   protected static final Font LETTER_FONT = FontService.getInstance()
-      .loadFont("motifs.letters.font");
+      .loadFont("motifs.letters.getFont");
 
   /**
    * The minimum normalized height to consider drawing a letter. This stops non

@@ -40,7 +40,7 @@ import org.jebtk.core.text.TextUtils;
 import org.jebtk.core.tree.TreeNode;
 import org.jebtk.core.tree.TreeRootNode;
 import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.dialog.ModernDialogFlatButton;
 import org.jebtk.modern.dialog.ModernMessageDialog;
@@ -90,19 +90,19 @@ public class MotifsTreePanel extends ModernComponent {
    * The member expand button.
    */
   private ModernButton mExpandButton = new ModernDialogFlatButton(
-      UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /**
    * The member collapse button.
    */
   private ModernButton mCollapseButton = new ModernDialogFlatButton(
-      UIService.getInstance().loadIcon(MinusVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(MinusVectorIcon.class, 16));
 
   /**
    * The member refresh button.
    */
   private ModernButton mRefreshButton = new ModernDialogFlatButton(
-      UIService.getInstance().loadIcon("refresh", 16));
+      AssetService.getInstance().loadIcon("refresh", 16));
 
   // private ModernButton mSearchButton =
   // new ModernButton(UIResources.getInstance().loadIcon("search", 16));
