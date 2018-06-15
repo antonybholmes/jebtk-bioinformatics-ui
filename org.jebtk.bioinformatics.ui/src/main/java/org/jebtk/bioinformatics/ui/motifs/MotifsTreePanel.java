@@ -233,16 +233,15 @@ public class MotifsTreePanel extends ModernComponent {
    */
   private class SelectionEvents implements ModernSelectionListener {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jebtk.ui.event.ModernSelectionListener#selectionChanged(org.jebtk.
-     * core.event.ChangeEvent)
-     */
     @Override
-    public void selectionChanged(ChangeEvent e) {
+    public void selectionAdded(ChangeEvent e) {
       mModel.set(getSelectedMotifs());
+    }
+
+    @Override
+    public void selectionRemoved(ChangeEvent e) {
+      // TODO Auto-generated method stub
+      
     }
 
   }

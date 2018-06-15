@@ -157,7 +157,7 @@ public class CytobandsLayer extends AxesClippedLayer {
       Figure figure,
       SubFigure subFigure,
       Axes axes) {
-    if (context == DrawingContext.SCREEN) {
+    if (context == DrawingContext.UI) {
       g2.drawImage(cacheImage(context, subFigure, axes), 0, 0, null);
     } else {
       plotCytobands(g2, context, subFigure, axes);
@@ -193,7 +193,7 @@ public class CytobandsLayer extends AxesClippedLayer {
       Graphics g = mImage.getGraphics();
 
       try {
-        Graphics2D g2 = ImageUtils.createAAGraphics(g);
+        Graphics2D g2 = ImageUtils.createAATextGraphics(g);
 
         try {
           plotCytobands(g2, context, figure, axes);
@@ -391,7 +391,7 @@ public class CytobandsLayer extends AxesClippedLayer {
 
     clip1.closePath();
 
-    g2Temp = ImageUtils.createAAGraphics(g2);
+    g2Temp = ImageUtils.createAATextGraphics(g2);
 
     try {
       g2Temp.clip(clip1);
