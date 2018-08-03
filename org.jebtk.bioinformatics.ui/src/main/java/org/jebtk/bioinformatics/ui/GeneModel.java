@@ -27,6 +27,7 @@
  */
 package org.jebtk.bioinformatics.ui;
 
+import org.jebtk.bioinformatics.genomic.GeneDb;
 import org.jebtk.core.model.ItemModel;
 import org.jebtk.core.settings.SettingsService;
 
@@ -36,7 +37,7 @@ import org.jebtk.core.settings.SettingsService;
  * @author Antony Holmes Holmes
  *
  */
-public class GenomeModel extends ItemModel<String> {
+public class GeneModel extends ItemModel<GeneDb> {
 
   /**
    * The constant serialVersionUID.
@@ -46,8 +47,9 @@ public class GenomeModel extends ItemModel<String> {
   /**
    * Instantiates a new genome model.
    */
-  public GenomeModel() {
-    set(SettingsService.getInstance().getString("genome.name"));
+  public GeneModel() {
+    set(new GeneDb(SettingsService.getInstance().getString("genome.db"),
+        SettingsService.getInstance().getString("genome.name")));
   }
 
   /*
@@ -56,12 +58,13 @@ public class GenomeModel extends ItemModel<String> {
    * @see org.abh.lib.model.ItemModel#set(java.lang.Object)
    */
   @Override
-  public void set(String genome) {
+  public void set(GeneDb genome) {
     // System.err.println("resolution " + resolution);
 
     super.set(genome);
 
     // Store the setting
-    SettingsService.getInstance().update("genome.name", genome);
+    SettingsService.getInstance().update("genome.db", genome.getName());
+    SettingsService.getInstance().update("genome.name", genome.getGenome());
   }
 }

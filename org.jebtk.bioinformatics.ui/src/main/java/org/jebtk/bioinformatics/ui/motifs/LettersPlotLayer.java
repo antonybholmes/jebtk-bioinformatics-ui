@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.jebtk.bioinformatics.BaseCounts;
-import org.jebtk.bioinformatics.genomic.DnaService;
+import org.jebtk.bioinformatics.genomic.SequenceService;
 import org.jebtk.bioinformatics.motifs.BaseHeight;
 import org.jebtk.bioinformatics.motifs.BaseHeights;
 import org.jebtk.bioinformatics.motifs.MotifHeights;
@@ -66,7 +66,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
 
   /** The Constant LETTER_FONT. */
   protected static final Font LETTER_FONT = FontService.getInstance()
-      .loadFont("motifs.letters.getFont");
+      .loadFont("motifs.letters.font");
 
   /**
    * The minimum normalized height to consider drawing a letter. This stops non
@@ -178,19 +178,19 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
 
         switch (baseHeight.getChar()) {
         case 'A':
-          g2.setColor(DnaService.getInstance().getBaseAColor());
+          g2.setColor(SequenceService.getInstance().getBaseAColor());
           break;
         case 'C':
-          g2.setColor(DnaService.getInstance().getBaseCColor());
+          g2.setColor(SequenceService.getInstance().getBaseCColor());
           break;
         case 'G':
-          g2.setColor(DnaService.getInstance().getBaseGColor());
+          g2.setColor(SequenceService.getInstance().getBaseGColor());
           break;
         case 'T':
-          g2.setColor(DnaService.getInstance().getBaseTColor());
+          g2.setColor(SequenceService.getInstance().getBaseTColor());
           break;
         default:
-          g2.setColor(DnaService.getInstance().getBaseNColor());
+          g2.setColor(SequenceService.getInstance().getBaseNColor());
           break;
         }
 

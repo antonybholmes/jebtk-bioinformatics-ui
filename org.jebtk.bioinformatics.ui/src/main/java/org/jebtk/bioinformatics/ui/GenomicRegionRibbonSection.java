@@ -34,6 +34,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,14 +42,15 @@ import java.util.Set;
 import javax.swing.Timer;
 
 import org.jebtk.bioinformatics.genomic.Chromosome;
+import org.jebtk.bioinformatics.genomic.GeneDb;
 import org.jebtk.bioinformatics.genomic.GenesService;
 import org.jebtk.bioinformatics.genomic.GenomeService;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.bioinformatics.genomic.GenomicRegionModel;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
-import org.jebtk.modern.UI;
 import org.jebtk.modern.AssetService;
+import org.jebtk.modern.UI;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.combobox.ModernComboBox;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -145,6 +147,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    */
   private Set<String> mUsed = new HashSet<String>();
 
+
   /**
    * The class KeyEvents.
    */
@@ -168,11 +171,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     @Override
     public void keyReleased(KeyEvent e) {
       if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-        try {
-          change();
-        } catch (ParseException e1) {
-          e1.printStackTrace();
-        }
+        change();
       }
     }
 
@@ -202,11 +201,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
      */
     @Override
     public void changed(ChangeEvent e) {
-      try {
-        change();
-      } catch (ParseException e1) {
-        e1.printStackTrace();
-      }
+      change();
     }
   }
 
@@ -224,11 +219,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
      */
     @Override
     public void clicked(ModernClickEvent e) {
-      try {
-        change();
-      } catch (ParseException e1) {
-        e1.printStackTrace();
-      }
+      change();
     }
   }
 
@@ -279,11 +270,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-      try {
-        zoomIn();
-      } catch (ParseException e1) {
-        e1.printStackTrace();
-      }
+      zoomIn();
     }
   }
 
@@ -334,11 +321,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-      try {
-        zoomOut();
-      } catch (ParseException e1) {
-        e1.printStackTrace();
-      }
+      zoomOut();
     }
   }
 
@@ -474,14 +457,15 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * Instantiates a new genomic region ribbon section.
    *
    * @param ribbon the ribbon
-   * @param model the model
+   * @param regionModel the model
    * @param genomeModel the genome model
    */
-  public GenomicRegionRibbonSection(Ribbon ribbon, GenomicRegionModel model,
+  public GenomicRegionRibbonSection(Ribbon ribbon, 
+      GenomicRegionModel regionModel,
       GenomeModel genomeModel) {
     super(ribbon, "Region");
 
-    mModel = model;
+    mModel = regionModel;
     mGenomeModel = genomeModel;
 
     RibbonStripContainer box = new RibbonStripContainer();
@@ -531,7 +515,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    *
    * @throws ParseException the parse exception
    */
-  private void change() throws ParseException {
+  private void change() {
     GenomicRegion region = parse(mGenomeModel.get());
 
     if (region != null) {
@@ -581,8 +565,14 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     } else {
       // assume its a gene
 
-      region = GenesService.getInstance().getGenes(genome)
-          .getGene(text);
+      GeneDb g = GenesService.getInstance().getFirstGeneDb(genome);
+      
+      try {
+        region = GenesService.getInstance().getGenes(g)
+            .getGene(g, text);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
 
     return region;
@@ -593,7 +583,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    *
    * @throws ParseException the parse exception
    */
-  private void zoomIn() throws ParseException {
+  private void zoomIn() {
     zoom(0.25);
   }
 
@@ -602,7 +592,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    *
    * @throws ParseException the parse exception
    */
-  private void zoomOut() throws ParseException {
+  private void zoomOut() {
     zoom(4);
   }
 
@@ -612,7 +602,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * @param scale the scale
    * @throws ParseException the parse exception
    */
-  private void zoom(double scale) throws ParseException {
+  private void zoom(double scale) {
     GenomicRegion region = parse(mGenomeModel.get());
 
     if (region == null) {

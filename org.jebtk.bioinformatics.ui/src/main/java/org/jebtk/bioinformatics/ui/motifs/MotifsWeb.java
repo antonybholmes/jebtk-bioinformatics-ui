@@ -169,7 +169,7 @@ public class MotifsWeb extends MotifDataSource {
    * @return the list
    */
   public static List<Motif> search(List<Motif> motifs,
-      Deque<SearchStackElement<Motif>> searchStack) {
+      Deque<SearchStackElement> searchStack) {
 
     if (searchStack.size() == 0) {
       return motifs;
@@ -177,8 +177,8 @@ public class MotifsWeb extends MotifDataSource {
 
     // int categoryId = getAllCategoriesId(connection);
 
-    SearchStackElement<Motif> op = null;
-    SearchStackElement<Motif> newOp;
+    SearchStackElement op = null;
+    SearchStackElement newOp;
     List<Motif> op1;
     List<Motif> op2;
 

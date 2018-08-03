@@ -52,7 +52,7 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
    * The constant serialVersionUID.
    */
   private static final long serialVersionUID = 1L;
-
+  
   /**
    * Instantiates a new letters plot bits layer.
    *
@@ -61,6 +61,8 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
   public LettersPlotBitsLayer(Motif motif) {
     List<BaseCounts> counts = new ArrayList<BaseCounts>();
 
+    double error = 1.0 / Math.log(2) * (4 - 1) / (2 * motif.getBaseCount());
+    
     for (BaseCounts bc : motif) {
       double sum = bc.getSum();
 

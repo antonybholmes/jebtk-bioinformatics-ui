@@ -36,7 +36,7 @@ import org.jebtk.core.settings.SettingsService;
  * @author Antony Holmes Holmes
  *
  */
-public class GenomeModel extends ItemModel<String> {
+public class GeneDbModel extends ItemModel<String> {
 
   /**
    * The constant serialVersionUID.
@@ -46,8 +46,8 @@ public class GenomeModel extends ItemModel<String> {
   /**
    * Instantiates a new genome model.
    */
-  public GenomeModel() {
-    set(SettingsService.getInstance().getString("genome.name"));
+  public GeneDbModel() {
+    set(SettingsService.getInstance().getString("gene.db"));
   }
 
   /*
@@ -56,12 +56,12 @@ public class GenomeModel extends ItemModel<String> {
    * @see org.abh.lib.model.ItemModel#set(java.lang.Object)
    */
   @Override
-  public void set(String genome) {
+  public void set(String db) {
     // System.err.println("resolution " + resolution);
 
-    super.set(genome);
+    super.set(db);
 
     // Store the setting
-    SettingsService.getInstance().update("genome.name", genome);
+    SettingsService.getInstance().update("gene.db", db);
   }
 }
