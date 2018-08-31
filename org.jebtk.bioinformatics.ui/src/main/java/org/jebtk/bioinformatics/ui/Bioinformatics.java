@@ -63,12 +63,12 @@ public class Bioinformatics {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static ModernDataModel getModel(Path file,
-      boolean hasHeader,
+      int headers,
       List<String> skipMatches,
       int rowAnnotations,
       String delimiter) throws InvalidFormatException, IOException {
     return getModel(file,
-        hasHeader,
+        headers,
         skipMatches,
         rowAnnotations,
         delimiter,
@@ -91,7 +91,7 @@ public class Bioinformatics {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static ModernDataModel getModel(Path file,
-      boolean hasHeader,
+      int headers,
       List<String> skipMatches,
       int rowAnns,
       String delimiter,
@@ -103,20 +103,20 @@ public class Bioinformatics {
     String ext = PathUtils.getFileExt(file);
 
     if (ext.equals(Excel.XLS_EXTENSION)) {
-      return new XlsTableModel(file, hasHeader, rowAnns, true);
+      return new XlsTableModel(file, headers > 0, rowAnns, true);
     } else if (ext.equals(Excel.XLSX_EXTENSION)) {
-      return new XlsxTableModel(file, hasHeader, rowAnns, true);
+      return new XlsxTableModel(file, headers > 0, rowAnns, true);
     } else if (ext.equals(Io.FILE_EXT_CSV)) {
       return new EditableMatrixTableModel(
-          new CsvMatrixParser(hasHeader, rowAnns).parse(file));
+          new CsvMatrixParser(headers > 0, rowAnns).parse(file));
     } else {
       DataFrame matrix;
 
       if (type == MatrixType.TEXT) {
-        matrix = new TextMatrixParser(hasHeader, skipMatches, rowAnns,
+        matrix = new TextMatrixParser(headers, skipMatches, rowAnns,
             delimiter).parse(file);
       } else {
-        matrix = new MixedMatrixParser(hasHeader, skipMatches, rowAnns,
+        matrix = new MixedMatrixParser(headers, skipMatches, rowAnns,
             delimiter).parse(file);
       }
 
