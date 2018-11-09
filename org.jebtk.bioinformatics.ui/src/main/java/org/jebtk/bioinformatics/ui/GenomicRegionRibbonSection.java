@@ -42,7 +42,7 @@ import java.util.Set;
 import javax.swing.Timer;
 
 import org.jebtk.bioinformatics.genomic.Chromosome;
-import org.jebtk.bioinformatics.genomic.GeneDb;
+import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.bioinformatics.genomic.GenesService;
 import org.jebtk.bioinformatics.genomic.GenomeService;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
@@ -540,7 +540,9 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * @return the genomic region
    * @throws ParseException the parse exception
    */
-  protected GenomicRegion parse(String genome) {
+  protected GenomicRegion parse(Genome genome) {
+    System.err.println("genome ribbon section");
+    
     String text = mLocationField.getText().toLowerCase();
 
     GenomicRegion region = null;
@@ -565,14 +567,18 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     } else {
       // assume its a gene
 
-      GeneDb g = GenesService.getInstance().getFirstGeneDb(genome);
+      //Genome g = GenesService.getInstance().getFirstGeneDb(genome.getAssembly());
+      
+      System.err.println("find gene " + text);
       
       try {
-        region = GenesService.getInstance().getGenes(g)
-            .getGene(g, text);
+        region = GenesService.getInstance().getGenes(genome)
+            .getGene(genome, text);
       } catch (IOException e) {
         e.printStackTrace();
       }
+      
+      System.err.println("sdfsdf " + region);
     }
 
     return region;

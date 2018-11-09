@@ -66,20 +66,20 @@ public class GenomeRibbonSection extends RibbonSection
   /**
    * The member hg18 button.
    */
-  private ModernRadioButton mHg18Button = new ModernRadioButton(Genome.HG18);
+  private ModernRadioButton mHg18Button = new ModernRadioButton(Genome.HG18.getAssembly());
 
   /**
    * The member hg19 button.
    */
-  private ModernRadioButton mHg19Button = new ModernRadioButton(Genome.HG19);
+  private ModernRadioButton mHg19Button = new ModernRadioButton(Genome.HG19.getAssembly());
 
   /**
    * Instantiates a new genome ribbon section.
    *
    * @param ribbon the ribbon
-   * @param defaultGenome the default genome
+   * @param genome the default genome
    */
-  public GenomeRibbonSection(Ribbon ribbon, String defaultGenome) {
+  public GenomeRibbonSection(Ribbon ribbon, Genome genome) {
     super(ribbon, "Genome");
 
     ModernButtonGroup group = new ModernButtonGroup();
@@ -87,16 +87,16 @@ public class GenomeRibbonSection extends RibbonSection
     group.add(mHg18Button);
     group.add(mHg19Button);
 
-    if (defaultGenome.equals(Genome.HG19)) {
+    if (genome.equals(Genome.HG19)) {
       mHg19Button.setSelected(true);
     } else {
       mHg18Button.setSelected(true);
     }
 
-    mHg18Button.setToolTip(Genome.HG18,
-        "Use the " + Genome.HG18 + " genome as a reference for coordinates.");
-    mHg19Button.setToolTip(Genome.HG19,
-        "Use the " + Genome.HG19 + " genome as a reference for coordinates.");
+    mHg18Button.setToolTip(Genome.HG18.getAssembly(),
+        "Use the " + Genome.HG18.getAssembly() + " genome as a reference for coordinates.");
+    mHg19Button.setToolTip(Genome.HG19.getAssembly(),
+        "Use the " + Genome.HG19.getAssembly() + " genome as a reference for coordinates.");
 
     RibbonStripContainer c = new RibbonStripContainer();
     c.add(mHg18Button);
@@ -112,7 +112,7 @@ public class GenomeRibbonSection extends RibbonSection
    *
    * @return the genome
    */
-  public final String getGenome() {
+  public final Genome getGenome() {
     if (mHg19Button.isSelected()) {
       return Genome.HG19;
     } else {

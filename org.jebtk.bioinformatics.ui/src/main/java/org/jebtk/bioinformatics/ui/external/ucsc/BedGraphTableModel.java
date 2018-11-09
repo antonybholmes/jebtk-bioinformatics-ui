@@ -29,9 +29,9 @@ package org.jebtk.bioinformatics.ui.external.ucsc;
 
 import java.util.List;
 
-import org.jebtk.bioinformatics.ext.ucsc.BedGraphRegion;
+import org.jebtk.bioinformatics.ext.ucsc.BedGraphElement;
 import org.jebtk.bioinformatics.ext.ucsc.UCSCTrack;
-import org.jebtk.bioinformatics.ext.ucsc.UCSCTrackRegion;
+import org.jebtk.bioinformatics.genomic.GenomicElement;
 import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.modern.table.ModernColumnHeaderTableModel;
 
@@ -51,7 +51,7 @@ public class BedGraphTableModel extends ModernColumnHeaderTableModel {
   /**
    * The member features.
    */
-  private List<UCSCTrackRegion> mFeatures;
+  private List<GenomicElement> mFeatures;
 
   /**
    * Instantiates a new bed graph table model.
@@ -59,7 +59,7 @@ public class BedGraphTableModel extends ModernColumnHeaderTableModel {
    * @param bed the bed
    */
   public BedGraphTableModel(UCSCTrack bed) {
-    mFeatures = bed.getRegions();
+    mFeatures = bed.getElements().toList();
   }
 
   /*
@@ -107,7 +107,7 @@ public class BedGraphTableModel extends ModernColumnHeaderTableModel {
     case 2:
       return mFeatures.get(row).getEnd();
     default:
-      return ((BedGraphRegion) mFeatures.get(row)).getValue();
+      return ((BedGraphElement) mFeatures.get(row)).getValue();
     }
   }
 }

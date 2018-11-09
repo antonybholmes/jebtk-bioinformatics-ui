@@ -27,6 +27,7 @@ import org.jebtk.bioinformatics.ext.ucsc.Cytoband;
 import org.jebtk.bioinformatics.ext.ucsc.Cytobands;
 import org.jebtk.bioinformatics.ext.ucsc.CytobandsService;
 import org.jebtk.bioinformatics.genomic.Chromosome;
+import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.core.ColorUtils;
 import org.jebtk.core.settings.SettingsService;
@@ -224,7 +225,7 @@ public class CytobandsLayer extends AxesClippedLayer {
       Axes axes) {
 
     Chromosome chr = mDisplayRegion.getChr();
-    String genome = chr.getGenome();
+    Genome genome = chr.getGenome();
     
     List<Cytoband> bands = CytobandsService.getInstance().getCytobands(genome).getCytobands(chr); //mCytobands.getCytobands(mDisplayRegion.getChr());
 

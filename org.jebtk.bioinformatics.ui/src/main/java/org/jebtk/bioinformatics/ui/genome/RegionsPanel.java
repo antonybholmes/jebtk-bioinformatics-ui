@@ -31,6 +31,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.jebtk.bioinformatics.ext.ucsc.UCSCTrack;
+import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
@@ -76,7 +77,7 @@ public class RegionsPanel extends ModernWidget {
    * @return the regions
    * @throws ParseException the parse exception
    */
-  public List<GenomicRegion> getRegions(String genome) {
+  public List<GenomicRegion> getRegions(Genome genome) {
     return mRegionsField.getRegions(genome);
   }
 

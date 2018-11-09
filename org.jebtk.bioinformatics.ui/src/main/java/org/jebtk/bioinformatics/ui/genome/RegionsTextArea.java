@@ -30,9 +30,13 @@ package org.jebtk.bioinformatics.ui.genome;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.jebtk.bioinformatics.ext.ucsc.UCSCTrack;
-import org.jebtk.bioinformatics.ext.ucsc.UCSCTrackRegion;
+import org.jebtk.bioinformatics.genomic.Chromosome;
+import org.jebtk.bioinformatics.genomic.Genome;
+import org.jebtk.bioinformatics.genomic.GenomicElement;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.modern.text.ModernClipboardTextArea;
 
@@ -55,7 +59,7 @@ public class RegionsTextArea extends ModernClipboardTextArea {
    * @return the regions
    * @throws ParseException the parse exception
    */
-  public List<GenomicRegion> getRegions(String genome) {
+  public List<GenomicRegion> getRegions(Genome genome) {
     List<String> lines = getLines();
 
     List<GenomicRegion> ret = new ArrayList<GenomicRegion>();
@@ -88,8 +92,10 @@ public class RegionsTextArea extends ModernClipboardTextArea {
   public void setRegions(UCSCTrack track) {
     List<GenomicRegion> regions = new ArrayList<GenomicRegion>();
 
-    for (UCSCTrackRegion region : track.getRegions()) {
-      regions.add(region);
+    for (Entry<Chromosome, Set<GenomicElement>> item : track.getElements()) {
+      for (GenomicElement region : item.getValue()) {
+        regions.add(region);
+      }
     }
 
     setRegions(regions);

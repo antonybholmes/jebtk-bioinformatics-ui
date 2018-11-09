@@ -96,7 +96,7 @@ public class BedGraphTreeNodeRenderer extends ModernTreeNodeRenderer {
       g2.setFont(BOLD_FONT);
     } else {
       buffer.append(" (")
-          .append(Integer.toString(mBedGraph.getRegions().size())).append(")");
+          .append(Integer.toString(mBedGraph.getElements().size())).append(")");
 
       g2.setFont(FONT);
     }

@@ -37,8 +37,8 @@ import javax.swing.Box;
 import org.jebtk.bioinformatics.ext.ucsc.Bed;
 import org.jebtk.bioinformatics.ext.ucsc.BedGraph;
 import org.jebtk.bioinformatics.ext.ucsc.UCSCTrack;
-import org.jebtk.bioinformatics.ext.ucsc.UCSCTrackRegion;
 import org.jebtk.bioinformatics.file.BioPathUtils;
+import org.jebtk.bioinformatics.genomic.GenomicElement;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.bioinformatics.ui.external.ucsc.BedGraphGuiFileFilter;
 import org.jebtk.bioinformatics.ui.external.ucsc.BedGuiFileFilter;
@@ -46,9 +46,9 @@ import org.jebtk.bioinformatics.ui.genome.RegionsTextArea;
 import org.jebtk.math.external.microsoft.Excel;
 import org.jebtk.math.ui.external.microsoft.AllXlsxGuiFileFilter;
 import org.jebtk.math.ui.external.microsoft.XlsxGuiFileFilter;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.AssetService;
 import org.jebtk.modern.dialog.ModernDialogFlatButton;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
@@ -245,7 +245,7 @@ public class GroupEditPanel extends ModernComponent
         List<GenomicRegion> regions = new ArrayList<GenomicRegion>();
 
         for (UCSCTrack bedGraph : bedGraphs) {
-          for (UCSCTrackRegion region : bedGraph.getRegions()) {
+          for (GenomicElement region : bedGraph.getElements().toList()) {
             regions.add(region);
           }
         }
