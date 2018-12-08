@@ -253,7 +253,7 @@ public class GroupEditPanel extends ModernComponent
         mTextArea.setRegions(regions);
       } else if (BioPathUtils.ext().bed().test(file)) { // PathUtils.getFileExt(file).equals("bed"))
                                                         // {
-        mTextArea.setRegions(Bed.parseTracks(file).get(0));
+        mTextArea.setRegions(Bed.parseTracks("bed", file).get(0));
       } else {
         // mTextArea.setRegions(GenomicRegion.parse(Excel.getTextFromFile(file,
         // true)));

@@ -42,25 +42,25 @@ import java.util.Set;
 import javax.swing.Timer;
 
 import org.jebtk.bioinformatics.genomic.Chromosome;
-import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.bioinformatics.genomic.GenesService;
+import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.bioinformatics.genomic.GenomeService;
+import org.jebtk.bioinformatics.genomic.GenomicEntity;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.bioinformatics.genomic.GenomicRegionModel;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.AssetService;
-import org.jebtk.modern.UI;
+import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.button.ModernButton;
-import org.jebtk.modern.combobox.ModernComboBox;
-import org.jebtk.modern.event.ModernClickEvent;
-import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.graphics.icons.MinusVectorIcon;
 import org.jebtk.modern.graphics.icons.PlusVectorIcon;
 import org.jebtk.modern.ribbon.Ribbon;
-import org.jebtk.modern.ribbon.RibbonButton;
+import org.jebtk.modern.ribbon.RibbonRoundButton;
 import org.jebtk.modern.ribbon.RibbonSection;
 import org.jebtk.modern.ribbon.RibbonStripContainer;
+import org.jebtk.modern.text.ModernTextField;
+import org.jebtk.modern.text.SearchTextBorderPanel;
 import org.jebtk.modern.widget.ModernWidget;
 
 /**
@@ -94,7 +94,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
   /**
    * The constant LOCATION_SIZE.
    */
-  private static final Dimension LOCATION_SIZE = new Dimension(200,
+  private static final Dimension LOCATION_SIZE = new Dimension(240,
       ModernWidget.WIDGET_HEIGHT);
 
   
@@ -102,7 +102,8 @@ public class GenomicRegionRibbonSection extends RibbonSection {
   /**
    * The member location field.
    */
-  protected ModernComboBox mLocationField = new ModernComboBox();
+  //protected ModernComboBox mLocationField = new ModernComboBox();
+  protected ModernTextField mLocationField = new ModernTextField();
 
   // private ModernTextField m5pExtField = new ModernTextField("0");
 
@@ -116,25 +117,25 @@ public class GenomicRegionRibbonSection extends RibbonSection {
   /**
    * The member zoom in button.
    */
-  private ModernButton mZoomInButton = new RibbonButton(
+  private ModernButton mZoomInButton = new RibbonRoundButton(
       AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /**
    * The member zoom out button.
    */
-  private ModernButton mZoomOutButton = new RibbonButton(
+  private ModernButton mZoomOutButton = new RibbonRoundButton(
       AssetService.getInstance().loadIcon(MinusVectorIcon.class, 16));
 
   /**
    * The member move left button.
    */
-  private ModernButton mMoveLeftButton = new RibbonButton(
+  private ModernWidget mMoveLeftButton = new RibbonRoundButton(
       AssetService.getInstance().loadIcon("left_arrow", 16));
 
   /**
    * The member move right button.
    */
-  private ModernButton mMoveRightButton = new RibbonButton(
+  private ModernWidget mMoveRightButton = new RibbonRoundButton(
       AssetService.getInstance().loadIcon("right_arrow", 16));
 
   /**
@@ -186,41 +187,6 @@ public class GenomicRegionRibbonSection extends RibbonSection {
 
     }
 
-  }
-
-  /**
-   * The class ChangeEvents.
-   */
-  private class ChangeEvents implements ChangeListener {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
-     */
-    @Override
-    public void changed(ChangeEvent e) {
-      change();
-    }
-  }
-
-  /**
-   * The class LocationEvents.
-   */
-  private class LocationEvents implements ModernClickListener {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
-     * ModernClickEvent)
-     */
-    @Override
-    public void clicked(ModernClickEvent e) {
-      change();
-    }
   }
 
   /**
@@ -474,9 +440,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     box.add(mZoomOutButton);
     box.add(createHGap());
 
-    UI.setSize(mLocationField, LOCATION_SIZE);
-
-    box.add(mLocationField);
+    box.add(new ModernComponent(new SearchTextBorderPanel(mLocationField), BORDER, LOCATION_SIZE));
 
     box.add(createHGap());
     box.add(mMoveLeftButton);
@@ -487,7 +451,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     RefreshEvents ce = new RefreshEvents();
 
     mLocationField.addKeyListener(new KeyEvents());
-    mLocationField.addClickListener(new LocationEvents());
+    //mLocationField.addClickListener(new LocationEvents());
 
     mModel.addChangeListener(ce);
     mGenomeModel.addChangeListener(ce);
@@ -526,7 +490,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
       String name = mLocationField.getText();
 
       if (!mUsed.contains(name)) {
-        mLocationField.addScrollMenuItem(name);
+        //mLocationField.addScrollMenuItem(name);
         mUsed.add(name);
       }
 
@@ -568,17 +532,13 @@ public class GenomicRegionRibbonSection extends RibbonSection {
       // assume its a gene
 
       //Genome g = GenesService.getInstance().getFirstGeneDb(genome.getAssembly());
-      
-      System.err.println("find gene " + text);
-      
+         
       try {
         region = GenesService.getInstance().getGenes(genome)
-            .getGene(genome, text);
+            .getElement(genome, text, GenomicEntity.TRANSCRIPT);
       } catch (IOException e) {
         e.printStackTrace();
       }
-      
-      System.err.println("sdfsdf " + region);
     }
 
     return region;

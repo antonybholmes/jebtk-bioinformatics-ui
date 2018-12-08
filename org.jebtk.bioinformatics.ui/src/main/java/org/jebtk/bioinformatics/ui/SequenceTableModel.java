@@ -76,7 +76,7 @@ public class SequenceTableModel extends ModernColumnHeaderTableModel {
    * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnCount()
    */
   @Override
-  public final int getColumnCount() {
+  public final int getColCount() {
     return HEADER.length;
   }
 
