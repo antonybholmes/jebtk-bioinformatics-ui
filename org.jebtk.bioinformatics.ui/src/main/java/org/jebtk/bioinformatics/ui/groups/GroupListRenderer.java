@@ -70,7 +70,7 @@ public class GroupListRenderer extends ModernListCellRenderer {
    * @see org.jebtk.ui.ui.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
    */
   @Override
-  public void drawForegroundAAText(Graphics2D g2) {
+  public void drawForegroundAA(Graphics2D g2) {
     int x = DOUBLE_PADDING;
     int y = getHeight() / 2;
 

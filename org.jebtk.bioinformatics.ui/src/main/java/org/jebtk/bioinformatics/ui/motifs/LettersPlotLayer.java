@@ -48,6 +48,7 @@ import org.jebtk.graphplot.figure.PlotClippedLayer;
 import org.jebtk.graphplot.figure.SubFigure;
 import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.modern.font.FontService;
+import org.jebtk.modern.graphics.AAMode;
 import org.jebtk.modern.graphics.DrawingContext;
 import org.jebtk.modern.graphics.ImageUtils;
 
@@ -93,7 +94,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
   public LettersPlotLayer() {
     super("Sequence");
 
-    setAAMode(true);
+    getAAModes().add(AAMode.AA);
     setRasterMode(true);
   }
 

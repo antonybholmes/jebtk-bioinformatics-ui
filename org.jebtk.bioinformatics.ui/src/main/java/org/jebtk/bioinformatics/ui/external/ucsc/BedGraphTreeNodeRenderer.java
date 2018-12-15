@@ -66,8 +66,8 @@ public class BedGraphTreeNodeRenderer extends ModernTreeNodeRenderer {
    * Graphics2D)
    */
   @Override
-  public void drawForegroundAAText(Graphics2D g2) {
-    super.drawForegroundAAText(g2);
+  public void drawForegroundAA(Graphics2D g2) {
+    super.drawForegroundAA(g2);
 
     int x = getCumulativeXDepthOffset() + 16;
 
