@@ -39,7 +39,7 @@ import org.jebtk.math.Linspace;
 /**
  * Draw peaks.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SeqLogoCanvas extends SubFigure {

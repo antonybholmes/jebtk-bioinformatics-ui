@@ -39,7 +39,7 @@ import org.jebtk.modern.ribbon.RibbonStripContainer;
 /**
  * Standardized ribbon menu section for genome.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class GenomeRibbonSection extends RibbonSection

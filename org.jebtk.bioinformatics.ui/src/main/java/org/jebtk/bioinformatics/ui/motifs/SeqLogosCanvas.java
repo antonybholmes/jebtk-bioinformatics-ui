@@ -39,7 +39,7 @@ import org.jebtk.graphplot.plotbox.PlotBoxRowLayout;
 /**
  * Layout out peak plots in a column.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SeqLogosCanvas extends Figure {

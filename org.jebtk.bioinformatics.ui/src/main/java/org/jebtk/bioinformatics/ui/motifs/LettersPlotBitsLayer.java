@@ -43,7 +43,7 @@ import org.jebtk.core.collections.CollectionUtils;
 /**
  * Draws scales motif letters in bits.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class LettersPlotBitsLayer extends LettersPlotLayer {

@@ -42,7 +42,7 @@ import org.jebtk.modern.theme.ThemeService;
 /**
  * Layout out peak plots in a column.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class CytobandsLayer extends AxesClippedLayer {

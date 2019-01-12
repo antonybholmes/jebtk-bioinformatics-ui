@@ -66,7 +66,7 @@ import org.jebtk.modern.widget.ModernWidget;
 /**
  * Allows user to select a color map.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class GenomicRegionRibbonSection extends RibbonSection {

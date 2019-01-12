@@ -33,7 +33,7 @@ import org.jebtk.core.settings.SettingsService;
 /**
  * Centrally keep track of selected experiments in the order they were selected.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class GeneDbModel extends ItemModel<String> {

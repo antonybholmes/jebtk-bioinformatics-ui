@@ -39,7 +39,7 @@ import org.xml.sax.helpers.DefaultHandler;
 /**
  * Load groups from file.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class GroupsXmlHandler extends DefaultHandler {

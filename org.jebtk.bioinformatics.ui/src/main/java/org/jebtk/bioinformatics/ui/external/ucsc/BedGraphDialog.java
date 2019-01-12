@@ -39,7 +39,7 @@ import org.jebtk.modern.window.ModernWindow;
 /**
  * Allows a matrix group to be edited.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  */
 public class BedGraphDialog extends ModernDialogTaskWindow
     implements ModernClickListener {

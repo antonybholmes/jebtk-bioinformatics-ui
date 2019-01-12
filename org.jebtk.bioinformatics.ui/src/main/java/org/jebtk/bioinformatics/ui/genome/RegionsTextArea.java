@@ -43,7 +43,7 @@ import org.jebtk.modern.text.ModernClipboardTextArea;
 /**
  * Stores an ad-hoc list of regions.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class RegionsTextArea extends ModernClipboardTextArea {

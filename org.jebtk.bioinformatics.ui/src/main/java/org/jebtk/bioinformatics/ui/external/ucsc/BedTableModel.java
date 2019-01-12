@@ -32,16 +32,15 @@ import java.util.List;
 import org.jebtk.bioinformatics.ext.ucsc.BedElement;
 import org.jebtk.bioinformatics.ext.ucsc.UCSCTrack;
 import org.jebtk.bioinformatics.genomic.GenomicElement;
-import org.jebtk.core.collections.CollectionUtils;
-import org.jebtk.modern.table.ModernColumnHeaderTableModel;
+import org.jebtk.modern.table.ModernTableModel;
 
 /**
  * Provides a view onto an excel workbook.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
-public class BedTableModel extends ModernColumnHeaderTableModel {
+public class BedTableModel extends ModernTableModel {
 
   /**
    * The constant HEADER.
@@ -71,11 +70,11 @@ public class BedTableModel extends ModernColumnHeaderTableModel {
   /*
    * (non-Javadoc)
    * 
-   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumnAnnotations(int)
+   * @see org.jebtk.ui.ui.dataview.ModernDataModel#getColumn().getAnnotations(int)
    */
   @Override
-  public List<String> getColumnAnnotationText(int column) {
-    return CollectionUtils.asList(HEADER[column]); // Integer.toString(row + 1);
+  public String getColumnName(int column) {
+    return HEADER[column]; // Integer.toString(row + 1);
   }
 
   /*

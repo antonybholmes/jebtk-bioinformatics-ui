@@ -32,7 +32,7 @@ import org.jebtk.modern.graphics.DrawingContext;
 /**
  * Layout out peak plots in a column.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class CytobandsRegionLayer extends CytobandsLayer {

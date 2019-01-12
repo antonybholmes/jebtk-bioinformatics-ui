@@ -49,7 +49,7 @@ import org.xml.sax.SAXException;
  * Represents a group of regions or gene symbols that a user wants to search for
  * motifs in.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class Group implements Iterable<String>, XmlStream {

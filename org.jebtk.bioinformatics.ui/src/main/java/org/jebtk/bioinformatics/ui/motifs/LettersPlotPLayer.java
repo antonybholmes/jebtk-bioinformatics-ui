@@ -43,7 +43,7 @@ import org.jebtk.core.collections.CollectionUtils;
  * Draws motif bases where the height of each letter is proportional to its
  * probability.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class LettersPlotPLayer extends LettersPlotLayer {

@@ -55,7 +55,7 @@ import org.jebtk.modern.graphics.ImageUtils;
 /**
  * Draws scales motif letters.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public abstract class LettersPlotLayer extends PlotClippedLayer {
