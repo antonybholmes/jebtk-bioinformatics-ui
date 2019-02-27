@@ -42,13 +42,13 @@ import org.jebtk.core.tree.TreeRootNode;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.button.ModernButton;
-import org.jebtk.modern.dialog.ModernDialogFlatButton;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.event.ModernSelectionListener;
 import org.jebtk.modern.graphics.icons.MinusVectorIcon;
 import org.jebtk.modern.graphics.icons.PlusVectorIcon;
+import org.jebtk.modern.ribbon.RibbonButton;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 import org.jebtk.modern.search.ModernSearchExtPanel;
@@ -89,19 +89,19 @@ public class MotifsTreePanel extends ModernComponent {
   /**
    * The member expand button.
    */
-  private ModernButton mExpandButton = new ModernDialogFlatButton(
+  private ModernButton mExpandButton = new RibbonButton(
       AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /**
    * The member collapse button.
    */
-  private ModernButton mCollapseButton = new ModernDialogFlatButton(
+  private ModernButton mCollapseButton = new RibbonButton(
       AssetService.getInstance().loadIcon(MinusVectorIcon.class, 16));
 
   /**
    * The member refresh button.
    */
-  private ModernButton mRefreshButton = new ModernDialogFlatButton(
+  private ModernButton mRefreshButton = new RibbonButton(
       AssetService.getInstance().loadIcon("refresh", 16));
 
   // private ModernButton mSearchButton =

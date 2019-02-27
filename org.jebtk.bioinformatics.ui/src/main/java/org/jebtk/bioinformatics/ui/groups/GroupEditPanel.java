@@ -49,7 +49,6 @@ import org.jebtk.math.ui.external.microsoft.XlsxGuiFileFilter;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.dialog.ModernDialogFlatButton;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.graphics.color.ColorSwatchButton;
@@ -59,6 +58,7 @@ import org.jebtk.modern.io.RecentFilesService;
 import org.jebtk.modern.io.TxtGuiFileFilter;
 import org.jebtk.modern.panel.HBox;
 import org.jebtk.modern.panel.MatrixPanel;
+import org.jebtk.modern.ribbon.RibbonButton;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 import org.jebtk.modern.text.ModernAutoSizeLabel;
@@ -109,7 +109,7 @@ public class GroupEditPanel extends ModernComponent
   /**
    * The member load button.
    */
-  private ModernDialogFlatButton mLoadButton = new ModernDialogFlatButton(
+  private RibbonButton mLoadButton = new RibbonButton(
       "Load...",
       AssetService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
 
