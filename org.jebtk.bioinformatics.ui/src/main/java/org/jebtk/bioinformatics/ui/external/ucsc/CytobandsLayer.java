@@ -181,10 +181,10 @@ public class CytobandsLayer extends AxesClippedLayer {
     Chromosome chr = mDisplayRegion.getChr();
     
     if (mPrevChr == null || !chr.equals(mPrevChr)) {
-      int minX = axes.toPlotX1(axes.getX1Axis().getMin());
-      int maxX = axes.toPlotX1(axes.getX1Axis().getMax());
-      int y1 = axes.toPlotY1(axes.getY1Axis().getMin());
-      int y2 = axes.toPlotY1(axes.getY1Axis().getMax());
+      int minX = axes.toPlotX1(axes.getX1Axis().getLimits().getMin());
+      int maxX = axes.toPlotX1(axes.getX1Axis().getLimits().getMax());
+      int y1 = axes.toPlotY1(axes.getY1Axis().getLimits().getMin());
+      int y2 = axes.toPlotY1(axes.getY1Axis().getLimits().getMax());
 
       int w = maxX - minX + 1;
       int h = y1 - y2 + 1;
@@ -269,13 +269,13 @@ public class CytobandsLayer extends AxesClippedLayer {
       List<Cytoband> bands,
       int centi1,
       int centi2) {
-    int y1 = axes.toPlotY1(axes.getY1Axis().getMax() * 0.8);
-    int y2 = axes.toPlotY1(axes.getY1Axis().getMax() * 0.2);
+    int y1 = axes.toPlotY1(axes.getY1Axis().getLimits().getMax() * 0.8);
+    int y2 = axes.toPlotY1(axes.getY1Axis().getLimits().getMax() * 0.2);
     int h = y2 - y1 + 1;
     int h2 = h / 2;
 
-    int minX = axes.toPlotX1(axes.getX1Axis().getMin()) + 1;
-    int maxX = axes.toPlotX1(axes.getX1Axis().getMax()) - 1;
+    int minX = axes.toPlotX1(axes.getX1Axis().getLimits().getMin()) + 1;
+    int maxX = axes.toPlotX1(axes.getX1Axis().getLimits().getMax()) - 1;
 
     int cent1Start = axes.toPlotX1(bands.get(centi1).getStart());
     int cent2End = axes.toPlotX1(bands.get(centi2).getEnd());
@@ -364,13 +364,13 @@ public class CytobandsLayer extends AxesClippedLayer {
    * @param bands the bands
    */
   private static void plot(Graphics2D g2, Axes axes, List<Cytoband> bands) {
-    int y1 = axes.toPlotY1(axes.getY1Axis().getMax() * 0.8);
-    int y2 = axes.toPlotY1(axes.getY1Axis().getMax() * 0.2);
+    int y1 = axes.toPlotY1(axes.getY1Axis().getLimits().getMax() * 0.8);
+    int y2 = axes.toPlotY1(axes.getY1Axis().getLimits().getMax() * 0.2);
     int h = y2 - y1 + 1;
     int h2 = h / 2;
 
-    int minX = axes.toPlotX1(axes.getX1Axis().getMin()) + 1;
-    int maxX = axes.toPlotX1(axes.getX1Axis().getMax()) - 1;
+    int minX = axes.toPlotX1(axes.getX1Axis().getLimits().getMin()) + 1;
+    int maxX = axes.toPlotX1(axes.getX1Axis().getLimits().getMax()) - 1;
 
     Graphics2D g2Temp;
 

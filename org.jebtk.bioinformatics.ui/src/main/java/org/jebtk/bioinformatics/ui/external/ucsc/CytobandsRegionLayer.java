@@ -92,11 +92,11 @@ public class CytobandsRegionLayer extends CytobandsLayer {
       Axes axes) {
     super.plotLayer(g2, context, figure, subFigure, axes);
 
-    int minX = axes.toPlotX1(axes.getX1Axis().getMin());
-    int maxX = axes.toPlotX1(axes.getX1Axis().getMax()) - 1;
+    int minX = axes.toPlotX1(axes.getX1Axis().getLimits().getMin());
+    int maxX = axes.toPlotX1(axes.getX1Axis().getLimits().getMax()) - 1;
 
-    int y1 = axes.toPlotY1(axes.getY1Axis().getMin()) - 1;
-    int y2 = axes.toPlotY1(axes.getY1Axis().getMax()) + 1;
+    int y1 = axes.toPlotY1(axes.getY1Axis().getLimits().getMin()) - 1;
+    int y2 = axes.toPlotY1(axes.getY1Axis().getLimits().getMax()) + 1;
     int h = y1 - y2;
 
     //

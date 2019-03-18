@@ -532,13 +532,17 @@ public class GenomicRegionRibbonSection extends RibbonSection {
       // assume its a gene
 
       //Genome g = GenesService.getInstance().getFirstGeneDb(genome.getAssembly());
-         
+      
+      
+      
       try {
         region = GenesService.getInstance().getGenes(genome)
             .getElement(genome, text, GenomicEntity.TRANSCRIPT);
       } catch (IOException e) {
         e.printStackTrace();
       }
+      
+      System.err.println("what " + genome + " " + text + " " + region);
     }
 
     return region;
