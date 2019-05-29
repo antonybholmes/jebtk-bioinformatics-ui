@@ -40,6 +40,7 @@ import org.jebtk.bioinformatics.ext.ucsc.UCSCTrack;
 import org.jebtk.bioinformatics.file.BioPathUtils;
 import org.jebtk.bioinformatics.genomic.GenomicElement;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
+import org.jebtk.bioinformatics.genomic.GenomicType;
 import org.jebtk.bioinformatics.ui.external.ucsc.BedGraphGuiFileFilter;
 import org.jebtk.bioinformatics.ui.external.ucsc.BedGuiFileFilter;
 import org.jebtk.bioinformatics.ui.genome.RegionsTextArea;
@@ -253,7 +254,7 @@ public class GroupEditPanel extends ModernComponent
         mTextArea.setRegions(regions);
       } else if (BioPathUtils.ext().bed().test(file)) { // PathUtils.getFileExt(file).equals("bed"))
                                                         // {
-        mTextArea.setRegions(Bed.parseTracks("bed", file).get(0));
+        mTextArea.setRegions(Bed.parseTracks(GenomicType.REGION, file).get(0));
       } else {
         // mTextArea.setRegions(GenomicRegion.parse(Excel.getTextFromFile(file,
         // true)));

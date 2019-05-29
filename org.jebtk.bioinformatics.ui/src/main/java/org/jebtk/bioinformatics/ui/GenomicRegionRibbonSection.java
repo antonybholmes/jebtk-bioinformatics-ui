@@ -48,6 +48,7 @@ import org.jebtk.bioinformatics.genomic.GenomeService;
 import org.jebtk.bioinformatics.genomic.GenomicEntity;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.bioinformatics.genomic.GenomicRegionModel;
+import org.jebtk.bioinformatics.genomic.GenomicType;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.AssetService;
@@ -537,7 +538,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
       
       try {
         region = GenesService.getInstance().getGenes(genome)
-            .getElement(genome, text, GenomicEntity.TRANSCRIPT);
+            .getElement(genome, text, GenomicType.TRANSCRIPT);
       } catch (IOException e) {
         e.printStackTrace();
       }
