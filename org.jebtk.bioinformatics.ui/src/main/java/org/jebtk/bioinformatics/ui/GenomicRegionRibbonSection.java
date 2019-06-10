@@ -45,7 +45,6 @@ import org.jebtk.bioinformatics.genomic.Chromosome;
 import org.jebtk.bioinformatics.genomic.GenesService;
 import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.bioinformatics.genomic.GenomeService;
-import org.jebtk.bioinformatics.genomic.GenomicEntity;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.bioinformatics.genomic.GenomicRegionModel;
 import org.jebtk.bioinformatics.genomic.GenomicType;
@@ -519,14 +518,14 @@ public class GenomicRegionRibbonSection extends RibbonSection {
 
       int size = chromosome.getSize();
 
-      region = new GenomicRegion(chromosome, 1, size);
+      region = new GenomicRegion(genome, chromosome, 1, size);
 
     } else if (text.startsWith("chr")) { // remove commas
       region = GenomicRegion.parse(genome, mLocationField.getText());
  
       int size = region.getChr().getSize();
 
-      region = new GenomicRegion(region.getChr(),
+      region = new GenomicRegion(genome, region.getChr(),
           Math.max(1, region.getStart()), Math.min(region.getEnd(), size));
 
     } else {
@@ -590,7 +589,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     int start = (int) Math.max(Math.min(midPoint - d2, size), 1);
     int end = (int) Math.max(Math.min(midPoint + d2, size), 1);
 
-    GenomicRegion newRegion = new GenomicRegion(region.getChr(), start, end);
+    GenomicRegion newRegion = new GenomicRegion(region.mGenome, region.mChr, start, end);
 
     mModel.set(newRegion);
   }

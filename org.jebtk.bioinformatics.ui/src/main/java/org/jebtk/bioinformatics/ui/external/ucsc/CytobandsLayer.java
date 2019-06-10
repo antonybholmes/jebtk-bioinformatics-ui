@@ -225,7 +225,7 @@ public class CytobandsLayer extends AxesClippedLayer {
       Axes axes) {
 
     Chromosome chr = mDisplayRegion.getChr();
-    Genome genome = chr.getGenome();
+    Genome genome = mDisplayRegion.getGenome();
     
     List<Cytoband> bands = CytobandsService.getInstance().getCytobands(genome).getCytobands(chr); //mCytobands.getCytobands(mDisplayRegion.getChr());
 
