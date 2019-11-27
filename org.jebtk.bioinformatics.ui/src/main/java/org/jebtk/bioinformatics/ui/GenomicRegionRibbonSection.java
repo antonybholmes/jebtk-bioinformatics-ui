@@ -42,9 +42,9 @@ import java.util.Set;
 import javax.swing.Timer;
 
 import org.jebtk.bioinformatics.genomic.Chromosome;
+import org.jebtk.bioinformatics.genomic.ChromosomeService;
 import org.jebtk.bioinformatics.genomic.GenesService;
 import org.jebtk.bioinformatics.genomic.Genome;
-import org.jebtk.bioinformatics.genomic.GenomeService;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;
 import org.jebtk.bioinformatics.genomic.GenomicRegionModel;
 import org.jebtk.bioinformatics.genomic.GenomicType;
@@ -514,7 +514,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     if (GenomicRegion.CHR_ONLY_PATTERN.matcher(text).matches()) {
       // use the whole chromosome
 
-      Chromosome chromosome = GenomeService.getInstance().chr(genome, text);
+      Chromosome chromosome = ChromosomeService.getInstance().chr(genome, text);
 
       int size = chromosome.getSize();
 
