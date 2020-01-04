@@ -40,7 +40,7 @@ import org.jebtk.bioinformatics.BaseCounts;
 import org.jebtk.bioinformatics.motifs.Motif;
 import org.jebtk.bioinformatics.motifs.MotifDataSource;
 import org.jebtk.core.collections.CollectionUtils;
-import org.jebtk.core.http.UrlBuilder;
+import org.jebtk.core.http.URLPath;
 import org.jebtk.core.json.Json;
 import org.jebtk.core.json.JsonParser;
 import org.jebtk.core.path.Path;
@@ -62,17 +62,17 @@ public class MotifsWeb extends MotifDataSource {
   /**
    * The member url.
    */
-  private UrlBuilder mUrl;
+  private URLPath mUrl;
 
   /**
    * The member paths url.
    */
-  private UrlBuilder mPathsUrl;
+  private URLPath mPathsUrl;
 
   /**
    * The member motifs url.
    */
-  private UrlBuilder mMotifsUrl;
+  private URLPath mMotifsUrl;
 
   /**
    * The member parser.
@@ -96,9 +96,9 @@ public class MotifsWeb extends MotifDataSource {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public MotifsWeb(URL url) throws IOException {
-    mUrl = new UrlBuilder(url);
-    mPathsUrl = new UrlBuilder(mUrl).resolve("paths");
-    mMotifsUrl = new UrlBuilder(mUrl).resolve("motifs");
+    mUrl = URLPath.fromUrl(url);
+    mPathsUrl = mUrl.join("paths");
+    mMotifsUrl = mUrl.join("motifs");
 
     mParser = new JsonParser();
   }
@@ -288,7 +288,7 @@ public class MotifsWeb extends MotifDataSource {
     List<Motif> motifs = new ArrayList<Motif>();
 
     try {
-      URL url = new UrlBuilder(mMotifsUrl).param("p", path.toString()).toURL();
+      URLPath url = mMotifsUrl.param("p", path.toString());
 
       System.err.println(url);
 

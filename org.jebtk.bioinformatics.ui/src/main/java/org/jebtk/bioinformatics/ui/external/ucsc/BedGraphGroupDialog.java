@@ -34,6 +34,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.Box;
 
 import org.jebtk.bioinformatics.ext.ucsc.BedGraphGroupsModel;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.dialog.ModernDialogTaskWindow;
 import org.jebtk.modern.panel.MatrixPanel;
@@ -41,7 +42,6 @@ import org.jebtk.modern.panel.ModernPanel;
 import org.jebtk.modern.text.ModernAutoSizeLabel;
 import org.jebtk.modern.text.ModernTextBorderPanel;
 import org.jebtk.modern.text.ModernTextField;
-import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 /**

@@ -52,6 +52,7 @@ import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.ModernComponent;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.graphics.icons.MinusVectorIcon;
 import org.jebtk.modern.graphics.icons.PlusVectorIcon;
@@ -61,7 +62,6 @@ import org.jebtk.modern.ribbon.RibbonSection;
 import org.jebtk.modern.ribbon.RibbonStripContainer;
 import org.jebtk.modern.text.ModernTextField;
 import org.jebtk.modern.text.SearchTextBorderPanel;
-import org.jebtk.modern.widget.ModernWidget;
 
 /**
  * Allows user to select a color map.

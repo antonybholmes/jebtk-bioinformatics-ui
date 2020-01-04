@@ -41,6 +41,7 @@ import org.jebtk.core.tree.TreeNode;
 import org.jebtk.core.tree.TreeRootNode;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.ModernComponent;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -55,7 +56,6 @@ import org.jebtk.modern.search.ModernSearchExtPanel;
 import org.jebtk.modern.tree.ModernTree;
 import org.jebtk.modern.tree.ModernTreeEvent;
 import org.jebtk.modern.tree.TreeEventListener;
-import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 // TODO: Auto-generated Javadoc
