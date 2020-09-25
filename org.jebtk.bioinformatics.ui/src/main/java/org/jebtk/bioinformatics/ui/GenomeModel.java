@@ -58,7 +58,7 @@ public class GenomeModel extends ItemModel<Genome> {
   }
   
   public void set(String genome, String db) {
-    set(new Genome(genome, db));
+    set(GenomeService.getInstance().get(genome, db));
   }
 
   /*

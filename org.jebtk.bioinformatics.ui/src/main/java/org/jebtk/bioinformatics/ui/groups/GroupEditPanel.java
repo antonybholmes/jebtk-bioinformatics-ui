@@ -241,12 +241,12 @@ public class GroupEditPanel extends ModernComponent
 
       if (BioPathUtils.ext().bedgraph().test(file)) { // getFileExt(file).equals("bedgraph"))
                                                       // {
-        List<UCSCTrack> bedGraphs = BedGraph.parse(file);
+        List<BedGraph> bedGraphs = BedGraph.parse(file);
 
         List<GenomicRegion> regions = new ArrayList<GenomicRegion>();
 
         for (UCSCTrack bedGraph : bedGraphs) {
-          for (GenomicElement region : bedGraph.getElements().toList()) {
+          for (GenomicElement region : bedGraph.getElements()) {
             regions.add(region);
           }
         }

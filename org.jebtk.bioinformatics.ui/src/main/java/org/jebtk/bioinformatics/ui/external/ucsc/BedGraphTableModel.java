@@ -58,7 +58,7 @@ public class BedGraphTableModel extends ModernTableModel {
    * @param bed the bed
    */
   public BedGraphTableModel(UCSCTrack bed) {
-    mFeatures = bed.getElements().toList();
+    mFeatures = bed.getElements();
   }
 
   /*
