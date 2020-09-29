@@ -90,7 +90,7 @@ public class Group implements Iterable<String>, XmlStream {
   }
 
   /**
-   * Copy the properties of one group to another.
+   * Copy the Props of one group to another.
    *
    * @param group the group
    */

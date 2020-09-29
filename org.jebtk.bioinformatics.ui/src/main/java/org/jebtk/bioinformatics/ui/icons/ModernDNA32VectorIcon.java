@@ -30,6 +30,7 @@ package org.jebtk.bioinformatics.ui.icons;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import org.jebtk.core.Props;
 import org.jebtk.modern.graphics.icons.ModernVectorIcon;
 import org.jebtk.modern.theme.ModernTheme;
 import org.jebtk.modern.theme.ThemeService;
@@ -93,7 +94,7 @@ public class ModernDNA32VectorIcon extends ModernVectorIcon {
       int y,
       int w,
       int h,
-      Object... params) {
+      Props params) {
     double wf = w * SCALE;
     double w2 = w / 2.0;
     double lineWidth = w * LINE_SCALE;
