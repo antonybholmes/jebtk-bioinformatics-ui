@@ -94,11 +94,7 @@ public class ModernDNA32VectorIcon extends ModernVectorIcon {
       int y,
       int w,
       int h,
-<<<<<<< HEAD
-      Props params) {
-=======
       Props props) {
->>>>>>> 3c562492c6ed1b1331c8db0048b4a00a14b4e83b
     double wf = w * SCALE;
     double w2 = w / 2.0;
     double lineWidth = w * LINE_SCALE;
