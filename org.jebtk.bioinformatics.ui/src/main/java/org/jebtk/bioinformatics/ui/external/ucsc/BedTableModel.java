@@ -64,7 +64,7 @@ public class BedTableModel extends ModernTableModel {
    */
   public BedTableModel(UCSCTrack bed) {
     mBed = bed;
-    mFeatures = bed.getElements().toList();
+    mFeatures = bed.getElements();
   }
 
   /*

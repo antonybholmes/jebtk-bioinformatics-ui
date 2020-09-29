@@ -28,6 +28,7 @@
 package org.jebtk.bioinformatics.ui;
 
 import org.jebtk.bioinformatics.genomic.Genome;
+import org.jebtk.bioinformatics.genomic.GenomeService;
 import org.jebtk.core.model.ItemModel;
 import org.jebtk.core.settings.SettingsService;
 
@@ -48,7 +49,7 @@ public class GeneModel extends ItemModel<Genome> {
    * Instantiates a new genome model.
    */
   public GeneModel() {
-    set(new Genome(SettingsService.getInstance().getString("genome.name"),
+    set(GenomeService.getInstance().get(SettingsService.getInstance().getString("genome.name"),
         SettingsService.getInstance().getString("genome.db")));
   }
 

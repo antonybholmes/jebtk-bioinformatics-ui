@@ -124,6 +124,8 @@ public class CytobandsLayer extends AxesClippedLayer {
 
   protected GenomicRegion mDisplayRegion;
 
+  private Genome mGenome;
+
   /**
    * Instantiates a new cytobands layer.
    *
@@ -141,7 +143,8 @@ public class CytobandsLayer extends AxesClippedLayer {
    *
    * @param displayRegion the new region
    */
-  public void setRegion(GenomicRegion displayRegion) {
+  public void setRegion(Genome genome, GenomicRegion displayRegion) {
+    mGenome = genome;
     mDisplayRegion = displayRegion;
   }
 
@@ -225,9 +228,8 @@ public class CytobandsLayer extends AxesClippedLayer {
       Axes axes) {
 
     Chromosome chr = mDisplayRegion.getChr();
-    Genome genome = mDisplayRegion.getGenome();
-    
-    List<Cytoband> bands = CytobandsService.getInstance().getCytobands(genome).getCytobands(chr); //mCytobands.getCytobands(mDisplayRegion.getChr());
+
+    List<Cytoband> bands = CytobandsService.getInstance().getCytobands(mGenome).getCytobands(chr); //mCytobands.getCytobands(mDisplayRegion.getChr());
 
     // Clipping
     int centi1 = Integer.MAX_VALUE;

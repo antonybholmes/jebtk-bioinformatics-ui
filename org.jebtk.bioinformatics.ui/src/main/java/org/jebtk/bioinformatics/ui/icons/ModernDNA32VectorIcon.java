@@ -94,7 +94,11 @@ public class ModernDNA32VectorIcon extends ModernVectorIcon {
       int y,
       int w,
       int h,
+<<<<<<< HEAD
       Props params) {
+=======
+      Props props) {
+>>>>>>> 3c562492c6ed1b1331c8db0048b4a00a14b4e83b
     double wf = w * SCALE;
     double w2 = w / 2.0;
     double lineWidth = w * LINE_SCALE;
@@ -120,13 +124,13 @@ public class ModernDNA32VectorIcon extends ModernVectorIcon {
 
     xf = xf + (wf - lineWidth) / 2;
 
-    g2.setColor(color1);
+    g2.setColor(props.getColor("color1"));
     g2.drawLine((int) Math.round(xf),
         (int) Math.round(yf + w2 - o),
         (int) Math.round(xf + lineWidth),
         (int) Math.round(yf + w2 - o));
 
-    g2.setColor(color2);
+    g2.setColor(props.getColor("color2"));
     g2.drawLine((int) Math.round(xf),
         (int) Math.round(yf + w2 + o),
         (int) Math.round(xf + lineWidth),

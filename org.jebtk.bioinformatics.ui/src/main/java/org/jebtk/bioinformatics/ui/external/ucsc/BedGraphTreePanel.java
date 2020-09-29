@@ -208,7 +208,7 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
     String group = importDialog.getGroup();
 
     for (Path file : files) {
-      List<UCSCTrack> bedGraphs = BedGraph.parse(file);
+      List<BedGraph> bedGraphs = BedGraph.parse(file);
 
       for (UCSCTrack graph : bedGraphs) {
         mModel.add(group, graph);
@@ -225,7 +225,7 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public void load(Path file) throws IOException {
-    List<UCSCTrack> bedGraphs = BedGraph.parse(file);
+    List<BedGraph> bedGraphs = BedGraph.parse(file);
 
     for (UCSCTrack graph : bedGraphs) {
       String group = null;

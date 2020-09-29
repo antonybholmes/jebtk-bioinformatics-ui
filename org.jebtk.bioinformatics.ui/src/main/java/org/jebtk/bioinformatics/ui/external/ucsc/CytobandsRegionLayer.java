@@ -43,7 +43,7 @@ public class CytobandsRegionLayer extends CytobandsLayer {
 
   /** The Constant DEFAULT_REGION. */
   private static final GenomicRegion DEFAULT_REGION = new GenomicRegion(
-      Genome.HG19, ChromosomeService.getInstance().chr(Genome.HG19, "chr1"), 1, 1000);
+     ChromosomeService.getInstance().chr(Genome.HG19, "chr1"), 1, 1000);
 
   /** The Constant REGION_COLOR. */
   private static final Color REGION_COLOR = Color.RED;
@@ -72,7 +72,7 @@ public class CytobandsRegionLayer extends CytobandsLayer {
     mTriangle.lineTo(TRIANGLE_SIZE, TRIANGLE_SIZE);
     mTriangle.closePath();
 
-    setRegion(DEFAULT_REGION);
+    setRegion(Genome.HG19, DEFAULT_REGION);
   }
 
 

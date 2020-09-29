@@ -92,10 +92,8 @@ public class RegionsTextArea extends ModernClipboardTextArea {
   public void setRegions(UCSCTrack track) {
     List<GenomicRegion> regions = new ArrayList<GenomicRegion>();
 
-    for (Entry<Chromosome, Set<GenomicElement>> item : track.getElements()) {
-      for (GenomicElement region : item.getValue()) {
-        regions.add(region);
-      }
+    for (GenomicElement region : track.getElements()) {
+      regions.add(region);
     }
 
     setRegions(regions);

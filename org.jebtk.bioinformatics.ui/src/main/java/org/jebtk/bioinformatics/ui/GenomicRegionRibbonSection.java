@@ -514,18 +514,18 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     if (GenomicRegion.CHR_ONLY_PATTERN.matcher(text).matches()) {
       // use the whole chromosome
 
-      Chromosome chromosome = ChromosomeService.getInstance().chr(genome, text);
+      Chromosome chr = ChromosomeService.getInstance().chr(genome, text);
 
-      int size = chromosome.getSize();
+      int size = ChromosomeService.getInstance().size(genome, chr); //chromosome.getSize();
 
-      region = new GenomicRegion(genome, chromosome, 1, size);
+      region = new GenomicRegion(chr, 1, size);
 
     } else if (text.startsWith("chr")) { // remove commas
       region = GenomicRegion.parse(genome, mLocationField.getText());
  
-      int size = region.getChr().getSize();
+      int size = ChromosomeService.getInstance().size(genome, region.mChr);
 
-      region = new GenomicRegion(genome, region.getChr(),
+      region = new GenomicRegion(region.getChr(),
           Math.max(1, region.getStart()), Math.min(region.getEnd(), size));
 
     } else {
@@ -579,7 +579,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
       return;
     }
 
-    int size = region.getChr().getSize();
+    int size = ChromosomeService.getInstance().size(mGenomeModel.get(), region.mChr);
 
     int midPoint = (region.getStart() + region.getEnd()) / 2;
 
@@ -589,7 +589,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     int start = (int) Math.max(Math.min(midPoint - d2, size), 1);
     int end = (int) Math.max(Math.min(midPoint + d2, size), 1);
 
-    GenomicRegion newRegion = new GenomicRegion(region.mGenome, region.mChr, start, end);
+    GenomicRegion newRegion = new GenomicRegion(region.mChr, start, end);
 
     mModel.set(newRegion);
   }
@@ -619,7 +619,9 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * @throws ParseException the parse exception
    */
   private void move(double p) throws ParseException {
-    GenomicRegion region = parse(mGenomeModel.get());
+    Genome genome = mGenomeModel.get();
+    
+    GenomicRegion region = parse(genome);
 
     if (region == null) {
       return;
@@ -627,7 +629,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
 
     int shift = (int) (region.getLength() * p);
 
-    GenomicRegion newRegion = GenomicRegion.shift(region,
+    GenomicRegion newRegion = GenomicRegion.shift(genome, region,
         shift);
 
     mModel.set(newRegion);
