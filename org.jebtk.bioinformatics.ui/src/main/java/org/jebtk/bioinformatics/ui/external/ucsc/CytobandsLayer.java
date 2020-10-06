@@ -86,12 +86,10 @@ public class CytobandsLayer extends AxesClippedLayer {
   //
 
   /** The Constant BORDER_COLOR. */
-  private static final Color BORDER_COLOR = ThemeService.getInstance().getColors()
-      .getGray(10);
+  private static final Color BORDER_COLOR = ThemeService.getInstance().getColors().getGray(10);
 
   /** The Constant CENTROMERE_COLOR. */
-  private static final Color CENTROMERE_COLOR = SettingsService.getInstance()
-      .getColor("cytobands.centromere.color"); // #d35f5f");
+  private static final Color CENTROMERE_COLOR = SettingsService.getInstance().getColor("cytobands.centromere.color"); // #d35f5f");
 
   /** The Constant COLOR_100. */
   private static final Color COLOR_100 = Color.BLACK;
@@ -106,15 +104,13 @@ public class CytobandsLayer extends AxesClippedLayer {
   private static final Color COLOR_25 = ColorUtils.getGrayScale(0.25); // ColorUtils.decodeHtmlColor("#c0c0c0");
 
   /** The Constant COLOR_BACKGROUND. */
-  private static final Color COLOR_BACKGROUND = ColorUtils
-      .decodeHtmlColor("#e6e6e6");
+  private static final Color COLOR_BACKGROUND = ColorUtils.decodeHtmlColor("#e6e6e6");
 
   /** The Constant COLOR_66. */
   private static final Color COLOR_66 = ColorUtils.getGrayScale(0.66);
 
   /** The Constant COLOR_33. */
   private static final Color COLOR_33 = ColorUtils.getGrayScale(0.33);
-
 
   /** The m prev chr. */
   private Chromosome mPrevChr;
@@ -129,15 +125,15 @@ public class CytobandsLayer extends AxesClippedLayer {
   /**
    * Instantiates a new cytobands layer.
    *
-   * @param chr the chr
+   * @param chr       the chr
    * @param cytobands the cytobands
    */
   public CytobandsLayer(Cytobands cytobands) {
     super("Cytobands");
 
-    //mCytobands = cytobands;
+    // mCytobands = cytobands;
   }
-  
+
   /**
    * Sets the region.
    *
@@ -156,11 +152,7 @@ public class CytobandsLayer extends AxesClippedLayer {
    * org.graphplot.figure.Axes)
    */
   @Override
-  public void plotLayer(Graphics2D g2,
-      DrawingContext context,
-      Figure figure,
-      SubFigure subFigure,
-      Axes axes) {
+  public void plotLayer(Graphics2D g2, DrawingContext context, Figure figure, SubFigure subFigure, Axes axes) {
     if (context == DrawingContext.UI) {
       g2.drawImage(cacheImage(context, subFigure, axes), 0, 0, null);
     } else {
@@ -174,15 +166,13 @@ public class CytobandsLayer extends AxesClippedLayer {
    * Cache image.
    *
    * @param context the context
-   * @param figure the figure
-   * @param axes the axes
+   * @param figure  the figure
+   * @param axes    the axes
    * @return the buffered image
    */
-  private BufferedImage cacheImage(DrawingContext context,
-      SubFigure figure,
-      Axes axes) {
+  private BufferedImage cacheImage(DrawingContext context, SubFigure figure, Axes axes) {
     Chromosome chr = mDisplayRegion.getChr();
-    
+
     if (mPrevChr == null || !chr.equals(mPrevChr)) {
       int minX = axes.toPlotX1(axes.getX1Axis().getLimits().getMin());
       int maxX = axes.toPlotX1(axes.getX1Axis().getLimits().getMax());
@@ -217,19 +207,16 @@ public class CytobandsLayer extends AxesClippedLayer {
   /**
    * Plot cytobands.
    *
-   * @param g2 the g 2
+   * @param g2      the g 2
    * @param context the context
-   * @param figure the figure
-   * @param axes the axes
+   * @param figure  the figure
+   * @param axes    the axes
    */
-  private void plotCytobands(Graphics2D g2,
-      DrawingContext context,
-      SubFigure figure,
-      Axes axes) {
+  private void plotCytobands(Graphics2D g2, DrawingContext context, SubFigure figure, Axes axes) {
 
     Chromosome chr = mDisplayRegion.getChr();
 
-    List<Cytoband> bands = CytobandsService.getInstance().getCytobands(mGenome).getCytobands(chr); //mCytobands.getCytobands(mDisplayRegion.getChr());
+    List<Cytoband> bands = CytobandsService.getInstance().getCytobands(mGenome).getCytobands(chr); // mCytobands.getCytobands(mDisplayRegion.getChr());
 
     // Clipping
     int centi1 = Integer.MAX_VALUE;
@@ -260,17 +247,13 @@ public class CytobandsLayer extends AxesClippedLayer {
   /**
    * Plot centromere.
    *
-   * @param g2 the g 2
-   * @param axes the axes
-   * @param bands the bands
+   * @param g2     the g 2
+   * @param axes   the axes
+   * @param bands  the bands
    * @param centi1 the centi 1
    * @param centi2 the centi 2
    */
-  private static void plotCentromere(Graphics2D g2,
-      Axes axes,
-      List<Cytoband> bands,
-      int centi1,
-      int centi2) {
+  private static void plotCentromere(Graphics2D g2, Axes axes, List<Cytoband> bands, int centi1, int centi2) {
     int y1 = axes.toPlotY1(axes.getY1Axis().getLimits().getMax() * 0.8);
     int y2 = axes.toPlotY1(axes.getY1Axis().getLimits().getMax() * 0.2);
     int h = y2 - y1 + 1;
@@ -297,12 +280,9 @@ public class CytobandsLayer extends AxesClippedLayer {
     // boundary
     clip1.moveTo(minX + h2, y2);
     clip1.lineTo(centMid - h2, y2);
-    clip1.append(
-        new Arc2D.Double(centMid - h, y1, h, h - 1, 270, 180, Arc2D.OPEN),
-        true);
+    clip1.append(new Arc2D.Double(centMid - h, y1, h, h - 1, 270, 180, Arc2D.OPEN), true);
     clip1.lineTo(minX + h2, y1);
-    clip1.append(new Arc2D.Double(minX, y1, h, h - 1, 90, 180, Arc2D.OPEN),
-        true);
+    clip1.append(new Arc2D.Double(minX, y1, h, h - 1, 90, 180, Arc2D.OPEN), true);
 
     clip1.closePath();
 
@@ -327,11 +307,9 @@ public class CytobandsLayer extends AxesClippedLayer {
 
     clip2.moveTo(centMid + h2, y2);
     clip2.lineTo(maxX - h2, y2);
-    clip2.append(new Arc2D.Double(maxX - h, y1, h, h - 1, 270, 180, Arc2D.OPEN),
-        true);
+    clip2.append(new Arc2D.Double(maxX - h, y1, h, h - 1, 270, 180, Arc2D.OPEN), true);
     clip2.lineTo(centMid + h2, y1);
-    clip2.append(new Arc2D.Double(centMid, y1, h, h - 1, 90, 180, Arc2D.OPEN),
-        true);
+    clip2.append(new Arc2D.Double(centMid, y1, h, h - 1, 90, 180, Arc2D.OPEN), true);
 
     clip2.closePath();
 
@@ -361,8 +339,8 @@ public class CytobandsLayer extends AxesClippedLayer {
   /**
    * Draw cytobands without centromeres.
    *
-   * @param g2 the g 2
-   * @param axes the axes
+   * @param g2    the g 2
+   * @param axes  the axes
    * @param bands the bands
    */
   private static void plot(Graphics2D g2, Axes axes, List<Cytoband> bands) {
@@ -386,11 +364,9 @@ public class CytobandsLayer extends AxesClippedLayer {
     // boundary
     clip1.moveTo(minX + h2, y2);
     clip1.lineTo(maxX - h2, y2);
-    clip1.append(new Arc2D.Double(maxX - h, y1, h, h - 1, 270, 180, Arc2D.OPEN),
-        true);
+    clip1.append(new Arc2D.Double(maxX - h, y1, h, h - 1, 270, 180, Arc2D.OPEN), true);
     clip1.lineTo(minX + h2, y1);
-    clip1.append(new Arc2D.Double(minX, y1, h, h - 1, 90, 180, Arc2D.OPEN),
-        true);
+    clip1.append(new Arc2D.Double(minX, y1, h, h - 1, 90, 180, Arc2D.OPEN), true);
 
     clip1.closePath();
 
@@ -416,21 +392,15 @@ public class CytobandsLayer extends AxesClippedLayer {
   /**
    * Draw bands.
    *
-   * @param g2 the g 2
-   * @param axes the axes
+   * @param g2    the g 2
+   * @param axes  the axes
    * @param bands the bands
-   * @param y the y
-   * @param h the h
-   * @param i1 the i 1
-   * @param i2 the i 2
+   * @param y     the y
+   * @param h     the h
+   * @param i1    the i 1
+   * @param i2    the i 2
    */
-  private static void drawBands(Graphics2D g2,
-      Axes axes,
-      List<Cytoband> bands,
-      int y,
-      int h,
-      int i1,
-      int i2) {
+  private static void drawBands(Graphics2D g2, Axes axes, List<Cytoband> bands, int y, int h, int i1, int i2) {
     for (int i = i1; i <= i2; ++i) {
       Cytoband cytoband = bands.get(i);
 

@@ -105,23 +105,14 @@ public class GroupListRenderer extends ModernListCellRenderer {
    * int)
    */
   @Override
-  public Component getCellRendererComponent(ModernList<?> list,
-      Object value,
-      boolean highlight,
-      boolean isSelected,
-      boolean hasFocus,
-      int row) {
+  public Component getCellRendererComponent(ModernList<?> list, Object value, boolean highlight, boolean isSelected,
+      boolean hasFocus, int row) {
 
     Group g = (Group) value;
 
     mText = TextUtils.truncate(g.getName(), 30) + " (" + g.size() + ")";
     mColor = g.getColor();
 
-    return super.getCellRendererComponent(list,
-        value,
-        highlight,
-        isSelected,
-        hasFocus,
-        row);
+    return super.getCellRendererComponent(list, value, highlight, isSelected, hasFocus, row);
   }
 }

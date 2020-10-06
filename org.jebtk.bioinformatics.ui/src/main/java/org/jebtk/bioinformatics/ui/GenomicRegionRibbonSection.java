@@ -94,15 +94,12 @@ public class GenomicRegionRibbonSection extends RibbonSection {
   /**
    * The constant LOCATION_SIZE.
    */
-  private static final Dimension LOCATION_SIZE = new Dimension(240,
-      ModernWidget.WIDGET_HEIGHT);
+  private static final Dimension LOCATION_SIZE = new Dimension(240, ModernWidget.WIDGET_HEIGHT);
 
-  
-  
   /**
    * The member location field.
    */
-  //protected ModernComboBox mLocationField = new ModernComboBox();
+  // protected ModernComboBox mLocationField = new ModernComboBox();
   protected ModernTextField mLocationField = new ModernTextField();
 
   // private ModernTextField m5pExtField = new ModernTextField("0");
@@ -129,14 +126,12 @@ public class GenomicRegionRibbonSection extends RibbonSection {
   /**
    * The member move left button.
    */
-  private ModernWidget mMoveLeftButton = new RibbonRoundButton(
-      AssetService.getInstance().loadIcon("left_arrow", 16));
+  private ModernWidget mMoveLeftButton = new RibbonRoundButton(AssetService.getInstance().loadIcon("left_arrow", 16));
 
   /**
    * The member move right button.
    */
-  private ModernWidget mMoveRightButton = new RibbonRoundButton(
-      AssetService.getInstance().loadIcon("right_arrow", 16));
+  private ModernWidget mMoveRightButton = new RibbonRoundButton(AssetService.getInstance().loadIcon("right_arrow", 16));
 
   /**
    * The member genome model.
@@ -147,7 +142,6 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    * The member used.
    */
   private Set<String> mUsed = new HashSet<String>();
-
 
   /**
    * The class KeyEvents.
@@ -409,8 +403,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
+     * @see org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
      */
     @Override
     public void changed(ChangeEvent e) {
@@ -422,13 +415,11 @@ public class GenomicRegionRibbonSection extends RibbonSection {
   /**
    * Instantiates a new genomic region ribbon section.
    *
-   * @param ribbon the ribbon
+   * @param ribbon      the ribbon
    * @param regionModel the model
    * @param genomeModel the genome model
    */
-  public GenomicRegionRibbonSection(Ribbon ribbon, 
-      GenomicRegionModel regionModel,
-      GenomeModel genomeModel) {
+  public GenomicRegionRibbonSection(Ribbon ribbon, GenomicRegionModel regionModel, GenomeModel genomeModel) {
     super(ribbon, "Region");
 
     mModel = regionModel;
@@ -451,7 +442,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
     RefreshEvents ce = new RefreshEvents();
 
     mLocationField.addKeyListener(new KeyEvents());
-    //mLocationField.addClickListener(new LocationEvents());
+    // mLocationField.addClickListener(new LocationEvents());
 
     mModel.addChangeListener(ce);
     mGenomeModel.addChangeListener(ce);
@@ -490,7 +481,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
       String name = mLocationField.getText();
 
       if (!mUsed.contains(name)) {
-        //mLocationField.addScrollMenuItem(name);
+        // mLocationField.addScrollMenuItem(name);
         mUsed.add(name);
       }
 
@@ -506,7 +497,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    */
   protected GenomicRegion parse(Genome genome) {
     System.err.println("genome ribbon section");
-    
+
     String text = mLocationField.getText().toLowerCase();
 
     GenomicRegion region = null;
@@ -516,32 +507,28 @@ public class GenomicRegionRibbonSection extends RibbonSection {
 
       Chromosome chr = ChromosomeService.getInstance().chr(genome, text);
 
-      int size = ChromosomeService.getInstance().size(genome, chr); //chromosome.getSize();
+      int size = ChromosomeService.getInstance().size(genome, chr); // chromosome.getSize();
 
       region = new GenomicRegion(chr, 1, size);
 
     } else if (text.startsWith("chr")) { // remove commas
       region = GenomicRegion.parse(genome, mLocationField.getText());
- 
+
       int size = ChromosomeService.getInstance().size(genome, region.mChr);
 
-      region = new GenomicRegion(region.getChr(),
-          Math.max(1, region.getStart()), Math.min(region.getEnd(), size));
+      region = new GenomicRegion(region.getChr(), Math.max(1, region.getStart()), Math.min(region.getEnd(), size));
 
     } else {
       // assume its a gene
 
-      //Genome g = GenesService.getInstance().getFirstGeneDb(genome.getAssembly());
-      
-      
-      
+      // Genome g = GenesService.getInstance().getFirstGeneDb(genome.getAssembly());
+
       try {
-        region = GenesService.getInstance().getGenes(genome)
-            .getElement(genome, text, GenomicType.TRANSCRIPT);
+        region = GenesService.getInstance().getGenes(genome).getElement(genome, text, GenomicType.TRANSCRIPT);
       } catch (IOException e) {
         e.printStackTrace();
       }
-      
+
       System.err.println("what " + genome + " " + text + " " + region);
     }
 
@@ -620,7 +607,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
    */
   private void move(double p) throws ParseException {
     Genome genome = mGenomeModel.get();
-    
+
     GenomicRegion region = parse(genome);
 
     if (region == null) {
@@ -629,8 +616,7 @@ public class GenomicRegionRibbonSection extends RibbonSection {
 
     int shift = (int) (region.getLength() * p);
 
-    GenomicRegion newRegion = GenomicRegion.shift(genome, region,
-        shift);
+    GenomicRegion newRegion = GenomicRegion.shift(genome, region, shift);
 
     mModel.set(newRegion);
   }

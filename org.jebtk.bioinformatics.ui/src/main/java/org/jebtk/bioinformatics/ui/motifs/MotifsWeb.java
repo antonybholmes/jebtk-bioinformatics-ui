@@ -85,8 +85,7 @@ public class MotifsWeb extends MotifDataSource {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public MotifsWeb() throws IOException {
-    this(SettingsService.getInstance().getSetting("motifs.motifsdb.remote-url")
-        .getUrl());
+    this(SettingsService.getInstance().getSetting("motifs.motifsdb.remote-url").getUrl());
   }
 
   /**
@@ -111,10 +110,7 @@ public class MotifsWeb extends MotifDataSource {
    * tree.TreeRootNode, java.lang.String)
    */
   @Override
-  public void createTree(TreeNode<Motif> root,
-      List<String> terms,
-      boolean inList,
-      boolean exactMatch,
+  public void createTree(TreeNode<Motif> root, List<String> terms, boolean inList, boolean exactMatch,
       boolean caseSensitive) throws IOException, ParseException {
     // TreeRootNode<Motif> root = new TreeRootNode<Motif>();
 
@@ -126,16 +122,15 @@ public class MotifsWeb extends MotifDataSource {
   /**
    * Creates the tree dir.
    *
-   * @param root the root
+   * @param root     the root
    * @param rootNode the root node
-   * @param terms the terms
+   * @param terms    the terms
    * @return true, if successful
-   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws IOException    Signals that an I/O exception has occurred.
    * @throws ParseException the parse exception
    */
-  private boolean createTreeDir(Path root,
-      TreeNode<Motif> rootNode,
-      List<String> terms) throws IOException, ParseException {
+  private boolean createTreeDir(Path root, TreeNode<Motif> rootNode, List<String> terms)
+      throws IOException, ParseException {
     /*
      * for (Path path : getPaths(root)) { TreeNode<Motif> node = new
      * TreeNode<Motif>(path.getName());
@@ -164,12 +159,11 @@ public class MotifsWeb extends MotifDataSource {
   /**
    * Search.
    *
-   * @param motifs the motifs
+   * @param motifs      the motifs
    * @param searchStack the search stack
    * @return the list
    */
-  public static List<Motif> search(List<Motif> motifs,
-      Deque<SearchStackElement> searchStack) {
+  public static List<Motif> search(List<Motif> motifs, Deque<SearchStackElement> searchStack) {
 
     if (searchStack.size() == 0) {
       return motifs;
@@ -196,8 +190,7 @@ public class MotifsWeb extends MotifDataSource {
         sampleIds = new ArrayList<Motif>();
 
         for (Motif motif : motifs) {
-          if (motif.getName().toLowerCase().contains(s)
-              || motif.getId().toLowerCase().contains(s)
+          if (motif.getName().toLowerCase().contains(s) || motif.getId().toLowerCase().contains(s)
               || motif.getGene().toLowerCase().contains(s)) {
             sampleIds.add(motif);
           }
@@ -248,7 +241,7 @@ public class MotifsWeb extends MotifDataSource {
    *
    * @param root the root
    * @return the paths
-   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws IOException    Signals that an I/O exception has occurred.
    * @throws ParseException the parse exception
    */
   public List<Path> getPaths(Path root) throws IOException, ParseException {
@@ -281,7 +274,7 @@ public class MotifsWeb extends MotifDataSource {
    *
    * @param path the path
    * @return the motifs
-   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws IOException    Signals that an I/O exception has occurred.
    * @throws ParseException the parse exception
    */
   public List<Motif> getMotifs(Path path) throws IOException, ParseException {
@@ -317,10 +310,8 @@ public class MotifsWeb extends MotifDataSource {
           counts.add(new BaseCounts(af, cf, gf, tf, true));
         }
 
-        Motif motif = new Motif(motifJson.get("id").getString(),
-            motifJson.get("name").getString(),
-            motifJson.get("gene").getString(),
-            motifJson.get("database").getString(), counts);
+        Motif motif = new Motif(motifJson.get("id").getString(), motifJson.get("name").getString(),
+            motifJson.get("gene").getString(), motifJson.get("database").getString(), counts);
 
         motifs.add(motif);
       }

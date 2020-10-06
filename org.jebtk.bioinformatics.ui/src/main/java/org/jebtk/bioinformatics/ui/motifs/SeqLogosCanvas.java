@@ -81,7 +81,7 @@ public class SeqLogosCanvas extends Figure {
    * Sets the motifs.
    *
    * @param motifs the motifs
-   * @param view the view
+   * @param view   the view
    */
   public void setMotifs(List<Motif> motifs, MotifView view) {
     mMotifs = motifs;

@@ -52,7 +52,7 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
    * The constant serialVersionUID.
    */
   private static final long serialVersionUID = 1L;
-  
+
   /**
    * Instantiates a new letters plot bits layer.
    *
@@ -62,7 +62,7 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
     List<BaseCounts> counts = new ArrayList<BaseCounts>();
 
     double error = 1.0 / Math.log(2) * (4 - 1) / (2 * motif.getBaseCount());
-    
+
     for (BaseCounts bc : motif) {
       double sum = bc.getSum();
 
@@ -76,12 +76,11 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
 
       double n = bc.getN() / sum;
 
-      double information = 2 - (-a * Mathematics.log2(a)
-          + -c * Mathematics.log2(c) + -g * Mathematics.log2(g)
+      double information = 2 - (-a * Mathematics.log2(a) + -c * Mathematics.log2(c) + -g * Mathematics.log2(g)
           + -t * Mathematics.log2(t) + -n * Mathematics.log2(n));
 
-      counts.add(new BaseCounts(a * information, c * information,
-          g * information, t * information, n * information, false));
+      counts.add(
+          new BaseCounts(a * information, c * information, g * information, t * information, n * information, false));
     }
 
     Motif bitsMotif = new Motif(motif.getName(), counts);
@@ -92,9 +91,8 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
      * List<Double> h = new ArrayList<Double>();
      * 
      * for (BaseCounts base : pMotif) { double bits = base.getA() *
-     * Mathematics.log2(base.getA()) + base.getC() *
-     * Mathematics.log2(base.getC()) + base.getG() *
-     * Mathematics.log2(base.getG()) + base.getT() *
+     * Mathematics.log2(base.getA()) + base.getC() * Mathematics.log2(base.getC()) +
+     * base.getG() * Mathematics.log2(base.getG()) + base.getT() *
      * Mathematics.log2(base.getT());
      * 
      * h.add(-bits); }
@@ -119,8 +117,7 @@ public class LettersPlotBitsLayer extends LettersPlotLayer {
       // Letters are reverse sorted to ensure that they are
       // display alphabetically vertically down on the plot
       for (double height : CollectionUtils.sort(sortMap.keySet())) {
-        for (char c : CollectionUtils
-            .reverse(CollectionUtils.sort(sortMap.get(height)))) {
+        for (char c : CollectionUtils.reverse(CollectionUtils.sort(sortMap.get(height)))) {
           baseHeights.add(new BaseHeight(c, height));
         }
       }

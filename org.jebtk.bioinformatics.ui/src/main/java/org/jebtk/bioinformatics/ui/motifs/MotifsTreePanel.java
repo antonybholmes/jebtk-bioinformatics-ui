@@ -72,8 +72,7 @@ public class MotifsTreePanel extends ModernComponent {
   /**
    * The constant NO_MOTIFS.
    */
-  private static final List<Motif> NO_MOTIFS = Collections
-      .unmodifiableList(new ArrayList<Motif>());
+  private static final List<Motif> NO_MOTIFS = Collections.unmodifiableList(new ArrayList<Motif>());
 
   /**
    * Determines whether to expand or collapse the motif tree based on how many
@@ -89,8 +88,7 @@ public class MotifsTreePanel extends ModernComponent {
   /**
    * The member expand button.
    */
-  private ModernButton mExpandButton = new RibbonButton(
-      AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
+  private ModernButton mExpandButton = new RibbonButton(AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /**
    * The member collapse button.
@@ -101,8 +99,7 @@ public class MotifsTreePanel extends ModernComponent {
   /**
    * The member refresh button.
    */
-  private ModernButton mRefreshButton = new RibbonButton(
-      AssetService.getInstance().loadIcon("refresh", 16));
+  private ModernButton mRefreshButton = new RibbonButton(AssetService.getInstance().loadIcon("refresh", 16));
 
   // private ModernButton mSearchButton =
   // new ModernButton(UIResources.getInstance().loadIcon("search", 16));
@@ -130,8 +127,7 @@ public class MotifsTreePanel extends ModernComponent {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.tree.TreeEventListener#treeNodeDragged(org.jebtk.ui.ui.
+     * @see org.jebtk.ui.ui.tree.TreeEventListener#treeNodeDragged(org.jebtk.ui.ui.
      * tree.ModernTreeEvent)
      */
     @Override
@@ -143,8 +139,7 @@ public class MotifsTreePanel extends ModernComponent {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.tree.TreeEventListener#treeNodeClicked(org.jebtk.ui.ui.
+     * @see org.jebtk.ui.ui.tree.TreeEventListener#treeNodeClicked(org.jebtk.ui.ui.
      * tree.ModernTreeEvent)
      */
     @Override
@@ -177,8 +172,7 @@ public class MotifsTreePanel extends ModernComponent {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -200,8 +194,7 @@ public class MotifsTreePanel extends ModernComponent {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -218,8 +211,7 @@ public class MotifsTreePanel extends ModernComponent {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -241,7 +233,7 @@ public class MotifsTreePanel extends ModernComponent {
     @Override
     public void selectionRemoved(ChangeEvent e) {
       // TODO Auto-generated method stub
-      
+
     }
 
   }
@@ -259,7 +251,7 @@ public class MotifsTreePanel extends ModernComponent {
    * Instantiates a new motifs tree panel.
    *
    * @param window the window
-   * @param model the model
+   * @param model  the model
    */
   public MotifsTreePanel(ModernWindow window, MotifModel model) {
     mWindow = window;
@@ -300,8 +292,7 @@ public class MotifsTreePanel extends ModernComponent {
     c.setBorder(ModernWidget.BOTTOM_BORDER);
     setHeader(c);
 
-    ModernScrollPane scrollPane = new ModernScrollPane(mTree)
-        .setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+    ModernScrollPane scrollPane = new ModernScrollPane(mTree).setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
     // scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
     // Ui.setSize(scrollPane, new Dimension(250, Short.MAX_VALUE));
 
@@ -342,15 +333,12 @@ public class MotifsTreePanel extends ModernComponent {
   public void refresh() throws Exception {
     TreeRootNode<Motif> root = new TreeRootNode<Motif>();
 
-    List<String> terms = Splitter.on(TextUtils.COMMA_DELIMITER).trim()
-        .ignoreEmptyStrings().text(mSearchPanel.getText());
+    List<String> terms = Splitter.on(TextUtils.COMMA_DELIMITER).trim().ignoreEmptyStrings()
+        .text(mSearchPanel.getText());
 
     TreeNode<Motif> node = new TreeNode<Motif>("Motifs");
 
-    MotifsDataSourceService.getInstance().createTree(node,
-        terms,
-        mSearchPanel.getInList(),
-        mSearchPanel.getExact(),
+    MotifsDataSourceService.getInstance().createTree(node, terms, mSearchPanel.getInList(), mSearchPanel.getExact(),
         mSearchPanel.getCaseSensitive());
 
     root.addChild(node);
@@ -361,14 +349,11 @@ public class MotifsTreePanel extends ModernComponent {
     node.updateExpanded(true);
     // The motifs node's children are expanded on condition there are
     // fewer than EXPAND_THRESHOLD
-    node.updateChildrenAreExpanded(
-        node.getCumulativeChildCount() <= EXPAND_THRESHOLD,
-        true);
+    node.updateChildrenAreExpanded(node.getCumulativeChildCount() <= EXPAND_THRESHOLD, true);
     node.fireTreeNodeChanged();
 
     if (mTree.getRoot().getCumulativeChildCount() == 0) {
-      ModernMessageDialog.createInformationDialog(mWindow,
-          "No motifs were found.");
+      ModernMessageDialog.createInformationDialog(mWindow, "No motifs were found.");
     }
   }
 
@@ -418,7 +403,7 @@ public class MotifsTreePanel extends ModernComponent {
   /**
    * Recursively examine a node and its children to find those with experiments.
    *
-   * @param node the node
+   * @param node   the node
    * @param motifs the motifs
    */
   private void selectedMotifs(TreeNode<Motif> node, List<Motif> motifs) {

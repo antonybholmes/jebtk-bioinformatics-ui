@@ -88,8 +88,7 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
   /**
    * The member remove button.
    */
-  private ModernButton mRemoveButton = new ToolbarButton(
-      AssetService.getInstance().loadIcon("trash_bw", 16));
+  private ModernButton mRemoveButton = new ToolbarButton(AssetService.getInstance().loadIcon("trash_bw", 16));
 
   // private ModernButton mClearButton =
   // new ModernButton(UIResources.getInstance().loadIcon("clear", 16));
@@ -103,8 +102,7 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -123,7 +121,7 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
    * Instantiates a new bed graph tree panel.
    *
    * @param parent the parent
-   * @param model the model
+   * @param model  the model
    */
   public BedGraphTreePanel(ModernWindow parent, BedGraphGroupsModel model) {
     mParent = parent;
@@ -189,15 +187,13 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public void load() throws IOException {
-    List<Path> files = BioInfDialog.open(mParent).bedgraph()
-        .getFiles(RecentFilesService.getInstance().getPwd());
+    List<Path> files = BioInfDialog.open(mParent).bedgraph().getFiles(RecentFilesService.getInstance().getPwd());
 
     if (files == null) {
       return;
     }
 
-    BedGraphImportDialog importDialog = new BedGraphImportDialog(mParent,
-        mModel);
+    BedGraphImportDialog importDialog = new BedGraphImportDialog(mParent, mModel);
 
     importDialog.setVisible(true);
 
@@ -263,16 +259,14 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
       return;
     }
 
-    Path file = BioInfDialog.save(mParent).bedgraph()
-        .getFile(RecentFilesService.getInstance().getPwd());
+    Path file = BioInfDialog.save(mParent).bedgraph().getFile(RecentFilesService.getInstance().getPwd());
 
     if (file == null) {
       return;
     }
 
     if (Files.exists(file)) {
-      ModernDialogStatus status = ModernMessageDialog
-          .createFileReplaceDialog(mParent, file);
+      ModernDialogStatus status = ModernMessageDialog.createFileReplaceDialog(mParent, file);
 
       if (status == ModernDialogStatus.CANCEL) {
         saveGroups();
@@ -297,8 +291,7 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
       System.err.println("group " + group.getName());
 
       for (UCSCTrack bedGraph : group) {
-        TreeNode<UCSCTrack> bedNode = new TreeNode<UCSCTrack>(
-            bedGraph.getName(), bedGraph);
+        TreeNode<UCSCTrack> bedNode = new TreeNode<UCSCTrack>(bedGraph.getName(), bedGraph);
 
         // bedNode.setExpanded(false);
 
@@ -316,8 +309,7 @@ public class BedGraphTreePanel extends ModernPanel implements ChangeListener {
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
+   * @see org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
    */
   @Override
   public void changed(ChangeEvent e) {

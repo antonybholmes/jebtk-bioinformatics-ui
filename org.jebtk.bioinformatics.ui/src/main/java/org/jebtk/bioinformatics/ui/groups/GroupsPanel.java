@@ -70,8 +70,7 @@ import org.w3c.dom.Element;
 /**
  * The class GroupsPanel.
  */
-public class GroupsPanel extends ModernComponent
-    implements ModernClickListener {
+public class GroupsPanel extends ModernComponent implements ModernClickListener {
 
   /**
    * The constant serialVersionUID.
@@ -91,26 +90,22 @@ public class GroupsPanel extends ModernComponent
   /**
    * The member new button.
    */
-  private ModernButton mNewButton = new ModernButton(
-      AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
+  private ModernButton mNewButton = new ModernButton(AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /**
    * The member delete button.
    */
-  private ModernButton mDeleteButton = new ModernButton(
-      AssetService.getInstance().loadIcon(TrashVectorIcon.class, 16));
+  private ModernButton mDeleteButton = new ModernButton(AssetService.getInstance().loadIcon(TrashVectorIcon.class, 16));
 
   /**
    * The member edit button.
    */
-  private ModernButton mEditButton = new ModernButton(
-      AssetService.getInstance().loadIcon("edit_bw", 16));
+  private ModernButton mEditButton = new ModernButton(AssetService.getInstance().loadIcon("edit_bw", 16));
 
   /**
    * The member clear button.
    */
-  private ModernButton mClearButton = new ToolbarButton(
-      AssetService.getInstance().loadIcon(CrossVectorIcon.class, 16));
+  private ModernButton mClearButton = new ToolbarButton(AssetService.getInstance().loadIcon(CrossVectorIcon.class, 16));
 
   /**
    * The member model.
@@ -133,8 +128,7 @@ public class GroupsPanel extends ModernComponent
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.dataview.ModernDataViewListener#dataChanged(org.abh.lib.
+     * @see org.jebtk.ui.ui.dataview.ModernDataViewListener#dataChanged(org.abh.lib.
      * event.ChangeEvent)
      */
     @Override
@@ -145,8 +139,7 @@ public class GroupsPanel extends ModernComponent
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.dataview.ModernDataViewListener#dataUpdated(org.abh.lib.
+     * @see org.jebtk.ui.ui.dataview.ModernDataViewListener#dataUpdated(org.abh.lib.
      * event.ChangeEvent)
      */
     @Override
@@ -186,7 +179,7 @@ public class GroupsPanel extends ModernComponent
    * Instantiates a new groups panel.
    *
    * @param parent the parent
-   * @param model the model
+   * @param model  the model
    */
   public GroupsPanel(ModernRibbonWindow parent, GroupsModel model) {
     mParent = parent;
@@ -233,9 +226,8 @@ public class GroupsPanel extends ModernComponent
      * box.add(mEditButton); box.add(ModernTheme.createHorizontalGap());
      * //box.add(Box.createHorizontalGlue()); mDeleteButton.setToolTip("Delete",
      * "Delete selected groups."); box.add(mDeleteButton);
-     * box.add(ModernTheme.createHorizontalGap());
-     * mClearButton.setToolTip("Clear", "Remove all groups.");
-     * box.add(mClearButton);
+     * box.add(ModernTheme.createHorizontalGap()); mClearButton.setToolTip("Clear",
+     * "Remove all groups."); box.add(mClearButton);
      * 
      * add(box, BorderLayout.PAGE_END);
      */
@@ -259,8 +251,7 @@ public class GroupsPanel extends ModernComponent
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+   * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
    * ModernClickEvent)
    */
   @Override
@@ -320,18 +311,15 @@ public class GroupsPanel extends ModernComponent
    * Delete groups.
    */
   private void deleteGroups() {
-    ModernMessageDialog.createDialog(mParent,
-        "Are you sure you want to delete the selected groups?",
-        MessageDialogType.WARNING_OK_CANCEL,
-        new DeleteGroupsCallBack());
+    ModernMessageDialog.createDialog(mParent, "Are you sure you want to delete the selected groups?",
+        MessageDialogType.WARNING_OK_CANCEL, new DeleteGroupsCallBack());
   }
 
   /**
    * Clear groups.
    */
   private void clearGroups() {
-    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent,
-        "Are you sure you want to delete all groups?",
+    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent, "Are you sure you want to delete all groups?",
         MessageDialogType.WARNING_OK_CANCEL);
 
     if (status == ModernDialogStatus.OK) {
@@ -344,8 +332,7 @@ public class GroupsPanel extends ModernComponent
    */
   private void createGroup() {
     // Create a default group for the user to edit
-    Group group = new Group("Group " + (mListModel.getItemCount() + 1),
-        mColorCycle.next());
+    Group group = new Group("Group " + (mListModel.getItemCount() + 1), mColorCycle.next());
 
     GroupDialog dialog = new GroupDialog(mParent, group);
 
@@ -363,12 +350,12 @@ public class GroupsPanel extends ModernComponent
   /**
    * Save groups.
    *
-   * @throws TransformerException the transformer exception
+   * @throws TransformerException         the transformer exception
    * @throws ParserConfigurationException the parser configuration exception
-   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws IOException                  Signals that an I/O exception has
+   *                                      occurred.
    */
-  public void saveGroups()
-      throws TransformerException, ParserConfigurationException, IOException {
+  public void saveGroups() throws TransformerException, ParserConfigurationException, IOException {
     if (mListModel.getItemCount() == 0) {
       return;
     }
@@ -380,29 +367,27 @@ public class GroupsPanel extends ModernComponent
    * Save groups.
    *
    * @param pwd the working directory
-   * @throws TransformerException the transformer exception
+   * @throws TransformerException         the transformer exception
    * @throws ParserConfigurationException the parser configuration exception
-   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws IOException                  Signals that an I/O exception has
+   *                                      occurred.
    */
-  public void saveGroups(Path pwd)
-      throws TransformerException, ParserConfigurationException, IOException {
+  public void saveGroups(Path pwd) throws TransformerException, ParserConfigurationException, IOException {
     if (mListModel.getItemCount() == 0) {
       return;
     }
 
-    saveGroupsFile(FileDialog.save(mParent).filter(new GroupsGuiFileFilter())
-        .getFile(pwd));
+    saveGroupsFile(FileDialog.save(mParent).filter(new GroupsGuiFileFilter()).getFile(pwd));
   }
 
   /**
    * Save groups file.
    *
    * @param file the file
-   * @throws TransformerException the transformer exception
+   * @throws TransformerException         the transformer exception
    * @throws ParserConfigurationException the parser configuration exception
    */
-  public void saveGroupsFile(Path file)
-      throws TransformerException, ParserConfigurationException {
+  public void saveGroupsFile(Path file) throws TransformerException, ParserConfigurationException {
     if (mListModel.getItemCount() == 0) {
       return;
     }

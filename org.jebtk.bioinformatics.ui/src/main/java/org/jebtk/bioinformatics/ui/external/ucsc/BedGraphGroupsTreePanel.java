@@ -65,8 +65,7 @@ import org.jebtk.modern.window.ModernWindow;
 /**
  * The class BedGraphGroupsTreePanel.
  */
-public class BedGraphGroupsTreePanel extends ModernWidget
-    implements ChangeListener {
+public class BedGraphGroupsTreePanel extends ModernWidget implements ChangeListener {
 
   /**
    * The constant serialVersionUID.
@@ -87,14 +86,12 @@ public class BedGraphGroupsTreePanel extends ModernWidget
   /**
    * The remove button.
    */
-  private ModernButton removeButton = new ModernOutlineButton(
-      AssetService.getInstance().loadIcon("trash_bw", 16));
+  private ModernButton removeButton = new ModernOutlineButton(AssetService.getInstance().loadIcon("trash_bw", 16));
 
   /**
    * The clear button.
    */
-  private ModernButton clearButton = new ModernOutlineButton(
-      AssetService.getInstance().loadIcon("clear", 16)); // Ui.MENU_CLEAR);
+  private ModernButton clearButton = new ModernOutlineButton(AssetService.getInstance().loadIcon("clear", 16)); // Ui.MENU_CLEAR);
 
   /**
    * The new group button.
@@ -121,8 +118,7 @@ public class BedGraphGroupsTreePanel extends ModernWidget
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -143,8 +139,7 @@ public class BedGraphGroupsTreePanel extends ModernWidget
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -167,8 +162,7 @@ public class BedGraphGroupsTreePanel extends ModernWidget
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -185,8 +179,7 @@ public class BedGraphGroupsTreePanel extends ModernWidget
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -199,10 +192,9 @@ public class BedGraphGroupsTreePanel extends ModernWidget
    * Instantiates a new bed graph groups tree panel.
    *
    * @param parent the parent
-   * @param model the model
+   * @param model  the model
    */
-  public BedGraphGroupsTreePanel(ModernWindow parent,
-      BedGraphGroupsModel model) {
+  public BedGraphGroupsTreePanel(ModernWindow parent, BedGraphGroupsModel model) {
     mParent = parent;
     mModel = model;
 
@@ -285,8 +277,7 @@ public class BedGraphGroupsTreePanel extends ModernWidget
       return;
     }
 
-    BedGraphImportDialog importDialog = new BedGraphImportDialog(mParent,
-        mModel);
+    BedGraphImportDialog importDialog = new BedGraphImportDialog(mParent, mModel);
 
     importDialog.setVisible(true);
 
@@ -360,8 +351,7 @@ public class BedGraphGroupsTreePanel extends ModernWidget
     }
 
     if (FileUtils.exists(file)) {
-      ModernDialogStatus status = ModernMessageDialog
-          .createFileReplaceDialog(mParent, file);
+      ModernDialogStatus status = ModernMessageDialog.createFileReplaceDialog(mParent, file);
 
       if (status == ModernDialogStatus.CANCEL) {
         saveGroups();
@@ -384,8 +374,7 @@ public class BedGraphGroupsTreePanel extends ModernWidget
       TreeNode<UCSCTrack> groupNode = new TreeNode<UCSCTrack>(group.getName());
 
       for (UCSCTrack bedGraph : group) {
-        TreeNode<UCSCTrack> bedNode = new TreeNode<UCSCTrack>(
-            bedGraph.getName(), bedGraph);
+        TreeNode<UCSCTrack> bedNode = new TreeNode<UCSCTrack>(bedGraph.getName(), bedGraph);
 
         // bedNode.setExpanded(false);
 
@@ -409,13 +398,11 @@ public class BedGraphGroupsTreePanel extends ModernWidget
     }
 
     if (mTree.getSelectedNode().getValue() == null) {
-      BedGraphGroupDialog dialog = new BedGraphGroupDialog(mParent, mModel,
-          mTree.getSelectedNode().getName());
+      BedGraphGroupDialog dialog = new BedGraphGroupDialog(mParent, mModel, mTree.getSelectedNode().getName());
 
       dialog.setVisible(true);
     } else {
-      BedGraphDialog dialog = new BedGraphDialog(mParent,
-          mTree.getSelectedNode().getValue());
+      BedGraphDialog dialog = new BedGraphDialog(mParent, mTree.getSelectedNode().getValue());
 
       dialog.setVisible(true);
     }
@@ -442,10 +429,8 @@ public class BedGraphGroupsTreePanel extends ModernWidget
    * Clear.
    */
   private void clear() {
-    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent,
-        mParent.getAppInfo().getName(),
-        "Are you sure you want to clear all groups?",
-        MessageDialogType.WARNING_OK_CANCEL);
+    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent, mParent.getAppInfo().getName(),
+        "Are you sure you want to clear all groups?", MessageDialogType.WARNING_OK_CANCEL);
 
     if (status == ModernDialogStatus.CANCEL) {
       return;
@@ -459,8 +444,7 @@ public class BedGraphGroupsTreePanel extends ModernWidget
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
+   * @see org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
    */
   @Override
   public void changed(ChangeEvent e) {

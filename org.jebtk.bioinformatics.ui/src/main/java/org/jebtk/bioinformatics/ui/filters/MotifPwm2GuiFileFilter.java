@@ -35,8 +35,7 @@ import org.jebtk.modern.io.GuiFileExtFilter;
 /**
  * The class MotifGuiFileFilter.
  */
-public class MotifPwm2GuiFileFilter extends GuiFileExtFilter
-    implements FilenameFilter {
+public class MotifPwm2GuiFileFilter extends GuiFileExtFilter implements FilenameFilter {
 
   /**
    * Instantiates a new motif gui file filter.

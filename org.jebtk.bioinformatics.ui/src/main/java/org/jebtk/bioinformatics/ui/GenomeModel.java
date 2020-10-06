@@ -49,14 +49,13 @@ public class GenomeModel extends ItemModel<Genome> {
    * Instantiates a new genome model.
    */
   public GenomeModel() {
-    set(SettingsService.getInstance().getString("genome.name"), 
-        SettingsService.getInstance().getString("genome.db"));
+    set(SettingsService.getInstance().getString("genome.name"), SettingsService.getInstance().getString("genome.db"));
   }
-  
+
   public void set(String genome) {
     set(GenomeService.getInstance().guessGenome(genome));
   }
-  
+
   public void set(String genome, String db) {
     set(GenomeService.getInstance().get(genome, db));
   }

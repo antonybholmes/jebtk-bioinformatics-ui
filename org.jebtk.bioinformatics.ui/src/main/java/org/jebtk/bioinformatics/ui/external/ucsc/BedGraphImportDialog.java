@@ -64,8 +64,7 @@ public class BedGraphImportDialog extends ModernDialogTaskWindow {
   /**
    * The check assign new groups.
    */
-  private ModernCheckBox checkAssignNewGroups = new ModernCheckBox(
-      "Assign to new groups");
+  private ModernCheckBox checkAssignNewGroups = new ModernCheckBox("Assign to new groups");
 
   /**
    * The member model.
@@ -81,7 +80,7 @@ public class BedGraphImportDialog extends ModernDialogTaskWindow {
    * Instantiates a new bed graph import dialog.
    *
    * @param parent the parent
-   * @param model the model
+   * @param model  the model
    */
   public BedGraphImportDialog(ModernWindow parent, BedGraphGroupsModel model) {
     super(parent);
@@ -127,8 +126,7 @@ public class BedGraphImportDialog extends ModernDialogTaskWindow {
     int[] rows = { ModernWidget.WIDGET_HEIGHT };
     int[] cols = { 120, 300 };
 
-    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING,
-        ModernWidget.PADDING);
+    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING, ModernWidget.PADDING);
 
     matrixPanel.add(new ModernAutoSizeLabel("Select group"));
     matrixPanel.add(mComboGroups);

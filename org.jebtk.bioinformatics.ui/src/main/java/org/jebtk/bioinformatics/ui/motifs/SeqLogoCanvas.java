@@ -69,7 +69,7 @@ public class SeqLogoCanvas extends SubFigure {
    * Instantiates a new seq logo canvas.
    *
    * @param motif the motif
-   * @param view the view
+   * @param view  the view
    */
   public SeqLogoCanvas(Motif motif, MotifView view) {
     setMotif(motif, view);
@@ -88,7 +88,7 @@ public class SeqLogoCanvas extends SubFigure {
    * Sets the motif.
    *
    * @param motif the motif
-   * @param view the view
+   * @param view  the view
    */
   public void setMotif(Motif motif, MotifView view) {
     if (motif == null) {
@@ -145,7 +145,7 @@ public class SeqLogoCanvas extends SubFigure {
     axes.setMargins(50);
 
     String title = motif.getName();
-    
+
     if (!motif.getId().equals(title)) {
       title += " (" + motif.getId() + ")";
     }

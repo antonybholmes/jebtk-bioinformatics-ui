@@ -42,8 +42,7 @@ import org.jebtk.modern.ribbon.RibbonStripContainer;
  * @author Antony Holmes
  *
  */
-public class GenomeRibbonSection extends RibbonSection
-    implements ModernClickListener {
+public class GenomeRibbonSection extends RibbonSection implements ModernClickListener {
 
   /**
    * The constant serialVersionUID.
@@ -123,8 +122,7 @@ public class GenomeRibbonSection extends RibbonSection
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+   * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
    * ModernClickEvent)
    */
   public void clicked(ModernClickEvent e) {

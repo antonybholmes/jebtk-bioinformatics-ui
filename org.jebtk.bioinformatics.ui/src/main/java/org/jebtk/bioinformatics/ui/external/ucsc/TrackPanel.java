@@ -72,8 +72,7 @@ public class TrackPanel extends ModernPanel {
   /**
    * The member description field.
    */
-  private ModernTextField mDescriptionField = new ModernClipboardTextField(
-      "Description");
+  private ModernTextField mDescriptionField = new ModernClipboardTextField("Description");
 
   /**
    * The member height field.
@@ -93,8 +92,7 @@ public class TrackPanel extends ModernPanel {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+     * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
      * ModernClickEvent)
      */
     @Override
@@ -146,7 +144,7 @@ public class TrackPanel extends ModernPanel {
    * Instantiates a new track panel.
    *
    * @param parent the parent
-   * @param track the track
+   * @param track  the track
    */
   public TrackPanel(ModernWindow parent, UCSCTrack track) {
     mTrack = track;
@@ -162,8 +160,7 @@ public class TrackPanel extends ModernPanel {
     int[] rows = { ModernWidget.WIDGET_HEIGHT };
     int[] cols = { 120, 400 };
 
-    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING,
-        ModernWidget.PADDING);
+    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING, ModernWidget.PADDING);
 
     mColorButton = new ColorSwatchButton(parent, mTrack.getColor());
 

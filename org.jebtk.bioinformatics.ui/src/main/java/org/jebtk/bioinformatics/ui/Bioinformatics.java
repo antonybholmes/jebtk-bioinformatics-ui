@@ -53,49 +53,37 @@ public class Bioinformatics {
   /**
    * Gets the model.
    *
-   * @param file the file
-   * @param hasHeader the has header
-   * @param skipMatches the skip matches
+   * @param file           the file
+   * @param hasHeader      the has header
+   * @param skipMatches    the skip matches
    * @param rowAnnotations the row annotations
-   * @param delimiter the delimiter
+   * @param delimiter      the delimiter
    * @return the model
    * @throws InvalidFormatException the invalid format exception
-   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws IOException            Signals that an I/O exception has occurred.
    */
-  public static ModernDataModel getModel(Path file,
-      int headers,
-      List<String> skipMatches,
-      int rowAnnotations,
+  public static ModernDataModel getModel(Path file, int headers, List<String> skipMatches, int rowAnnotations,
       String delimiter) throws InvalidFormatException, IOException {
-    return getModel(file,
-        headers,
-        skipMatches,
-        rowAnnotations,
-        delimiter,
-        MatrixType.MIXED);
+    return getModel(file, headers, skipMatches, rowAnnotations, delimiter, MatrixType.MIXED);
   }
 
   /**
    * Gets the model.
    *
-   * @param file Whether the file has a header.
-   * @param hasHeader The has header
+   * @param file        Whether the file has a header.
+   * @param hasHeader   The has header
    * @param skipMatches The skip matches
-   * @param rowAnns The row annotations
-   * @param delimiter the delimiter
-   * @param type The annotation type to indicate to the parser how to handle
-   *          numbers (i.e. whether to attempt to parse text as a primitive
-   *          number or not).
+   * @param rowAnns     The row annotations
+   * @param delimiter   the delimiter
+   * @param type        The annotation type to indicate to the parser how to
+   *                    handle numbers (i.e. whether to attempt to parse text as a
+   *                    primitive number or not).
    * @return the model
    * @throws InvalidFormatException the invalid format exception
-   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws IOException            Signals that an I/O exception has occurred.
    */
-  public static ModernDataModel getModel(Path file,
-      int headers,
-      List<String> skipMatches,
-      int rowAnns,
-      String delimiter,
-      MatrixType type) throws InvalidFormatException, IOException {
+  public static ModernDataModel getModel(Path file, int headers, List<String> skipMatches, int rowAnns,
+      String delimiter, MatrixType type) throws InvalidFormatException, IOException {
     if (file == null) {
       return null;
     }
@@ -107,17 +95,14 @@ public class Bioinformatics {
     } else if (ext.equals(Excel.XLSX_EXTENSION)) {
       return new XlsxTableModel(file, headers > 0, rowAnns, true);
     } else if (ext.equals(Io.FILE_EXT_CSV)) {
-      return new EditableMatrixTableModel(
-          new CsvMatrixParser(headers > 0, rowAnns).parse(file));
+      return new EditableMatrixTableModel(new CsvMatrixParser(headers > 0, rowAnns).parse(file));
     } else {
       DataFrame matrix;
 
       if (type == MatrixType.TEXT) {
-        matrix = new TextMatrixParser(headers, skipMatches, rowAnns,
-            delimiter).parse(file);
+        matrix = new TextMatrixParser(headers, skipMatches, rowAnns, delimiter).parse(file);
       } else {
-        matrix = new MixedMatrixParser(headers, skipMatches, rowAnns,
-            delimiter).parse(file);
+        matrix = new MixedMatrixParser(headers, skipMatches, rowAnns, delimiter).parse(file);
       }
 
       return new EditableMatrixTableModel(matrix);

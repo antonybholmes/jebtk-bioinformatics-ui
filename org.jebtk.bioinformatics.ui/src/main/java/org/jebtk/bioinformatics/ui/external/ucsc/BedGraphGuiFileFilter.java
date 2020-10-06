@@ -35,8 +35,7 @@ import org.jebtk.modern.io.GuiFileExtFilter;
 /**
  * The class BedGraphGuiFileFilter.
  */
-public class BedGraphGuiFileFilter extends GuiFileExtFilter
-    implements FilenameFilter {
+public class BedGraphGuiFileFilter extends GuiFileExtFilter implements FilenameFilter {
 
   /** The Constant INSTANCE. */
   public static final GuiFileExtFilter INSTANCE = new BedGraphGuiFileFilter();

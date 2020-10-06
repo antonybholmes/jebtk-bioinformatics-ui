@@ -85,12 +85,11 @@ public class BedGraphGroupDialog extends ModernDialogTaskWindow {
   /**
    * Instantiates a new bed graph group dialog.
    *
-   * @param parent the parent
-   * @param model the model
+   * @param parent   the parent
+   * @param model    the model
    * @param oldGroup the old group
    */
-  public BedGraphGroupDialog(ModernWindow parent, BedGraphGroupsModel model,
-      String oldGroup) {
+  public BedGraphGroupDialog(ModernWindow parent, BedGraphGroupsModel model, String oldGroup) {
     super(parent);
 
     mOld = oldGroup;
@@ -132,8 +131,7 @@ public class BedGraphGroupDialog extends ModernDialogTaskWindow {
     int[] rows = { ModernWidget.WIDGET_HEIGHT };
     int[] cols = { 120, 300 };
 
-    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING,
-        ModernWidget.PADDING);
+    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING, ModernWidget.PADDING);
 
     matrixPanel.add(new ModernAutoSizeLabel("Name"));
     matrixPanel.add(new ModernTextBorderPanel(mNameField));

@@ -30,11 +30,8 @@ package org.jebtk.bioinformatics.ui.genome;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import org.jebtk.bioinformatics.ext.ucsc.UCSCTrack;
-import org.jebtk.bioinformatics.genomic.Chromosome;
 import org.jebtk.bioinformatics.genomic.Genome;
 import org.jebtk.bioinformatics.genomic.GenomicElement;
 import org.jebtk.bioinformatics.genomic.GenomicRegion;

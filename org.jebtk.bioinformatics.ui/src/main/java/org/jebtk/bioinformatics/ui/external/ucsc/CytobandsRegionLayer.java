@@ -43,14 +43,13 @@ public class CytobandsRegionLayer extends CytobandsLayer {
 
   /** The Constant DEFAULT_REGION. */
   private static final GenomicRegion DEFAULT_REGION = new GenomicRegion(
-     ChromosomeService.getInstance().chr(Genome.HG19, "chr1"), 1, 1000);
+      ChromosomeService.getInstance().chr(Genome.HG19, "chr1"), 1, 1000);
 
   /** The Constant REGION_COLOR. */
   private static final Color REGION_COLOR = Color.RED;
 
   /** The Constant REGION_FILL_COLOR. */
-  private static final Color REGION_FILL_COLOR = ColorUtils
-      .getTransparentColor75(REGION_COLOR);
+  private static final Color REGION_FILL_COLOR = ColorUtils.getTransparentColor75(REGION_COLOR);
 
   /** The Constant TRIANGLE_SIZE. */
   private static final int TRIANGLE_SIZE = 5;
@@ -75,8 +74,6 @@ public class CytobandsRegionLayer extends CytobandsLayer {
     setRegion(Genome.HG19, DEFAULT_REGION);
   }
 
-
-
   /*
    * (non-Javadoc)
    * 
@@ -86,11 +83,7 @@ public class CytobandsRegionLayer extends CytobandsLayer {
    * org.graphplot.figure.SubFigure, org.graphplot.figure.Axes)
    */
   @Override
-  public void plotLayer(Graphics2D g2,
-      DrawingContext context,
-      Figure figure,
-      SubFigure subFigure,
-      Axes axes) {
+  public void plotLayer(Graphics2D g2, DrawingContext context, Figure figure, SubFigure subFigure, Axes axes) {
     super.plotLayer(g2, context, figure, subFigure, axes);
 
     int minX = axes.toPlotX1(axes.getX1Axis().getLimits().getMin());
@@ -106,10 +99,8 @@ public class CytobandsRegionLayer extends CytobandsLayer {
 
     // g2.drawString(id, textX - g2.getFontMetrics().stringWidth(id), textY);
 
-    int x1 = Mathematics
-        .bound(axes.toPlotX1(mDisplayRegion.getStart()), minX, maxX);
-    int x2 = Mathematics
-        .bound(axes.toPlotX1(mDisplayRegion.getEnd()), minX, maxX);
+    int x1 = Mathematics.bound(axes.toPlotX1(mDisplayRegion.getStart()), minX, maxX);
+    int x2 = Mathematics.bound(axes.toPlotX1(mDisplayRegion.getEnd()), minX, maxX);
 
     // px1 = Mathematics.bound(x1, minX, maxX);
     // px2 = Mathematics.bound(x2, minX, maxX);
@@ -135,8 +126,8 @@ public class CytobandsRegionLayer extends CytobandsLayer {
    * Draw triangle.
    *
    * @param g2 the g 2
-   * @param x the x
-   * @param y the y
+   * @param x  the x
+   * @param y  the y
    */
   private void drawTriangle(Graphics2D g2, int x, int y) {
     Graphics2D g2Temp = (Graphics2D) g2.create();

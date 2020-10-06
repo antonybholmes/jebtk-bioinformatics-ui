@@ -92,8 +92,7 @@ public class SequenceTableModel extends ModernTableModel {
   /*
    * (non-Javadoc)
    * 
-   * @see org.jebtk.ui.ui.dataview.ModernDataGridModel#getIsCellEditable(int,
-   * int)
+   * @see org.jebtk.ui.ui.dataview.ModernDataGridModel#getIsCellEditable(int, int)
    */
   @Override
   public boolean getIsCellEditable(int row, int column) {

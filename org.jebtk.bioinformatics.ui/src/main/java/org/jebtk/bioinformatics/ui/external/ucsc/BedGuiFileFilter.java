@@ -33,8 +33,7 @@ import org.jebtk.modern.io.SimpleGuiFileFilter;
 /**
  * The class BedGuiFileFilter.
  */
-public class BedGuiFileFilter extends SimpleGuiFileFilter
- {
+public class BedGuiFileFilter extends SimpleGuiFileFilter {
 
   /** The Constant INSTANCE. */
   public static final GuiFileExtFilter INSTANCE = new BedGuiFileFilter();

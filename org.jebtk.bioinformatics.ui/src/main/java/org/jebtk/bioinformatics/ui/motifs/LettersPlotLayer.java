@@ -66,8 +66,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
   private static final long serialVersionUID = 1L;
 
   /** The Constant LETTER_FONT. */
-  protected static final Font LETTER_FONT = FontService.getInstance()
-      .loadFont("motifs.letters.font");
+  protected static final Font LETTER_FONT = FontService.getInstance().loadFont("motifs.letters.font");
 
   /**
    * The minimum normalized height to consider drawing a letter. This stops non
@@ -110,12 +109,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
    * org.abh.lib.math.matrix.DataFrame)
    */
   @Override
-  public void plotLayer(Graphics2D g2,
-      DrawingContext context,
-      Figure figure,
-      SubFigure subFigure,
-      Axes axes,
-      Plot plot,
+  public void plotLayer(Graphics2D g2, DrawingContext context, Figure figure, SubFigure subFigure, Axes axes, Plot plot,
       DataFrame m) {
     int x1;
     int y1;
@@ -168,8 +162,7 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
           // System.err.println("scale " + scaleY + " " + baseHeight.getChar() +
           // " " +baseHeight.getHeight());
 
-          double ws1 = (double) w1
-              / (double) g2.getFontMetrics().stringWidth(s);
+          double ws1 = (double) w1 / (double) g2.getFontMetrics().stringWidth(s);
 
           mXScaleMap.get(c).put(i, ws1);
         }
@@ -215,13 +208,11 @@ public abstract class LettersPlotLayer extends PlotClippedLayer {
   /**
    * Adds the char.
    *
-   * @param letter the letter
+   * @param letter     the letter
    * @param baseCounts the base
-   * @param sortMap the sort map
+   * @param sortMap    the sort map
    */
-  protected static void addChar(char letter,
-      BaseCounts baseCounts,
-      Map<Double, List<Character>> sortMap) {
+  protected static void addChar(char letter, BaseCounts baseCounts, Map<Double, List<Character>> sortMap) {
 
     double height = baseCounts.getCount(letter); // * r.get(i);
 

@@ -68,8 +68,7 @@ public class ModernDNA32VectorIcon extends ModernVectorIcon {
   /**
    * The constant OUTLINE.
    */
-  private static final Color OUTLINE = ThemeService.getInstance().getColors()
-      .getGray(6);
+  private static final Color OUTLINE = ThemeService.getInstance().getColors().getGray(6);
 
   /**
    * Instantiates a new modern dn a32 vector icon.
@@ -89,12 +88,7 @@ public class ModernDNA32VectorIcon extends ModernVectorIcon {
    * java.awt.Rectangle)
    */
   @Override
-  public void drawIcon(Graphics2D g2,
-      int x,
-      int y,
-      int w,
-      int h,
-      Props props) {
+  public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Props props) {
     double wf = w * SCALE;
     double w2 = w / 2.0;
     double lineWidth = w * LINE_SCALE;
@@ -105,31 +99,21 @@ public class ModernDNA32VectorIcon extends ModernVectorIcon {
     double yf = y + (h - wf) / 2;
 
     g2.setColor(Color.WHITE);
-    g2.fillRect((int) Math.round(xf),
-        (int) Math.round(yf),
-        (int) Math.round(wf),
-        (int) Math.round(wf));
+    g2.fillRect((int) Math.round(xf), (int) Math.round(yf), (int) Math.round(wf), (int) Math.round(wf));
 
     g2.setColor(OUTLINE);
-    g2.drawRect((int) Math.round(xf),
-        (int) Math.round(yf),
-        (int) Math.round(wf),
-        (int) Math.round(wf));
+    g2.drawRect((int) Math.round(xf), (int) Math.round(yf), (int) Math.round(wf), (int) Math.round(wf));
 
     g2.setStroke(ModernTheme.DOUBLE_LINE_STROKE);
 
     xf = xf + (wf - lineWidth) / 2;
 
     g2.setColor(props.getColor("color1"));
-    g2.drawLine((int) Math.round(xf),
-        (int) Math.round(yf + w2 - o),
-        (int) Math.round(xf + lineWidth),
+    g2.drawLine((int) Math.round(xf), (int) Math.round(yf + w2 - o), (int) Math.round(xf + lineWidth),
         (int) Math.round(yf + w2 - o));
 
     g2.setColor(props.getColor("color2"));
-    g2.drawLine((int) Math.round(xf),
-        (int) Math.round(yf + w2 + o),
-        (int) Math.round(xf + lineWidth),
+    g2.drawLine((int) Math.round(xf), (int) Math.round(yf + w2 + o), (int) Math.round(xf + lineWidth),
         (int) Math.round(yf + w2 + o));
   }
 }

@@ -63,8 +63,7 @@ public class LettersPlotPLayer extends LettersPlotLayer {
 
     // Normalize the matrix
     for (BaseCounts base : motif) {
-      counts.add(new BaseCounts(base.getA(), base.getC(), base.getG(),
-          base.getT(), base.getN(), true));
+      counts.add(new BaseCounts(base.getA(), base.getC(), base.getG(), base.getT(), base.getN(), true));
     }
 
     Motif pMotif = new Motif(motif.getName(), counts);
@@ -75,9 +74,8 @@ public class LettersPlotPLayer extends LettersPlotLayer {
      * List<Double> h = new ArrayList<Double>();
      * 
      * for (BaseCounts base : pMotif) { double bits = base.getA() *
-     * Mathematics.log2(base.getA()) + base.getC() *
-     * Mathematics.log2(base.getC()) + base.getG() *
-     * Mathematics.log2(base.getG()) + base.getT() *
+     * Mathematics.log2(base.getA()) + base.getC() * Mathematics.log2(base.getC()) +
+     * base.getG() * Mathematics.log2(base.getG()) + base.getT() *
      * Mathematics.log2(base.getT());
      * 
      * h.add(-bits); }
@@ -102,8 +100,7 @@ public class LettersPlotPLayer extends LettersPlotLayer {
       // Letters are reverse sorted to ensure that they are
       // display alphabetically vertically down on the plot
       for (double height : CollectionUtils.sort(sortMap.keySet())) {
-        for (char c : CollectionUtils
-            .reverse(CollectionUtils.sort(sortMap.get(height)))) {
+        for (char c : CollectionUtils.reverse(CollectionUtils.sort(sortMap.get(height)))) {
           baseHeights.add(new BaseHeight(c, height));
         }
       }

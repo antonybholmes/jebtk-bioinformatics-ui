@@ -72,7 +72,7 @@ public class Group implements Iterable<String>, XmlStream {
   /**
    * Instantiates a new group.
    *
-   * @param name the name
+   * @param name  the name
    * @param color the color
    */
   public Group(String name, Color color) {
@@ -204,12 +204,12 @@ public class Group implements Iterable<String>, XmlStream {
    *
    * @param file the file
    * @return the list
-   * @throws SAXException the SAX exception
-   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws SAXException                 the SAX exception
+   * @throws IOException                  Signals that an I/O exception has
+   *                                      occurred.
    * @throws ParserConfigurationException the parser configuration exception
    */
-  public static List<Group> loadGroups(Path file)
-      throws SAXException, IOException, ParserConfigurationException {
+  public static List<Group> loadGroups(Path file) throws SAXException, IOException, ParserConfigurationException {
     SAXParserFactory factory = SAXParserFactory.newInstance();
     SAXParser saxParser = factory.newSAXParser();
 

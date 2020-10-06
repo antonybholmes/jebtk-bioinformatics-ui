@@ -74,8 +74,7 @@ import org.jebtk.modern.window.ModernWindow;
  *
  * @author Antony Holmes
  */
-public class GroupEditPanel extends ModernComponent
-    implements ModernClickListener {
+public class GroupEditPanel extends ModernComponent implements ModernClickListener {
 
   /**
    * The constant serialVersionUID.
@@ -110,15 +109,14 @@ public class GroupEditPanel extends ModernComponent
   /**
    * The member load button.
    */
-  private RibbonButton mLoadButton = new RibbonButton(
-      "Load...",
+  private RibbonButton mLoadButton = new RibbonButton("Load...",
       AssetService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
 
   /**
    * Instantiates a new group edit panel.
    *
    * @param parent the parent
-   * @param group the group
+   * @param group  the group
    */
   public GroupEditPanel(ModernWindow parent, Group group) {
     mParent = parent;
@@ -132,8 +130,7 @@ public class GroupEditPanel extends ModernComponent
     int[] rows = { ModernWidget.WIDGET_HEIGHT };
     int[] cols = { 80, 300 };
 
-    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING,
-        ModernWidget.PADDING);
+    MatrixPanel matrixPanel = new MatrixPanel(rows, cols, ModernWidget.PADDING, ModernWidget.PADDING);
 
     mColorButton = new ColorSwatchButton(parent, mGroup.getColor());
 
@@ -150,8 +147,7 @@ public class GroupEditPanel extends ModernComponent
 
     setHeader(matrixPanel);
 
-    ModernScrollPane scrollPane = new ModernScrollPane(mTextArea)
-        .setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
+    ModernScrollPane scrollPane = new ModernScrollPane(mTextArea).setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
 
     setBody(scrollPane);
 
@@ -217,13 +213,8 @@ public class GroupEditPanel extends ModernComponent
    * @throws Exception the exception
    */
   public void openFiles(Path pwd) throws Exception {
-    openFiles(FileDialog.open(mParent)
-        .filter(new AllXlsxGuiFileFilter(),
-            new XlsxGuiFileFilter(),
-            new TxtGuiFileFilter(),
-            new BedGuiFileFilter(),
-            new BedGraphGuiFileFilter())
-        .getFiles(pwd));
+    openFiles(FileDialog.open(mParent).filter(new AllXlsxGuiFileFilter(), new XlsxGuiFileFilter(),
+        new TxtGuiFileFilter(), new BedGuiFileFilter(), new BedGraphGuiFileFilter()).getFiles(pwd));
   }
 
   /**
@@ -269,8 +260,7 @@ public class GroupEditPanel extends ModernComponent
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
+   * @see org.jebtk.ui.ui.event.ModernClickListener#clicked(org.jebtk.ui.ui.event.
    * ModernClickEvent)
    */
   @Override

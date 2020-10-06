@@ -49,8 +49,7 @@ import org.jebtk.modern.window.ModernWindow;
  * @author Antony Holmes
  *
  */
-public class GroupDialog extends ModernDialogTaskWindow
-    implements ModernClickListener {
+public class GroupDialog extends ModernDialogTaskWindow implements ModernClickListener {
 
   /**
    * The constant serialVersionUID.
@@ -60,18 +59,15 @@ public class GroupDialog extends ModernDialogTaskWindow
   /**
    * The member check unique.
    */
-  private ModernTwoStateWidget mCheckUnique = new ModernCheckSwitch(
-      "Make unique", true);
+  private ModernTwoStateWidget mCheckUnique = new ModernCheckSwitch("Make unique", true);
 
   /**
    * The member check remove na.
    */
-  private ModernTwoStateWidget mCheckRemoveNA = new ModernCheckSwitch(
-      "Remove n/a", true);
+  private ModernTwoStateWidget mCheckRemoveNA = new ModernCheckSwitch("Remove n/a", true);
 
   /** The m check ignore empty. */
-  private ModernTwoStateWidget mCheckIgnoreEmpty = new ModernCheckSwitch(
-      "Ignore empty lines", true);
+  private ModernTwoStateWidget mCheckIgnoreEmpty = new ModernCheckSwitch("Ignore empty lines", true);
 
   /**
    * The member panel.
@@ -82,7 +78,7 @@ public class GroupDialog extends ModernDialogTaskWindow
    * Instantiates a new group dialog.
    *
    * @param parent the parent
-   * @param group the group
+   * @param group  the group
    */
   public GroupDialog(ModernWindow parent, Group group) {
     super(parent);

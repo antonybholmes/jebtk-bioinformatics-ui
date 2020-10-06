@@ -76,7 +76,7 @@ public class BioInfDialog {
    * Save matrix file.
    *
    * @param parent the parent
-   * @param pwd the pwd
+   * @param pwd    the pwd
    * @return the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
@@ -87,19 +87,15 @@ public class BioInfDialog {
   /**
    * Save matrix file.
    *
-   * @param parent the parent
-   * @param pwd the pwd
+   * @param parent        the parent
+   * @param pwd           the pwd
    * @param suggestedFile the suggested file
    * @return the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static Path saveMatrixFile(Frame parent, Path pwd, Path suggestedFile)
-      throws IOException {
+  public static Path saveMatrixFile(Frame parent, Path pwd, Path suggestedFile) throws IOException {
     return FileDialog.save(parent)
-        .filter(new XlsxGuiFileFilter(),
-            new TsvGuiFileFilter(),
-            new GctGuiFileFilter(),
-            new EstGuiFileFilter())
+        .filter(new XlsxGuiFileFilter(), new TsvGuiFileFilter(), new GctGuiFileFilter(), new EstGuiFileFilter())
         .suggested(suggestedFile).getFile(pwd);
   }
 
@@ -107,34 +103,31 @@ public class BioInfDialog {
    * Save fasta file.
    *
    * @param parent the parent
-   * @param pwd the pwd
+   * @param pwd    the pwd
    * @return the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static Path saveFastaFile(Frame parent, Path pwd) throws IOException {
-    return FileDialog.save(parent).filter(new FastaGuiFileFilter())
-        .getFile(pwd);
+    return FileDialog.save(parent).filter(new FastaGuiFileFilter()).getFile(pwd);
   }
 
   /**
    * Save bed graph file.
    *
    * @param parent the parent
-   * @param pwd the pwd
+   * @param pwd    the pwd
    * @return the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static Path saveBedGraphFile(Frame parent, Path pwd)
-      throws IOException {
-    return FileDialog.save(parent).filter(new BedGraphGuiFileFilter())
-        .getFile(pwd);
+  public static Path saveBedGraphFile(Frame parent, Path pwd) throws IOException {
+    return FileDialog.save(parent).filter(new BedGraphGuiFileFilter()).getFile(pwd);
   }
 
   /**
    * Save bed file.
    *
    * @param parent the parent
-   * @param pwd the pwd
+   * @param pwd    the pwd
    * @return the path
    * @throws IOException Signals that an I/O exception has occurred.
    */
@@ -146,28 +139,20 @@ public class BioInfDialog {
    * Open matrix file.
    *
    * @param parent the parent
-   * @param pwd the pwd
+   * @param pwd    the pwd
    * @return the file
    */
   public static Path openMatrixFile(Frame parent, Path pwd) {
-    return FileDialog.openFile(parent,
-        pwd,
-        new AllGuiFilesFilter(),
-        new MatrixFilesGuiFileExtFilter(),
-        new XlsxGuiFileFilter(),
-        new TsvGuiFileFilter(),
-        new GctGuiFileFilter(),
-        new ResGuiFileFilter(),
-        new EstGuiFileFilter(),
-        new BedGuiFileFilter(),
-        new BedGraphGuiFileFilter());
+    return FileDialog.openFile(parent, pwd, new AllGuiFilesFilter(), new MatrixFilesGuiFileExtFilter(),
+        new XlsxGuiFileFilter(), new TsvGuiFileFilter(), new GctGuiFileFilter(), new ResGuiFileFilter(),
+        new EstGuiFileFilter(), new BedGuiFileFilter(), new BedGraphGuiFileFilter());
   }
 
   /**
    * Open motif file.
    *
    * @param parent the parent
-   * @param pwd the pwd
+   * @param pwd    the pwd
    * @return the file
    */
   public static Path openMotifFile(Frame parent, Path pwd) {
@@ -184,14 +169,11 @@ public class BioInfDialog {
    * Open motif files.
    *
    * @param parent the parent
-   * @param pwd the pwd
+   * @param pwd    the pwd
    * @return the list
    */
   public static List<Path> openMotifFiles(Frame parent, Path pwd) {
-    return FileDialog.openFiles(parent,
-        pwd,
-        new MotifGuiFileFilter(),
-        new MotifPwmGuiFileFilter());
+    return FileDialog.openFiles(parent, pwd, new MotifGuiFileFilter(), new MotifPwmGuiFileFilter());
   }
 
   //
@@ -311,9 +293,7 @@ public class BioInfDialog {
      * @return the save file selection
      */
     public SaveFileSelection getImage() {
-      return mSave.filter(new SvgGuiFileFilter(),
-          new PngGuiFileFilter(),
-          new PdfGuiFileFilter(),
+      return mSave.filter(new SvgGuiFileFilter(), new PngGuiFileFilter(), new PdfGuiFileFilter(),
           new JpgGuiFileFilter());
     }
   }

@@ -73,9 +73,7 @@ public class BedGraphTreeNodeRenderer extends ModernTreeNodeRenderer {
 
     if (!isParent && mBedGraph != null) {
       g2.setColor(mBedGraph.getColor());
-      g2.fillRect(x,
-          (mRect.getH() - AssetService.ICON_SIZE_16) / 2,
-          AssetService.ICON_SIZE_16,
+      g2.fillRect(x, (mRect.getH() - AssetService.ICON_SIZE_16) / 2, AssetService.ICON_SIZE_16,
           AssetService.ICON_SIZE_16);
 
       x += 16;
@@ -90,48 +88,30 @@ public class BedGraphTreeNodeRenderer extends ModernTreeNodeRenderer {
     StringBuilder buffer = new StringBuilder(mNode.getName());
 
     if (isParent || mBedGraph == null) {
-      buffer.append(" (").append(Integer.toString(mNode.getChildCount()))
-          .append(")");// group.getSearch());
+      buffer.append(" (").append(Integer.toString(mNode.getChildCount())).append(")");// group.getSearch());
 
       g2.setFont(BOLD_FONT);
     } else {
-      buffer.append(" (")
-          .append(Integer.toString(mBedGraph.getElements().size())).append(")");
+      buffer.append(" (").append(Integer.toString(mBedGraph.getElements().size())).append(")");
 
       g2.setFont(FONT);
     }
 
-    g2.drawString(getTruncatedText(g2, buffer.toString(), x, mRect.getW()),
-        x,
-        p.y);
+    g2.drawString(getTruncatedText(g2, buffer.toString(), x, mRect.getW()), x, p.y);
   }
 
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.jebtk.ui.ui.tree.ModernTreeNodeRenderer#getRenderer(org.jebtk.ui.ui.
+   * @see org.jebtk.ui.ui.tree.ModernTreeNodeRenderer#getRenderer(org.jebtk.ui.ui.
    * tree.Tree, org.abh.lib.tree.TreeNode, boolean, boolean, boolean, boolean,
    * int, int)
    */
   @Override
-  public ModernTreeNodeRenderer getRenderer(Tree<?> tree,
-      TreeNode<?> node,
-      boolean nodeIsHighlighted,
-      boolean nodeIsSelected,
-      boolean hasFocus,
-      boolean isDragToNode,
-      int depth,
-      int row) {
+  public ModernTreeNodeRenderer getRenderer(Tree<?> tree, TreeNode<?> node, boolean nodeIsHighlighted,
+      boolean nodeIsSelected, boolean hasFocus, boolean isDragToNode, int depth, int row) {
 
-    super.getRenderer(tree,
-        node,
-        nodeIsHighlighted,
-        nodeIsSelected,
-        hasFocus,
-        isDragToNode,
-        depth,
-        row);
+    super.getRenderer(tree, node, nodeIsHighlighted, nodeIsSelected, hasFocus, isDragToNode, depth, row);
 
     isParent = node.isParent();
 

@@ -38,7 +38,6 @@ public class ModernHg1932VectorIcon extends ModernDNA32VectorIcon {
    * Instantiates a new modern hg1932 vector icon.
    */
   public ModernHg1932VectorIcon() {
-    super(ColorUtils.decodeHtmlColor("#ffaaaa"),
-        ColorUtils.decodeHtmlColor("#ff5555"));
+    super(ColorUtils.decodeHtmlColor("#ffaaaa"), ColorUtils.decodeHtmlColor("#ff5555"));
   }
 }

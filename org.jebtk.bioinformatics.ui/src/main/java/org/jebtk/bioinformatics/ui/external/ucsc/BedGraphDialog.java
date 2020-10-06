@@ -41,8 +41,7 @@ import org.jebtk.modern.window.ModernWindow;
  *
  * @author Antony Holmes
  */
-public class BedGraphDialog extends ModernDialogTaskWindow
-    implements ModernClickListener {
+public class BedGraphDialog extends ModernDialogTaskWindow implements ModernClickListener {
 
   /**
    * The constant serialVersionUID.
@@ -58,7 +57,7 @@ public class BedGraphDialog extends ModernDialogTaskWindow
    * Instantiates a new bed graph dialog.
    *
    * @param parent the parent
-   * @param bed the bed
+   * @param bed    the bed
    */
   public BedGraphDialog(ModernWindow parent, UCSCTrack bed) {
     super(parent, ModernDialogTaskType.OK);
